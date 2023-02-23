@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,5 +6,24 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Pipeline\IPipeLineCompositeComponent.cs" />
+    <Compile Remove="SprintState\CanceldDeploymentSprintState.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="NewFile1.txt" />
+    <None Remove="NotificationObserver\ISubscriber" />
+    <None Remove="Pipeline\IPipeLineVisitor" />
+    <None Remove="Pipeline\NewFile1.txt" />
+    <None Remove="SprintState\ISprintState" />
+    <None Remove="SprintState\NewFile1.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ForumComposite\" />
+    <Folder Include="NotificationAdapter\" />
+  </ItemGroup>
 
 </Project>
