@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Compile Remove="Pipeline\IPipeLineCompositeComponent.cs" />
+    <Compile Remove="Pipeline\PackageActions.cs" />
     <Compile Remove="SprintState\CanceldDeploymentSprintState.cs" />
   </ItemGroup>
 
@@ -17,12 +18,12 @@
     <None Remove="NotificationObserver\ISubscriber" />
     <None Remove="Pipeline\IPipeLineVisitor" />
     <None Remove="Pipeline\NewFile1.txt" />
+    <None Remove="Pipeline\TestAction" />
     <None Remove="SprintState\ISprintState" />
     <None Remove="SprintState\NewFile1.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ForumComposite\" />
     <Folder Include="NotificationAdapter\" />
   </ItemGroup>
 

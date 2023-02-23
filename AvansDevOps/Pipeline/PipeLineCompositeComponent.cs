@@ -8,20 +8,24 @@ namespace AvansDevOps.Pipeline
 {
     public class PipeLineCompositeComponent: IPipeLineComponent
     {
-        private List<IPipeLineComponent> parts;
+        private List<IPipeLineComponent> _parts;
+
+        public PipeLineCompositeComponent()
+        {
+            _parts= new List<IPipeLineComponent>();
+        }
 
         public void AddComponent(IPipeLineComponent PipeLineComponent)
         {
-            parts.Add(PipeLineComponent);
+            _parts.Add(PipeLineComponent);
         }
 
-        public void AcceptVisitor(IPipeLineVisitor visitor)
+        virtual public void AcceptVisitor(IPipeLineVisitor visitor)
         {
-            foreach (var part in parts)
+            foreach (var part in _parts)
             {
                 part.AcceptVisitor(visitor);
             }
         }
-
     }
 }
