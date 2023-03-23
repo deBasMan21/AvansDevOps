@@ -6,11 +6,25 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Pipeline
 {
-    public class BuildAction : IPipeLineComponent
+    public class BuildAction : IActionComponent
     {
-        public void AcceptVisitor(IPipeLineVisitor visitor)
+
+        public string BuildType { get; private set; }
+
+        public BuildAction(string BuildType)
+        {
+            this.BuildType = BuildType; 
+        }
+
+        public void AcceptVisitor(IActionVisitor visitor)
         {
             visitor.VisitBuild(this);
         }
+
+        public void RunBuild()
+        {
+            Console.WriteLine($"Running build {BuildType}");
+        }
+
     }
 }

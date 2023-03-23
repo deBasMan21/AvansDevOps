@@ -6,11 +6,25 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Pipeline
 {
-    public class DeployAction : IPipeLineComponent
+    public class DeployAction : IActionComponent
     {
-        public void AcceptVisitor(IPipeLineVisitor visitor)
+
+        public string DeploymentTarget { get; private set; }
+
+        public DeployAction(string DeploymentTarget)
+        {
+            this.DeploymentTarget = DeploymentTarget;
+        }
+
+        public void AcceptVisitor(IActionVisitor visitor)
         {
             visitor.VisitDeploy(this);
         }
+
+        public void RunDeployment()
+        {
+            Console.WriteLine($"Deploying to {DeploymentTarget}");
+        }
+
     }
 }

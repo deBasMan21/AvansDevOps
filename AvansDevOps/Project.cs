@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AvansDevOps.SprintAbstraction;
+using AvansDevOps.UserAbstraction;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +11,14 @@ namespace AvansDevOps
     public class Project
     {
         public List<Sprint> Sprints { get; private set; }
+        public ProductOwner productOwner { get; private set; }
+        public Backlog projectBacklog { get; private set; }
 
-        public Project(List<Sprint> Sprints)
+        public Project(List<Sprint> Sprints, ProductOwner productOwner, Backlog projectBacklog)
         {
             this.Sprints = Sprints;
+            this.productOwner = productOwner;
+            this.projectBacklog = projectBacklog;
         }
 
         public void AddSprint(Sprint Sprint)

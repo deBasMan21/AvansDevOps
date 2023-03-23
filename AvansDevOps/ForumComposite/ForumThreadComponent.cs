@@ -6,18 +6,23 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.ForumComposite
 {
-    public class ForumThreadComponent : ForumComponent
+    public class ForumThreadComponent : ForumCompositeComponent
     {
-        private List<ForumComponent> _children;
+        private List<ForumComponent> children;
 
-        public ForumThreadComponent(string message): base(message) => _children = new List<ForumComponent>();
+        public ForumThreadComponent()
+        {
+            children = new List<ForumComponent>();
+        }
 
-        public override string GetComment() => _message + "\n\t" + string.Join("\n\t", _children.Select(c => c.GetComment()).ToList());
+        public override void AddChild(ForumComponent child) => children.Add(child);
+        public override void RemoveChild(ForumComponent child) => children.Remove(child);
+        public override void ReplaceChild(ForumComponent child, ForumComponent oldChild)
+        {
+            RemoveChild(oldChild);
+            AddChild(child);
+        }
 
-        public override void AddChild(ForumComponent component) => _children.Add(component);
-
-        public override void RemoveChild(ForumComponent component) => _children.Remove(component);
-
-        public override ForumComponent GetChild(int index) => _children[index];
+        public override string GetChildrenMessages() => string.Join("\n\t", children.Select(child => child.GetMessage()).ToList());
     }
 }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Pipeline
 {
-    public interface IPipeLineComponent
+    public interface IActionComponent
     {
-        public void AcceptVisitor(IPipeLineVisitor visitor);
+        public void AcceptVisitor(IActionVisitor visitor);
     }
 }

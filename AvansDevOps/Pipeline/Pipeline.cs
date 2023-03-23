@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Pipeline
 {
-    public class PipeLine : PipeLineCompositeComponent
+    public class PipeLine : ActionGroupComposite
     {
-        override public void AcceptVisitor(IPipeLineVisitor visitor)
+        override public void AcceptVisitor(IActionVisitor visitor)
         {
             visitor.VisitPipeline(this);
             base.AcceptVisitor(visitor);

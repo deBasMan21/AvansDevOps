@@ -10,9 +10,6 @@ namespace AvansDevOps.SprintState
     {
         public void StartSprint();
         public void FinishSprint();
-        public void CancelSprintDeployment();
-        public void StartSprintReview();
-        public void StartPipeLine();
-        public void CloseSprint();
+        public void ReviewSprint();
     }
 }

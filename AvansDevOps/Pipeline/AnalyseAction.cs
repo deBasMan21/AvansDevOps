@@ -6,11 +6,24 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Pipeline
 {
-    public class AnalyseAction : IPipeLineComponent
+    public class AnalyseAction : IActionComponent
     {
-        public void AcceptVisitor(IPipeLineVisitor visitor)
+
+        public string AnalyseTool { get; private set; }
+
+        public AnalyseAction(string AnalyseTool)
+        {
+            this.AnalyseTool = AnalyseTool;
+        }
+
+        public void AcceptVisitor(IActionVisitor visitor)
         {
             visitor.VisitAnalyse(this);
+        }
+
+        public void RunAnalysis()
+        {
+            Console.WriteLine($"{AnalyseTool}: Performing code analysis");
         }
     }
 }

@@ -6,26 +6,26 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Pipeline
 {
-    public class RunPipelineVisitor : IPipeLineVisitor
+    public class ActionVisitor : IActionVisitor
     {
         public void VisitAnalyse(AnalyseAction analyseAction)
         {
-            Console.WriteLine("Run analyse action");
+            analyseAction.RunAnalysis();
         }
 
         public void VisitBuild(BuildAction buildAction)
         {
-            Console.WriteLine("Run build action");
+            buildAction.RunBuild();
         }
 
-        public void VisitDeploy(DeployAction utilityAction)
+        public void VisitDeploy(DeployAction deployAction)
         {
-            Console.WriteLine("Run utility action");
+            deployAction.RunDeployment();
         }
 
         public void VisitPackage(PackageAction packageAction)
         {
-            Console.WriteLine("Run package action");
+            packageAction.InstallDependencies();
         }
 
         public void VisitPipeline(PipeLine pipeline)
@@ -35,17 +35,18 @@ namespace AvansDevOps.Pipeline
 
         public void VisitSources(SourcesAction sourcesAction)
         {
-            Console.WriteLine("Run sources action");
+           sourcesAction.CloneRepo();
         }
 
         public void VisitTest(TestAction testAction)
         {
-            Console.WriteLine("Run test action");
+            testAction.RunTests();
+            testAction.PublishResults();
         }
 
         public void VisitUtility(UtilityAction utilityAction)
         {
-            Console.WriteLine("Run utility action");
+            utilityAction.RunUtilityActions();
         }
     }
 }

@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AvansDevOps.SprintAbstraction;
 
 namespace AvansDevOps.SprintState
 {
-    public class InDeploymentSprintState : ISprintState
+    public class CreatedSprintState: ISprintState
     {
-        private Sprint _sprint;
+        private Sprint _Sprint;
 
-        public InDeploymentSprintState(Sprint Sprint)
+        public CreatedSprintState(Sprint Sprint)
         {
-            this._sprint = Sprint;
+            this._Sprint = Sprint;
         }
 
         public void StartSprint()
         {
-            throw new NotImplementedException();
+            _Sprint.UpdateSprintState(new ActiveSprintState(_Sprint));
         }
         public void FinishSprint()
         {
@@ -25,8 +26,7 @@ namespace AvansDevOps.SprintState
         }
         public void CancelSprintDeployment()
         {
-            _sprint.UpdateSprintState(new CancelledDeploymentSprintState(_sprint));
-
+            throw new NotImplementedException();
         }
         public void StartSprintReview()
         {
@@ -38,8 +38,7 @@ namespace AvansDevOps.SprintState
         }
         public void CloseSprint()
         {
-            _sprint.UpdateSprintState(new ClosedSprintState(_sprint));
-
+            throw new NotImplementedException();
         }
     }
 }

@@ -6,33 +6,12 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.ReportFactory
 {
-    public class ReportFactory: IReportFactory
+    public class ReportFactory
     {
-        private ReportType _reportType;
-        public ReportFactory(ReportType type) 
-        {
-            _reportType = type;
-        }
+        public ReportFactory() { }
 
-        public IReport CreateReport(string content)
-        {
-            switch (_reportType)
-            {
-                case ReportType.PDF: return new PdfReport(content);
-                case ReportType.PNG: return new PngReport(content);
-                default: return null;
-            }
-        }
-    }
+        public IReportFactory CreatePDFReportFactory() => new PDFReportFactory();
 
-    public enum ReportType
-    {
-        PDF,
-        PNG
-    }
-
-    public interface IReportFactory
-    {
-        IReport CreateReport(string content);
+        public IReportFactory CreatePNGReportFactory() => new PNGReportFactory();
     }
 }

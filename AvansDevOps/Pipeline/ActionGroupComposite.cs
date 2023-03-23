@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Pipeline
 {
-    public class PipeLineCompositeComponent: IPipeLineComponent
+    public class ActionGroupComposite: IActionComponent
     {
-        private List<IPipeLineComponent> _parts;
+        private List<IActionComponent> _parts;
 
-        public PipeLineCompositeComponent()
+        public ActionGroupComposite()
         {
-            _parts= new List<IPipeLineComponent>();
+            _parts= new List<IActionComponent>();
         }
 
-        public void AddComponent(IPipeLineComponent PipeLineComponent)
+        public void AddComponent(IActionComponent PipeLineComponent)
         {
             _parts.Add(PipeLineComponent);
         }
 
-        virtual public void AcceptVisitor(IPipeLineVisitor visitor)
+        virtual public void AcceptVisitor(IActionVisitor visitor)
         {
             foreach (var part in _parts)
             {
