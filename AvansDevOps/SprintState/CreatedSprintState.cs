@@ -16,29 +16,19 @@ namespace AvansDevOps.SprintState
             this._Sprint = Sprint;
         }
 
-        public void StartSprint()
-        {
-            _Sprint.UpdateSprintState(new ActiveSprintState(_Sprint));
-        }
         public void FinishSprint()
         {
             throw new NotImplementedException();
         }
-        public void CancelSprintDeployment()
+
+        public void ReviewSprint()
         {
             throw new NotImplementedException();
         }
-        public void StartSprintReview()
+
+        public void StartSprint()
         {
-            throw new NotImplementedException();
-        }
-        public void StartPipeLine()
-        {
-            throw new NotImplementedException();
-        }
-        public void CloseSprint()
-        {
-            throw new NotImplementedException();
+            _Sprint.UpdateSprintState(new ActiveSprintState(_Sprint));
         }
     }
 }

@@ -30,7 +30,7 @@ namespace AvansDevOps.ReportFactory
                 report.AddHeader(customHeader);
             }
 
-            return report
+            return report;
         }
     }
 }

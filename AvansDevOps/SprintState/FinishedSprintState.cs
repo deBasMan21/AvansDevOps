@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AvansDevOps.SprintAbstraction;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,36 +9,24 @@ namespace AvansDevOps.SprintState
 {
     public class FinishedSprintState : ISprintState
     {
-        private Sprint _sprint;
+        private Sprint _Sprint;
 
         public FinishedSprintState(Sprint Sprint)
         {
-            this._sprint = Sprint;
+            this._Sprint = Sprint;
         }
 
-        public void StartSprint()
-        {
-            throw new NotImplementedException();
-        }
         public void FinishSprint()
         {
             throw new NotImplementedException();
         }
-        public void CancelSprintDeployment()
-        {
-            _sprint.UpdateSprintState(new CancelledDeploymentSprintState(_sprint));
-        }
-        public void StartSprintReview()
-        {
-            _sprint.UpdateSprintState(new InSprintReviewState(_sprint));
 
-        }
-        public void StartPipeLine()
+        public void ReviewSprint()
         {
-            _sprint.UpdateSprintState(new CancelledDeploymentSprintState(_sprint));
-
+            _Sprint.UpdateSprintState(new ClosedSprintState(_Sprint));
         }
-        public void CloseSprint()
+
+        public void StartSprint()
         {
             throw new NotImplementedException();
         }

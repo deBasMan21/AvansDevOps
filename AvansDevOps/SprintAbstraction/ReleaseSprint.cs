@@ -17,8 +17,9 @@ namespace AvansDevOps.SprintAbstraction
             DateTime EndDate, 
             LeadDeveloper leadDeveloper, 
             ScrumMaster scrumMaster, 
-            List<Developer> developers
-            ) : base(Name, StartDate, EndDate, leadDeveloper, scrumMaster, developers)
+            List<Developer> developers,
+            Backlog sprintBacklog
+            ) : base(Name, StartDate, EndDate, leadDeveloper, scrumMaster, developers, sprintBacklog)
         {
             deploymentState = new ReadyToDeployState(this);
         }
