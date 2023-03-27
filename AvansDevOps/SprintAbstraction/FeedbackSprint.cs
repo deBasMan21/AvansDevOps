@@ -20,7 +20,5 @@ namespace AvansDevOps.SprintAbstraction
             ) : base(Name, StartDate, EndDate, leadDeveloper, scrumMaster, developers, sprintBacklog)
         {
         }
-
-        public override void StartClosedSprintAction() { }
     }
 }

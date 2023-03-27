@@ -8,8 +8,11 @@ namespace AvansDevOps.SprintDeploymentState
 {
     public interface IDeploymentState
     {
+        void ApproveDeployment();
         void StartDeployment();
-        void DeploymentFinished(bool success);
         void CancelDeployment();
+        void FailDeployment();
+        void SucceedDeployment();
+        void RestartDeployment();
     }
 }

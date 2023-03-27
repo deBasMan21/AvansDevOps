@@ -19,7 +19,7 @@ namespace AvansDevOps.SprintAbstraction
         public List<Developer> developers { get; private set; }
         public Backlog sprintBacklog { get; private set; }
 
-        public ISprintState currentState;
+        public ISprintState currentState { get; private set; }
 
         public Sprint(
             string Name, 
@@ -46,16 +46,11 @@ namespace AvansDevOps.SprintAbstraction
         // Sprint state update functions
         public void StartSprint() => currentState.StartSprint();
         public void FinishSprint() => currentState.FinishSprint();
-        public void ReviewSprint()
-        {
-            currentState.ReviewSprint();
-            StartClosedSprintAction();
-        }
+        public void ReviewSprint() => currentState.ReviewSprint();
+
 
         // ISprintStateHolder Interface
         public void UpdateSprintState(ISprintState state) => currentState = state;
-
-        public abstract void StartClosedSprintAction();
     }
 
     public interface ISprintStateHolder

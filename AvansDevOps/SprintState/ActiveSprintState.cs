@@ -1,34 +1,35 @@
-﻿using AvansDevOps.SprintAbstraction;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AvansDevOps.SprintAbstraction;
+
 
 namespace AvansDevOps.SprintState
 {
     public class ActiveSprintState : ISprintState
     {
-        private Sprint _Sprint;
+        private Sprint _sprint;
 
         public ActiveSprintState(Sprint Sprint)
         {
-            this._Sprint = Sprint;
+            this._sprint = Sprint;
         }
 
         public void FinishSprint()
         {
-            _Sprint.UpdateSprintState(new FinishedSprintState(_Sprint));
+            _sprint.UpdateSprintState(new FinishedSprintState(_sprint));
         }
 
-        public void ReviewSprint()
+        public void ReviewSprint(bool approvedDeployement = false)
         {
-            throw new NotImplementedException();
+            return;
         }
 
         public void StartSprint()
         {
-            throw new NotImplementedException();
+            return;
         }
     }
 }

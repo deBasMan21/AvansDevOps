@@ -10,6 +10,6 @@ namespace AvansDevOps.SprintState
     {
         public void StartSprint();
         public void FinishSprint();
-        public void ReviewSprint();
+        public void ReviewSprint(bool approvedDeployement = false);
     }
 }

@@ -9,25 +9,41 @@ namespace AvansDevOps.SprintDeploymentState
 {
     public class ReleasedDeploymentState : IDeploymentState
     {
-        private IDeploymentStateHolder _sprintStateHolder;
-        public ReleasedDeploymentState(IDeploymentStateHolder sprintStateHolder) 
+        private ReleaseSprint _sprint;
+
+        public ReleasedDeploymentState(ReleaseSprint _sprint)
         {
-            _sprintStateHolder = sprintStateHolder;
+            this._sprint = _sprint;
+        }
+
+        public void ApproveDeployment()
+        {
+            return;
         }
 
         public void CancelDeployment()
         {
-            throw new NotImplementedException();
+            return;
         }
 
-        public void DeploymentFinished(bool success)
+        public void FailDeployment()
         {
-            throw new NotImplementedException();
+            return;
+        }
+
+        public void RestartDeployment()
+        {
+            return;
         }
 
         public void StartDeployment()
         {
-            throw new NotImplementedException();
+            return;
+        }
+
+        public void SucceedDeployment()
+        {
+            return;
         }
     }
 }

@@ -1,29 +1,30 @@
-﻿using System;
+﻿using AvansDevOps.SprintAbstraction;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AvansDevOps.SprintAbstraction;
 
 namespace AvansDevOps.SprintDeploymentState
 {
-    public class ReadyToDeployState : IDeploymentState
+    public class NotReadyToDeploy : IDeploymentState
     {
         private ReleaseSprint _sprint;
 
-        public ReadyToDeployState(ReleaseSprint _sprint)
+        public NotReadyToDeploy(ReleaseSprint _sprint)
         {
             this._sprint = _sprint;
         }
 
         public void ApproveDeployment()
         {
-            return;
+            _sprint.UpdateDeploymentState(new ReadyToDeployState(_sprint));
         }
 
         public void CancelDeployment()
         {
-            return;
+            // TODO: send notifications
+            _sprint.UpdateDeploymentState(new DeploymentCancelledState(_sprint));
         }
 
         public void FailDeployment()
@@ -38,13 +39,12 @@ namespace AvansDevOps.SprintDeploymentState
 
         public void StartDeployment()
         {
-            _sprint.UpdateDeploymentState(new InDeploymentState(_sprint));
+            return;
         }
 
         public void SucceedDeployment()
         {
             return;
-
         }
     }
 }

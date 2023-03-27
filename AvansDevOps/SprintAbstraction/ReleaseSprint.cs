@@ -10,7 +10,7 @@ namespace AvansDevOps.SprintAbstraction
 {
     public class ReleaseSprint : Sprint, IDeploymentStateHolder
     {
-        protected IDeploymentState deploymentState;
+        protected IDeploymentState deploymentState { get; private set; };
         public ReleaseSprint(
             string Name, 
             DateTime StartDate, 
@@ -21,11 +21,14 @@ namespace AvansDevOps.SprintAbstraction
             Backlog sprintBacklog
             ) : base(Name, StartDate, EndDate, leadDeveloper, scrumMaster, developers, sprintBacklog)
         {
-            deploymentState = new ReadyToDeployState(this);
+            deploymentState = new NotReadyToDeploy(this);
         }
 
         public void UpdateDeploymentState(IDeploymentState state) => deploymentState = state;
-
-        public override void StartClosedSprintAction() => deploymentState.StartDeployment();
+        public void ApproveDeployment() => deploymentState.ApproveDeployment();
+        public void StartDeployment() => deploymentState.StartDeployment();
+        public void CancelDeployment() => deploymentState.CancelDeployment();
+        public void FailDeployment() => deploymentState.FailDeployment();
+        public void RestartDeployment() => deploymentState.RestartDeployment();
     }
 }

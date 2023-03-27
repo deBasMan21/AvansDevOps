@@ -9,26 +9,32 @@ namespace AvansDevOps.SprintState
 {
     public class FinishedSprintState : ISprintState
     {
-        private Sprint _Sprint;
+        private Sprint _sprint;
 
         public FinishedSprintState(Sprint Sprint)
         {
-            this._Sprint = Sprint;
+            this._sprint = Sprint;
         }
 
         public void FinishSprint()
         {
-            throw new NotImplementedException();
+            return;
         }
 
-        public void ReviewSprint()
+        public void ReviewSprint(bool approvedDeployement = false)
         {
-            _Sprint.UpdateSprintState(new ClosedSprintState(_Sprint));
+            _sprint.UpdateSprintState(new ClosedSprintState(_sprint));
+
+            if (_sprint.GetType() == typeof(ReleaseSprint) && approvedDeployement)
+            {
+                ReleaseSprint sprint = (ReleaseSprint)_sprint;
+                sprint.ApproveDeployment();
+            }
         }
 
         public void StartSprint()
         {
-            throw new NotImplementedException();
+            return;
         }
     }
 }
