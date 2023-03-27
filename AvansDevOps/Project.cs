@@ -11,14 +11,14 @@ namespace AvansDevOps
     public class Project
     {
         public List<Sprint> Sprints { get; private set; }
-        public ProductOwner productOwner { get; private set; }
-        public Backlog projectBacklog { get; private set; }
+        public ProductOwner ProductOwner { get; private set; }
+        public Backlog ProductBacklog { get; private set; }
 
-        public Project(List<Sprint> Sprints, ProductOwner productOwner, Backlog projectBacklog)
+        public Project(ProductOwner productOwner)
         {
-            this.Sprints = Sprints;
-            this.productOwner = productOwner;
-            this.projectBacklog = projectBacklog;
+            this.ProductOwner = productOwner;
+            this.Sprints = new List<Sprint>();
+            this.ProductBacklog = new Backlog();
         }
 
         public void AddSprint(Sprint Sprint)
