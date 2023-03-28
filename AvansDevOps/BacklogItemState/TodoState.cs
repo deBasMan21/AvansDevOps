@@ -8,9 +8,9 @@ namespace AvansDevOps.BacklogItemState
 {
     public class TodoState : IBacklogItemState
     {
-        private IBacklogItem _backlogItem;
+        private IBacklogItemStateHolder _backlogItem;
 
-        public TodoState(IBacklogItem backlogItem)
+        public TodoState(IBacklogItemStateHolder backlogItem)
         {
             _backlogItem = backlogItem;
         }

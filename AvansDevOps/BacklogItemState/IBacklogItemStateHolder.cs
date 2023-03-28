@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.BacklogItemState
 {
-    public interface IBacklogItem
+    public interface IBacklogItemStateHolder
     {
         void UpdateState(IBacklogItemState newState);
     }
