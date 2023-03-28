@@ -1,0 +1,50 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using AvansDevOps.SprintAbstraction;
+
+namespace AvansDevOps.SprintDeploymentState
+{
+    public class ReadyToDeployState : IDeploymentState
+    {
+        private ReleaseSprint _sprint;
+
+        public ReadyToDeployState(ReleaseSprint _sprint)
+        {
+            this._sprint = _sprint;
+        }
+
+        public void ApproveDeployment()
+        {
+            return;
+        }
+
+        public void CancelDeployment()
+        {
+            return;
+        }
+
+        public void FailDeployment()
+        {
+            return;
+        }
+
+        public void RestartDeployment()
+        {
+            return;
+        }
+
+        public void StartDeployment()
+        {
+            _sprint.UpdateDeploymentState(new InDeploymentState(_sprint));
+        }
+
+        public void SucceedDeployment()
+        {
+            return;
+
+        }
+    }
+}

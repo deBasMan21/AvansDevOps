@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,5 +6,32 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="NotificationAdapter\ISMSLibrary.cs" />
+    <Compile Remove="NotificationAdapter\NotificationAdapter.cs" />
+    <Compile Remove="NotificationAdapter\SMSLibraryMock.cs" />
+    <Compile Remove="Pipeline\IAction.cs" />
+    <Compile Remove="Pipeline\IPipeLineComponent.cs" />
+    <Compile Remove="Pipeline\IPipeLineCompositeComponent.cs" />
+    <Compile Remove="Pipeline\IPipeLineVisitor.cs" />
+    <Compile Remove="Pipeline\PackageActions.cs" />
+    <Compile Remove="Pipeline\PipeLineCompositeComponent.cs" />
+    <Compile Remove="Pipeline\RunPipelineVisitor.cs" />
+    <Compile Remove="SprintState\CanceldDeploymentSprintState.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="NewFile1.txt" />
+    <None Remove="NotificationAdapter\EmailLibraryMock" />
+    <None Remove="NotificationAdapter\NewFile1.txt" />
+    <None Remove="NotificationObserver\ISubscriber" />
+    <None Remove="Pipeline\IAction" />
+    <None Remove="Pipeline\IPipeLineVisitor" />
+    <None Remove="Pipeline\NewFile1.txt" />
+    <None Remove="Pipeline\TestAction" />
+    <None Remove="SprintState\ISprintState" />
+    <None Remove="SprintState\NewFile1.txt" />
+  </ItemGroup>
 
 </Project>
