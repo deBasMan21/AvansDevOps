@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using AvansDevOps.Enums;
 using AvansDevOps.UserAbstraction;
 
-namespace AvansDevOps.NotificationAdapter
+namespace AvansDevOps.NotificationPattern
 {
-    public class SlackLibraryMock : ISlackLibrary
+    public class EmailLibraryMock : IEmailLibrary
     {
         public void SendNotification(string message, User user)
         {
-            Console.WriteLine($"Send message to {user.Name} via Slack: {message}");
+            Console.WriteLine($"Send message to {user.Name} via SMS: {message}");
         }
     }
 }

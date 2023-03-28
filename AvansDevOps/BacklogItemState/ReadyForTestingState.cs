@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.BacklogItemState
 {
-    public class DoneState : IBacklogItemState
+    public class ReadyForTestingState : IBacklogItemState
     {
         private IBacklogItem _backlogItem;
 
-        public DoneState(IBacklogItem backlogItem)
+        public ReadyForTestingState(IBacklogItem backlogItem)
         {
             _backlogItem = backlogItem;
         }
@@ -27,7 +27,7 @@ namespace AvansDevOps.BacklogItemState
 
         public void InvalidateTask()
         {
-            _backlogItem.UpdateState(new TodoState(_backlogItem));
+            throw new NotImplementedException();
         }
 
         public void StartTask()
@@ -37,7 +37,13 @@ namespace AvansDevOps.BacklogItemState
 
         public void TestTask(bool success)
         {
-            throw new NotImplementedException();
+            if (success)
+            {
+                _backlogItem.UpdateState(new TestedState(_backlogItem));
+            } else
+            {
+                _backlogItem.UpdateState(new TodoState(_backlogItem));
+            }
         }
     }
 }

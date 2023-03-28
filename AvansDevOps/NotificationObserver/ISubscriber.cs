@@ -8,6 +8,6 @@ namespace AvansDevOps.NotificationObserver
 {
     public interface ISubscriber
     {
-        public void ReceiveUpdate();
+        public void ReceiveUpdate(string message);
     }
 }

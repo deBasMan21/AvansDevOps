@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.BacklogItemState
 {
-    public class InTestingState : IBacklogItemState
+    public class TestedState : IBacklogItemState
     {
         private IBacklogItem _backlogItem;
 
-        public InTestingState(IBacklogItem backlogItem)
+        public TestedState(IBacklogItem backlogItem)
         {
             _backlogItem = backlogItem;
         }
@@ -35,7 +35,7 @@ namespace AvansDevOps.BacklogItemState
             throw new NotImplementedException();
         }
 
-        public void TestTask()
+        public void TestTask(bool success)
         {
             throw new NotImplementedException();
         }

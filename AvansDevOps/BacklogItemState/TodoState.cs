@@ -34,5 +34,10 @@ namespace AvansDevOps.BacklogItemState
         {
             _backlogItem.UpdateState(new InProgressState(_backlogItem));
         }
+
+        public void TestTask(bool success)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

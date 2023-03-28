@@ -18,7 +18,7 @@ namespace AvansDevOps
         {
             this.ProductOwner = productOwner;
             this.Sprints = new List<Sprint>();
-            this.ProductBacklog = new Backlog();
+            this.ProductBacklog = new Backlog(null);
         }
 
         public void AddSprint(Sprint Sprint)

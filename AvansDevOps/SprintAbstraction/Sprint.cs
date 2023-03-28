@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AvansDevOps.NotificationObserver;
 using AvansDevOps.SprintDeploymentState;
 using AvansDevOps.SprintState;
 using AvansDevOps.UserAbstraction;
 
 namespace AvansDevOps.SprintAbstraction
 {
-    public abstract class Sprint : ISprintStateHolder
+    public abstract class Sprint : ISprintStateHolder, IPublisher<User>
     {
         public string Name { get; private set; }
         public DateTime StartDate { get; private set; }
         public DateTime EndDate { get; private set; }
         public LeadDeveloper leadDeveloper { get; private set; }
         public ScrumMaster scrumMaster { get; private set; }
-        public List<Developer> developers { get; private set; }
+        public List<User> developers { get; private set; }
         public Backlog sprintBacklog { get; private set; }
 
         public ISprintState currentState { get; private set; }
@@ -27,8 +28,7 @@ namespace AvansDevOps.SprintAbstraction
             DateTime EndDate, 
             LeadDeveloper leadDeveloper, 
             ScrumMaster scrumMaster,
-            List<Developer> developers,
-            Backlog sprintBacklog
+            List<User> developers
         ){
             this.Name = Name;
             this.StartDate = StartDate;
@@ -36,12 +36,21 @@ namespace AvansDevOps.SprintAbstraction
             this.leadDeveloper = leadDeveloper;
             this.scrumMaster = scrumMaster;
             this.developers = developers;
-            this.sprintBacklog = sprintBacklog;
+            this.sprintBacklog = new Backlog(Notify);
             currentState = new CreatedSprintState(this);
         }
 
-        public void AddDeveloper(Developer developer) => developers.Add(developer);
-        public void RemoveDeveloper(Developer developer) => developers.Remove(developer);
+        public void AddDeveloper(User developer)
+        {
+            developers.Add(developer);
+            if (developer is Tester) { RegisterSubscriber(developer); }
+        }
+        public void RemoveDeveloper(User developer)
+        {
+            developers.Remove(developer);
+            if (developer is Tester) { RemoveSubscriber(developer); }
+            
+        }
 
         // Sprint state update functions
         public void StartSprint() => currentState.StartSprint();
@@ -51,6 +60,29 @@ namespace AvansDevOps.SprintAbstraction
 
         // ISprintStateHolder Interface
         public void UpdateSprintState(ISprintState state) => currentState = state;
+
+        // Notification logic - IPublisher Interface
+        private List<User> subscribers = new List<User>();
+
+        public void RegisterSubscriber(User Subscriber)
+        {
+            subscribers.Add(Subscriber);
+        }
+
+        public void RemoveSubscriber(User Subscriber)
+        {
+            subscribers.Remove(Subscriber);
+        }
+
+        public bool Notify(string message)
+        {
+            foreach (User user in subscribers)
+            {
+                user.ReceiveUpdate(message);
+            }
+
+            return true;
+        }
     }
 
     public interface ISprintStateHolder

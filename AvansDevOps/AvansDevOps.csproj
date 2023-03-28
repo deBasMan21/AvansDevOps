@@ -8,9 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="NotificationAdapter\ISMSLibrary.cs" />
-    <Compile Remove="NotificationAdapter\NotificationAdapter.cs" />
-    <Compile Remove="NotificationAdapter\SMSLibraryMock.cs" />
     <Compile Remove="Pipeline\IAction.cs" />
     <Compile Remove="Pipeline\IPipeLineComponent.cs" />
     <Compile Remove="Pipeline\IPipeLineCompositeComponent.cs" />
@@ -23,8 +20,6 @@
 
   <ItemGroup>
     <None Remove="NewFile1.txt" />
-    <None Remove="NotificationAdapter\EmailLibraryMock" />
-    <None Remove="NotificationAdapter\NewFile1.txt" />
     <None Remove="NotificationObserver\ISubscriber" />
     <None Remove="Pipeline\IAction" />
     <None Remove="Pipeline\IPipeLineVisitor" />

@@ -22,7 +22,7 @@ namespace AvansDevOps.BacklogItemState
 
         public void FinishTask()
         {
-            _backlogItem.UpdateState(new InTestingState(_backlogItem));
+            _backlogItem.UpdateState(new ReadyForTestingState(_backlogItem));
         }
 
         public void InvalidateTask()
@@ -31,6 +31,11 @@ namespace AvansDevOps.BacklogItemState
         }
 
         public void StartTask()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TestTask(bool success)
         {
             throw new NotImplementedException();
         }

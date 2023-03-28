@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using AvansDevOps.Enums;
 using AvansDevOps.UserAbstraction;
 
-namespace AvansDevOps.NotificationAdapter
+namespace AvansDevOps.NotificationPattern
 {
-    public class NotificationAdapter: INotificationManager
+    public class NotificationAdapter : INotificationManager
     {
         private IEmailLibrary _emailLibrary = new EmailLibraryMock();
         private ISlackLibrary _slackLibrary = new SlackLibraryMock();
@@ -17,7 +17,7 @@ namespace AvansDevOps.NotificationAdapter
         {
             foreach (NotificationType type in user.NotificationPreferences)
             {
-                switch(type)
+                switch (type)
                 {
                     case NotificationType.EMAIL:
                         _emailLibrary.SendNotification(message, user);

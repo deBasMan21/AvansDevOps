@@ -1,4 +1,6 @@
 ﻿using AvansDevOps.BacklogItemState;
+using AvansDevOps.NotificationObserver;
+using AvansDevOps.SprintAbstraction;
 using AvansDevOps.UserAbstraction;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,7 @@ namespace AvansDevOps
         string _defenitionOfDone { get; set; }
         private List<Activity> _activities { get; set; }
         private User _developer;
+        private Func<string, bool>? notificationCallback;
 
         // State pattern
         private IBacklogItemState _state;
@@ -25,6 +28,8 @@ namespace AvansDevOps
             _developer = developer;
         }
 
+        public void SetNotificationCallback(Func<string, bool> notificationCallback) => this.notificationCallback = notificationCallback;
+
         public void StartTask()
         {
             _state.StartTask();
@@ -33,6 +38,12 @@ namespace AvansDevOps
         public void FinishTask()
         {
             _state.FinishTask();
+            NotifyTesters();
+        }
+
+        public void TestTask(bool success)
+        {
+            _state.TestTask(success);
         }
 
         public void CloseTask()
@@ -58,6 +69,11 @@ namespace AvansDevOps
         public void UpdateState(IBacklogItemState newState)
         {
             _state = newState;
+        }
+
+        public void NotifyTesters()
+        {
+            if (notificationCallback != null) { notificationCallback("Ticket is done for testing"); }
         }
     }
 }
