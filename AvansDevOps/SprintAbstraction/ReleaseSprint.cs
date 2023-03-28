@@ -10,7 +10,7 @@ namespace AvansDevOps.SprintAbstraction
 {
     public class ReleaseSprint : Sprint, IDeploymentStateHolder
     {
-        protected IDeploymentState deploymentState { get; private set; };
+        protected IDeploymentState deploymentState { get; private set; }
         public ReleaseSprint(
             string Name, 
             DateTime StartDate, 
