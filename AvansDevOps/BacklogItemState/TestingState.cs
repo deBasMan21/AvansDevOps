@@ -9,9 +9,9 @@ namespace AvansDevOps.BacklogItemState
     public class TestingState : IBacklogItemState
     {
 
-        private IBacklogItemStateHolder _backlogItem;
+        private BacklogItem _backlogItem;
 
-        public TestingState(IBacklogItemStateHolder backlogItem)
+        public TestingState(BacklogItem backlogItem)
         {
             _backlogItem = backlogItem;
         }
@@ -32,9 +32,9 @@ namespace AvansDevOps.BacklogItemState
             return;
         }
 
-        public void FinishTask()
+        public int FinishTask()
         {
-            return;
+            return 0;
         }
 
         public void InvalidateTask()

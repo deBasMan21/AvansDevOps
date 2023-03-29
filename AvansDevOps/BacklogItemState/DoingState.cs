@@ -8,9 +8,9 @@ namespace AvansDevOps.BacklogItemState
 {
     public class DoingState : IBacklogItemState
     {
-        private IBacklogItemStateHolder _backlogItem;
+        private BacklogItem _backlogItem;
 
-        public DoingState(IBacklogItemStateHolder backlogItem)
+        public DoingState(BacklogItem backlogItem)
         {
             _backlogItem = backlogItem;
         }
@@ -20,9 +20,10 @@ namespace AvansDevOps.BacklogItemState
             return;
         }
 
-        public void FinishTask()
+        public int FinishTask()
         {
             _backlogItem.UpdateState(new ReadyForTestingState(_backlogItem));
+            return _backlogItem.NotifyTesters();
         }
 
         public void InvalidateTask()

@@ -8,9 +8,8 @@ namespace AvansDevOps.BacklogItemState
 {
     public class ReadyForTestingState : IBacklogItemState
     {
-
-        private IBacklogItemStateHolder _backlogItemState;
-        public ReadyForTestingState(IBacklogItemStateHolder _backlogItemState) { 
+        private BacklogItem _backlogItemState;
+        public ReadyForTestingState(BacklogItem _backlogItemState) { 
             this._backlogItemState = _backlogItemState;
         }
 
@@ -24,9 +23,9 @@ namespace AvansDevOps.BacklogItemState
             return;
         }
 
-        public void FinishTask()
+        public int FinishTask()
         {
-            return;
+            return 0;
         }
 
         public void InvalidateTask()
