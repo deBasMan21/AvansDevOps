@@ -13,9 +13,9 @@ namespace AvansDevOps.UserAbstraction
     {
         public string Name { get; private set; }
         public List<NotificationType> NotificationPreferences { get; private set; } = new();
-        private INotificationManager notificationManager;
+        private readonly INotificationManager notificationManager;
 
-        public User(string Name)
+        protected User(string Name)
         {
             this.Name = Name;
             notificationManager = new NotificationAdapter();

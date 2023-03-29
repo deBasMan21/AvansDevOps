@@ -9,44 +9,20 @@ namespace AvansDevOps.SprintDeploymentState
 {
     class InDeploymentState : IDeploymentState
     {
-        private ReleaseSprint _sprint;
+        private readonly ReleaseSprint _sprint;
 
-        public InDeploymentState(ReleaseSprint _sprint)
-        {
-            this._sprint = _sprint;
-        }
+        public InDeploymentState(ReleaseSprint _sprint) => this._sprint = _sprint;
 
-        public void ApproveDeployment()
-        {
-            return;
+        public void ApproveDeployment() { }
 
-        }
+        public void CancelDeployment() { }
 
-        public void CancelDeployment()
-        {
-            return;
-        }
+        public void FailDeployment() => _sprint.UpdateDeploymentState(new DeploymentFailedState(_sprint));
 
-        public void FailDeployment()
-        {
-            _sprint.UpdateDeploymentState(new DeploymentFailedState(_sprint));
-        }
+        public void RestartDeployment() { }
 
-        public void RestartDeployment()
-        {
-            return;
+        public void StartDeployment() { }
 
-        }
-
-        public void StartDeployment()
-        {
-            return;
-        }
-
-        public void SucceedDeployment()
-        {
-            _sprint.UpdateDeploymentState(new ReleasedDeploymentState(_sprint));
-
-        }
+        public void SucceedDeployment() => _sprint.UpdateDeploymentState(new ReleasedDeploymentState(_sprint));
     }
 }

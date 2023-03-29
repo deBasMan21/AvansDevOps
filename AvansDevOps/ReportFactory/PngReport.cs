@@ -8,7 +8,7 @@ namespace AvansDevOps.ReportFactory
 {
     public class PngReport : IReport
     {
-        private string _content;
+        private readonly string _content;
         private string? _footer;
         private string? _header;
 

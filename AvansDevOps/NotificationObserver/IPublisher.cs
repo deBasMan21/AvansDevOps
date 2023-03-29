@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.NotificationObserver
 {
-    public interface IPublisher<T> where T : ISubscriber
+    public interface IPublisher<in T> where T : ISubscriber
     {
         public void RegisterSubscriber(T Subscriber);
         public void RemoveSubscriber(T Subscriber);

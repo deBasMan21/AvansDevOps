@@ -9,12 +9,9 @@ namespace AvansDevOps.BacklogItemState
     public class TestingState : IBacklogItemState
     {
 
-        private BacklogItem _backlogItem;
+        private readonly BacklogItem _backlogItem;
 
-        public TestingState(BacklogItem backlogItem)
-        {
-            _backlogItem = backlogItem;
-        }
+        public TestingState(BacklogItem backlogItem) =>_backlogItem = backlogItem;
 
         public int SendTestRapport(bool passed)
         {
@@ -29,29 +26,14 @@ namespace AvansDevOps.BacklogItemState
             }
         }
 
-        public void EvaluateTestRapport(bool passed)
-        {
-            return;
-        }
+        public void EvaluateTestRapport(bool passed) { }
 
-        public int FinishTask()
-        {
-            return 0;
-        }
+        public int FinishTask() => 0;
 
-        public void InvalidateTask()
-        {
-            return;
-        }
+        public void InvalidateTask() { }
 
-        public void StartTask()
-        {
-            return;
-        }
+        public void StartTask() { }
 
-        public void StartTesting()
-        {
-            return;
-        }
+        public void StartTesting() { }
     }
 }

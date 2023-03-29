@@ -8,17 +8,11 @@ namespace AvansDevOps.BacklogItemState
 {
     public class DoingState : IBacklogItemState
     {
-        private BacklogItem _backlogItem;
+        private readonly BacklogItem _backlogItem;
 
-        public DoingState(BacklogItem backlogItem)
-        {
-            _backlogItem = backlogItem;
-        }
+        public DoingState(BacklogItem backlogItem) => _backlogItem = backlogItem;
 
-        public void EvaluateTestRapport(bool passed)
-        {
-            return;
-        }
+        public void EvaluateTestRapport(bool passed) { }
 
         public int FinishTask()
         {
@@ -26,24 +20,12 @@ namespace AvansDevOps.BacklogItemState
             return _backlogItem.NotifyTesters();
         }
 
-        public void InvalidateTask()
-        {
-            return;
-        }
+        public void InvalidateTask() { }
 
-        public int SendTestRapport(bool passed)
-        {
-            return 0;
-        }
+        public int SendTestRapport(bool passed) => 0;
 
-        public void StartTask()
-        {
-            return;
-        }
+        public void StartTask() { }
 
-        public void StartTesting()
-        {
-            return;
-        }
+        public void StartTesting() { }
     }
 }

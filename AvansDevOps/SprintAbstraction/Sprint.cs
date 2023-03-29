@@ -22,7 +22,7 @@ namespace AvansDevOps.SprintAbstraction
 
         public ISprintState currentState { get; private set; }
 
-        public Sprint(
+        protected Sprint(
             string Name, 
             DateTime StartDate, 
             DateTime EndDate, 
@@ -63,7 +63,7 @@ namespace AvansDevOps.SprintAbstraction
         public void UpdateSprintState(ISprintState state) => currentState = state;
 
         // Notification logic - IPublisher Interface
-        private List<Tester> subscribers = new List<Tester>();
+        private readonly List<Tester> subscribers = new List<Tester>();
 
         public void RegisterSubscriber(Tester Subscriber) => subscribers.Add(Subscriber);
 
