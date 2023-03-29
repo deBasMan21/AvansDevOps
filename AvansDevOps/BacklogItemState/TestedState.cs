@@ -32,16 +32,19 @@ namespace AvansDevOps.BacklogItemState
 
         public void FinishTask()
         {
+            Console.WriteLine("The backlog item finished has already been tested");
             return;
         }
 
         public void StartTask()
         {
+            Console.WriteLine("The backlog item finished has already been tested");
             return;
         }
 
         public void TestTask()
         {
+            Console.WriteLine("The backlog item finished has already been tested");
             return;
         }
     }

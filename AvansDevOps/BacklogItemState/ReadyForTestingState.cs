@@ -21,26 +21,31 @@ namespace AvansDevOps.BacklogItemState
 
         public void CloseTask()
         {
+            Console.WriteLine("The backlog item needs to be tested first");
             return;
         }
 
         public void FinishTask()
         {
+            Console.WriteLine("The backlog item needs to be tested first");
             return;
         }
 
         public void InvalidateTask()
         {
+            Console.WriteLine("The backlog item needs to be tested first");
             return;
         }
 
         public void RetestTask()
         {
+            Console.WriteLine("The backlog item needs to be tested first");
             return;
         }
 
         public void StartTask()
         {
+            Console.WriteLine("The backlog item is already ready for testing");
             return;
         }
 

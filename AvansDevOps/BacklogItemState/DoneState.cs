@@ -22,26 +22,31 @@ namespace AvansDevOps.BacklogItemState
 
         public void CloseTask()
         {
+            Console.WriteLine("The backlog item is already closed");
             return;
         }
 
         public void FinishTask()
         {
+            Console.WriteLine("The backlog item is already closed");
             return;
         }
 
         public void RetestTask()
         {
+            Console.WriteLine("The backlog item is already closed");
             return;
         }
 
         public void StartTask()
         {
+            Console.WriteLine("The backlog item is already closed");
             return;
         }
 
         public void TestTask()
         {
+            Console.WriteLine("The backlog item is already closed");
             return;
         }
     }

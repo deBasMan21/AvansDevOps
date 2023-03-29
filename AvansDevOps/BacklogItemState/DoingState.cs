@@ -22,26 +22,31 @@ namespace AvansDevOps.BacklogItemState
 
         public void CloseTask()
         {
+            Console.WriteLine("The backlog item has not finished yet");
             return;
         }
 
         public void InvalidateTask()
         {
+            Console.WriteLine("The backlog item has not finished yet");
             return;
         }
 
         public void RetestTask()
         {
+            Console.WriteLine("The backlog item has not finished yet");
             return;
         }
 
         public void StartTask()
         {
+            Console.WriteLine("The backlog item is already in progress");
             return;
         }
 
         public void TestTask()
         {
+            Console.WriteLine("The backlog item has not finished yet");
             return;
         }
     }

@@ -22,26 +22,31 @@ namespace AvansDevOps.BacklogItemState
 
         public void CloseTask()
         {
+            Console.WriteLine("The backlog item needs to start first");
             return;
         }
 
         public void FinishTask()
         {
+            Console.WriteLine("The backlog item needs to start first");
             return;
         }
 
         public void InvalidateTask()
         {
+            Console.WriteLine("The backlog item needs to start first");
             return;
         }
 
         public void RetestTask()
         {
+            Console.WriteLine("The backlog item needs to start first");
             return;
         }
 
         public void TestTask()
         {
+            Console.WriteLine("The backlog item needs to start first");
             return;
         }
     }
