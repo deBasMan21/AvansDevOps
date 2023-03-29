@@ -10,6 +10,6 @@ namespace AvansDevOps.NotificationObserver
     {
         public void RegisterSubscriber(T Subscriber);
         public void RemoveSubscriber(T Subscriber);
-        public bool Notify(string message, Type userType);
+        public int Notify(string message, Type userType);
     }
 }

@@ -15,7 +15,7 @@ namespace AvansDevOps
         string DefenitionOfDone { get; set; }
         private List<Activity> Activities { get; set; }
         private Developer Developer;
-        private Func<string, Type, bool>? notificationCallback;
+        private Func<string, Type, int>? notificationCallback;
 
         // State pattern
         private IBacklogItemState _state;
@@ -28,13 +28,13 @@ namespace AvansDevOps
             Developer = developer;
         }
 
-        public void SetNotificationCallback(Func<string, Type, bool>? notificationCallback) => this.notificationCallback = notificationCallback;
+        public void SetNotificationCallback(Func<string, Type, int>? notificationCallback) => this.notificationCallback = notificationCallback;
 
         public void AssignDeveloper(Developer developer) => this.Developer = developer;
 
         public void StartTask() => _state.StartTask();
 
-        public void FinishTask() => _state.FinishTask();
+        public int FinishTask() => _state.FinishTask();
 
         public void TestTask(bool success) => _state.TestTask(success);
 
@@ -48,14 +48,22 @@ namespace AvansDevOps
 
         public void UpdateState(IBacklogItemState newState) => _state = newState;
 
-        public void NotifyTesters()
+        public int NotifyTesters()
         {
-            if (notificationCallback != null) { notificationCallback("Ticket is done for testing", typeof(Tester)); }
+            if (notificationCallback != null) 
+            { 
+                return notificationCallback("Ticket is done for testing", typeof(Tester)); 
+            }
+            return 0;
         }
 
-        public void NotifyScrumMaster()
+        public int NotifyScrumMaster()
         {
-            if (notificationCallback != null) { notificationCallback("Ticket is rejected and put back in todo", typeof(ScrumMaster)); }
+            if (notificationCallback != null) 
+            { 
+                return notificationCallback("Ticket is rejected and put back in todo", typeof(ScrumMaster)); 
+            }
+            return 0;
         }
     }
 }

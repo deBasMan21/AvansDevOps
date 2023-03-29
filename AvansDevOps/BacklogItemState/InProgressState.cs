@@ -20,10 +20,10 @@ namespace AvansDevOps.BacklogItemState
             throw new NotImplementedException();
         }
 
-        public void FinishTask()
+        public int FinishTask()
         {
             _backlogItem.UpdateState(new ReadyForTestingState(_backlogItem));
-            _backlogItem.NotifyTesters();
+            return _backlogItem.NotifyTesters();
         }
 
         public void InvalidateTask()

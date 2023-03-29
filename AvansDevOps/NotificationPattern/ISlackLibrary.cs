@@ -10,6 +10,6 @@ namespace AvansDevOps.NotificationPattern
 {
     public interface ISlackLibrary
     {
-        public void SendNotification(string message, User user);
+        public bool SendNotification(string message, User user);
     }
 }

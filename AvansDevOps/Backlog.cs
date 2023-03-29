@@ -9,8 +9,8 @@ namespace AvansDevOps
     public class Backlog
     {
         public List<BacklogItem> Items;
-        private Func<string, Type, bool>? notificationCallback;
-        public Backlog(Func<string, Type, bool>? notificationCallback) 
+        private Func<string, Type, int>? notificationCallback;
+        public Backlog(Func<string, Type, int>? notificationCallback) 
         {
             this.notificationCallback = notificationCallback;
             this.Items = new List<BacklogItem>();

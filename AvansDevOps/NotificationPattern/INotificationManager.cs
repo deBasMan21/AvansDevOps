@@ -10,6 +10,6 @@ namespace AvansDevOps.NotificationPattern
 {
     public interface INotificationManager
     {
-        public void SendNotification(string message, User user);
+        public int SendNotification(string message, User user);
     }
 }

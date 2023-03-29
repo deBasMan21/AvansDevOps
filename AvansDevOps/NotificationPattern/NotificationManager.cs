@@ -13,19 +13,24 @@ namespace AvansDevOps.NotificationPattern
         private IEmailLibrary _emailLibrary = new EmailLibraryMock();
         private ISlackLibrary _slackLibrary = new SlackLibraryMock();
 
-        public void SendNotification(string message, User user)
+        public int SendNotification(string message, User user)
         {
-            foreach (NotificationType type in user.NotificationPreferences)
+            return user
+                .NotificationPreferences
+                .Select(p => SendToLibrary(message, p, user))
+                .Count();
+        }
+
+        private bool SendToLibrary(string message, NotificationType type, User user) 
+        {
+            switch (type)
             {
-                switch (type)
-                {
-                    case NotificationType.EMAIL:
-                        _emailLibrary.SendNotification(message, user);
-                        break;
-                    case NotificationType.SLACK:
-                        _slackLibrary.SendNotification(message, user);
-                        break;
-                }
+                case NotificationType.EMAIL:
+                    return _emailLibrary.SendNotification(message, user);
+                case NotificationType.SLACK:
+                    return _slackLibrary.SendNotification(message, user);
+                default:
+                    return false;
             }
         }
     }

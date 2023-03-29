@@ -69,20 +69,17 @@ namespace AvansDevOps.SprintAbstraction
 
         public void RemoveSubscriber(Tester Subscriber) => subscribers.Remove(Subscriber);
 
-        public bool Notify(string message, Type userType)
+        public int Notify(string message, Type userType)
         {
             if (userType == typeof(ScrumMaster))
             {
-                scrumMaster.ReceiveUpdate(message);
+                return scrumMaster.ReceiveUpdate(message);
             } else if (userType == typeof(Tester))
             {
-                foreach (Tester user in subscribers)
-                {
-                    user.ReceiveUpdate(message);
-                }
+                return subscribers.Select(u => u.ReceiveUpdate(message)).Sum();
             }
 
-            return true;
+            return 0;
         }
     }
 

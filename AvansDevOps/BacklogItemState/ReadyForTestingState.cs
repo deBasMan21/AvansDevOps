@@ -20,7 +20,7 @@ namespace AvansDevOps.BacklogItemState
             throw new NotImplementedException();
         }
 
-        public void FinishTask()
+        public int FinishTask()
         {
             throw new NotImplementedException();
         }
