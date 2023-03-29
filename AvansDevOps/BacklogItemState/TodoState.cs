@@ -8,31 +8,41 @@ namespace AvansDevOps.BacklogItemState
 {
     public class TodoState : IBacklogItemState
     {
-        private BacklogItem _backlogItem;
+        private IBacklogItemStateHolder _backlogItem;
 
-        public TodoState(BacklogItem backlogItem)
+        public TodoState(IBacklogItemStateHolder backlogItem)
         {
             _backlogItem = backlogItem;
         }
 
-        public void CloseTask()
+        public void StartTask()
         {
-            throw new NotImplementedException();
+            _backlogItem.UpdateState(new DoingState(_backlogItem));
         }
 
-        public int FinishTask()
+        public void EvaluateTestRapport(bool passed)
         {
-            throw new NotImplementedException();
+            return;
+        }
+
+        public void FinishTask()
+        {
+            return;
         }
 
         public void InvalidateTask()
         {
-            throw new NotImplementedException();
+            return;
         }
 
-        public void StartTask()
+        public void SendTestRapport(bool passed)
         {
-            _backlogItem.UpdateState(new InProgressState(_backlogItem));
+            return;
+        }
+
+        public void StartTesting()
+        {
+            return;
         }
 
         public void TestTask(bool success)

@@ -9,9 +9,10 @@ namespace AvansDevOps.BacklogItemState
     public interface IBacklogItemState
     {
         public void StartTask();
-        public int FinishTask();
-        public void TestTask(bool success);
+        public void FinishTask();
+        public void StartTesting();
+        public void SendTestRapport(bool passed);
+        public void EvaluateTestRapport(bool passed);
         public void InvalidateTask();
-        public void CloseTask();
     }
 }

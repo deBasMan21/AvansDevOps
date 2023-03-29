@@ -10,41 +10,40 @@ namespace AvansDevOps.BacklogItemState
     {
         private BacklogItem _backlogItem;
 
-        public ReadyForTestingState(BacklogItem backlogItem)
-        {
-            _backlogItem = backlogItem;
+        private IBacklogItemStateHolder _backlogItemState;
+        public ReadyForTestingState(IBacklogItemStateHolder _backlogItemState) { 
+            this._backlogItemState = _backlogItemState;
         }
 
-        public void CloseTask()
+        public void StartTesting()
         {
-            throw new NotImplementedException();
+            _backlogItemState.UpdateState(new TestingState(_backlogItemState));
         }
 
-        public int FinishTask()
+        public void EvaluateTestRapport(bool passed)
         {
-            throw new NotImplementedException();
+            return;
+        }
+
+        public void FinishTask()
+        {
+            return;
         }
 
         public void InvalidateTask()
         {
-            throw new NotImplementedException();
+            return;
+        }
+
+        public void SendTestRapport(bool passed)
+        {
+            return;
         }
 
         public void StartTask()
         {
-            throw new NotImplementedException();
+            return;
         }
 
-        public void TestTask(bool success)
-        {
-            if (success)
-            {
-                _backlogItem.UpdateState(new TestedState(_backlogItem));
-            } else
-            {
-                _backlogItem.UpdateState(new TodoState(_backlogItem));
-                _backlogItem.NotifyScrumMaster();
-            }
-        }
     }
 }
