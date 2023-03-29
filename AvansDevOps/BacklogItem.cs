@@ -8,56 +8,55 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps
 {
-    public class BacklogItem: IBacklogItem
+    public class BacklogItem: IBacklogItemStateHolder
     {
-        string _defenitionOfDone { get; set; }
-        private List<Activity> _activities { get; set; }
-        private User _developer;
+        public string DefinitionOfDone { get; private set; }
+        public string Description { get; set; }
+        public List<Activity> Activities { get; private set; }
+        public Developer? _developer { get; private set; }
 
         // State pattern
-        private IBacklogItemState _state;
+        public IBacklogItemState State { get; private set; }
 
-        public BacklogItem(string defenitionOfDone, User developer)
+        public BacklogItem(string DefinitionOfDone, string Description)
         {
-            _defenitionOfDone = defenitionOfDone;
-            _activities = new List<Activity> { };
-            _state = new TodoState(this);
-            _developer = developer;
-        }
-
-        public void StartTask()
-        {
-            _state.StartTask();
-        }
-
-        public void FinishTask()
-        {
-            _state.FinishTask();
-        }
-
-        public void CloseTask()
-        {
-            _state.CloseTask();
-        }
-
-        public void InvalidateTask()
-        {
-            _state.InvalidateTask();
+            this.DefinitionOfDone = DefinitionOfDone;
+            this.Description = Description;
+            Activities = new();
+            State = new TodoState(this);
         }
 
         public void AddActivity(Activity activity)
         {
-            _activities.Add(activity);
+            Activities.Add(activity);
         }
 
         public void RemoveActivity(Activity activity)
         {
-            _activities.Remove(activity);
+            Activities.Remove(activity);
         }
+
+        public void AssignDeveloper(Developer developer) => _developer = developer;
+
+        // State methods
+
+        public void StartTask() {
+            if (_developer is null)
+            {
+                Console.WriteLine("No Developer assigned yet!");
+                return;
+            }
+            State.StartTask();
+        }
+        public void FinishTask() => State.FinishTask();
+        public void StartTesting() => State.StartTesting();
+        public void SendTestRapport(bool passed) => State.SendTestRapport(passed);
+        public void EvaluateTestRapport(bool passed) => State.EvaluateTestRapport(passed);
+        public void InvalidateTask() => State.InvalidateTask();
 
         public void UpdateState(IBacklogItemState newState)
         {
-            _state = newState;
+            State = newState;
         }
     }
 }
