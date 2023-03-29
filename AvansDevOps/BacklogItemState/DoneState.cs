@@ -8,9 +8,9 @@ namespace AvansDevOps.BacklogItemState
 {
     public class DoneState : IBacklogItemState
     {
-        private IBacklogItem _backlogItem;
+        private BacklogItem _backlogItem;
 
-        public DoneState(IBacklogItem backlogItem)
+        public DoneState(BacklogItem backlogItem)
         {
             _backlogItem = backlogItem;
         }

@@ -10,70 +10,52 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps
 {
-    public class BacklogItem: IBacklogItem
+    public class BacklogItem
     {
-        string _defenitionOfDone { get; set; }
-        private List<Activity> _activities { get; set; }
-        private User _developer;
-        private Func<string, bool>? notificationCallback;
+        string DefenitionOfDone { get; set; }
+        private List<Activity> Activities { get; set; }
+        private Developer Developer;
+        private Func<string, Type, bool>? notificationCallback;
 
         // State pattern
         private IBacklogItemState _state;
 
-        public BacklogItem(string defenitionOfDone, User developer)
+        public BacklogItem(string defenitionOfDone, Developer developer)
         {
-            _defenitionOfDone = defenitionOfDone;
-            _activities = new List<Activity> { };
+            DefenitionOfDone = defenitionOfDone;
+            Activities = new List<Activity>();
             _state = new TodoState(this);
-            _developer = developer;
+            Developer = developer;
         }
 
-        public void SetNotificationCallback(Func<string, bool> notificationCallback) => this.notificationCallback = notificationCallback;
+        public void SetNotificationCallback(Func<string, Type, bool>? notificationCallback) => this.notificationCallback = notificationCallback;
 
-        public void StartTask()
-        {
-            _state.StartTask();
-        }
+        public void AssignDeveloper(Developer developer) => this.Developer = developer;
 
-        public void FinishTask()
-        {
-            _state.FinishTask();
-            NotifyTesters();
-        }
+        public void StartTask() => _state.StartTask();
 
-        public void TestTask(bool success)
-        {
-            _state.TestTask(success);
-        }
+        public void FinishTask() => _state.FinishTask();
 
-        public void CloseTask()
-        {
-            _state.CloseTask();
-        }
+        public void TestTask(bool success) => _state.TestTask(success);
 
-        public void InvalidateTask()
-        {
-            _state.InvalidateTask();
-        }
+        public void CloseTask() => _state.CloseTask();
 
-        public void AddActivity(Activity activity)
-        {
-            _activities.Add(activity);
-        }
+        public void InvalidateTask() => _state.InvalidateTask();
 
-        public void RemoveActivity(Activity activity)
-        {
-            _activities.Remove(activity);
-        }
+        public void AddActivity(Activity activity) => Activities.Add(activity);
 
-        public void UpdateState(IBacklogItemState newState)
-        {
-            _state = newState;
-        }
+        public void RemoveActivity(Activity activity) => Activities.Remove(activity);
+
+        public void UpdateState(IBacklogItemState newState) => _state = newState;
 
         public void NotifyTesters()
         {
-            if (notificationCallback != null) { notificationCallback("Ticket is done for testing"); }
+            if (notificationCallback != null) { notificationCallback("Ticket is done for testing", typeof(Tester)); }
+        }
+
+        public void NotifyScrumMaster()
+        {
+            if (notificationCallback != null) { notificationCallback("Ticket is rejected and put back in todo", typeof(ScrumMaster)); }
         }
     }
 }

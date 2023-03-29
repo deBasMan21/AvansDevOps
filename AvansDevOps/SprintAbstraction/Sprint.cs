@@ -10,7 +10,7 @@ using AvansDevOps.UserAbstraction;
 
 namespace AvansDevOps.SprintAbstraction
 {
-    public abstract class Sprint : ISprintStateHolder, IPublisher<User>
+    public abstract class Sprint : ISprintStateHolder, IPublisher<Tester>
     {
         public string Name { get; private set; }
         public DateTime StartDate { get; private set; }
@@ -43,13 +43,14 @@ namespace AvansDevOps.SprintAbstraction
         public void AddDeveloper(User developer)
         {
             developers.Add(developer);
-            if (developer is Tester) { RegisterSubscriber(developer); }
+
+            if (developer is Tester tester) { RegisterSubscriber(tester); }
         }
         public void RemoveDeveloper(User developer)
         {
             developers.Remove(developer);
-            if (developer is Tester) { RemoveSubscriber(developer); }
-            
+
+            if (developer is Tester tester) { RemoveSubscriber(tester); }
         }
 
         // Sprint state update functions
@@ -62,23 +63,23 @@ namespace AvansDevOps.SprintAbstraction
         public void UpdateSprintState(ISprintState state) => currentState = state;
 
         // Notification logic - IPublisher Interface
-        private List<User> subscribers = new List<User>();
+        private List<Tester> subscribers = new List<Tester>();
 
-        public void RegisterSubscriber(User Subscriber)
-        {
-            subscribers.Add(Subscriber);
-        }
+        public void RegisterSubscriber(Tester Subscriber) => subscribers.Add(Subscriber);
 
-        public void RemoveSubscriber(User Subscriber)
-        {
-            subscribers.Remove(Subscriber);
-        }
+        public void RemoveSubscriber(Tester Subscriber) => subscribers.Remove(Subscriber);
 
-        public bool Notify(string message)
+        public bool Notify(string message, Type userType)
         {
-            foreach (User user in subscribers)
+            if (userType == typeof(ScrumMaster))
             {
-                user.ReceiveUpdate(message);
+                scrumMaster.ReceiveUpdate(message);
+            } else if (userType == typeof(Tester))
+            {
+                foreach (Tester user in subscribers)
+                {
+                    user.ReceiveUpdate(message);
+                }
             }
 
             return true;

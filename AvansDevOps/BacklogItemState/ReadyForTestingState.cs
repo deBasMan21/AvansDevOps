@@ -8,9 +8,9 @@ namespace AvansDevOps.BacklogItemState
 {
     public class ReadyForTestingState : IBacklogItemState
     {
-        private IBacklogItem _backlogItem;
+        private BacklogItem _backlogItem;
 
-        public ReadyForTestingState(IBacklogItem backlogItem)
+        public ReadyForTestingState(BacklogItem backlogItem)
         {
             _backlogItem = backlogItem;
         }
@@ -43,6 +43,7 @@ namespace AvansDevOps.BacklogItemState
             } else
             {
                 _backlogItem.UpdateState(new TodoState(_backlogItem));
+                _backlogItem.NotifyScrumMaster();
             }
         }
     }

@@ -8,9 +8,9 @@ namespace AvansDevOps.BacklogItemState
 {
     public class InProgressState : IBacklogItemState
     {
-        private IBacklogItem _backlogItem;
+        private BacklogItem _backlogItem;
 
-        public InProgressState(IBacklogItem backlogItem)
+        public InProgressState(BacklogItem backlogItem)
         {
             _backlogItem = backlogItem;
         }
@@ -23,6 +23,7 @@ namespace AvansDevOps.BacklogItemState
         public void FinishTask()
         {
             _backlogItem.UpdateState(new ReadyForTestingState(_backlogItem));
+            _backlogItem.NotifyTesters();
         }
 
         public void InvalidateTask()
