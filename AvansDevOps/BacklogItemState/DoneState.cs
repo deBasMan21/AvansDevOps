@@ -15,24 +15,34 @@ namespace AvansDevOps.BacklogItemState
             _backlogItem = backlogItem;
         }
 
-        public void CloseTask()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void FinishTask()
-        {
-            throw new NotImplementedException();
-        }
-
         public void InvalidateTask()
         {
             _backlogItem.UpdateState(new TodoState(_backlogItem));
         }
 
+        public void CloseTask()
+        {
+            return;
+        }
+
+        public void FinishTask()
+        {
+            return;
+        }
+
+        public void RetestTask()
+        {
+            return;
+        }
+
         public void StartTask()
         {
-            throw new NotImplementedException();
+            return;
+        }
+
+        public void TestTask()
+        {
+            return;
         }
     }
 }
