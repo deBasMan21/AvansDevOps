@@ -7,7 +7,7 @@ using AvansDevOps.SprintAbstraction;
 
 namespace AvansDevOps.SprintDeploymentState
 {
-    class InDeploymentState : IDeploymentState
+    public class InDeploymentState : IDeploymentState
     {
         private ReleaseSprint _sprint;
 
