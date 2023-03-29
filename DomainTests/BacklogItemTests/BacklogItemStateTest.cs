@@ -22,6 +22,19 @@ namespace DomainTests.BacklogItemTests
         }
 
         [Fact]
+        public void ShouldNotStartWithoutADeveloper()
+        {
+            // Arrange 
+            BacklogItem item = new(DefinitionOfDone: "This is the DoD", Description: "Description");
+
+            // Act
+            item.StartTask();
+
+            // Assert
+            Assert.True(item.State.GetType() == typeof(TodoState));
+        }
+
+        [Fact]
         public void SingleTestToDone()
         {
             // Arrange
