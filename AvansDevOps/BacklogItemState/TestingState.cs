@@ -9,9 +9,9 @@ namespace AvansDevOps.BacklogItemState
     public class TestingState : IBacklogItemState
     {
 
-        private IBacklogItemStateHolder _backlogItem;
+        private BacklogItem _backlogItem;
 
-        public TestingState(IBacklogItemStateHolder backlogItem)
+        public TestingState(BacklogItem backlogItem)
         {
             _backlogItem = backlogItem;
         }

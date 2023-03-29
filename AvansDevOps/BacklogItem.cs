@@ -16,9 +16,10 @@ namespace AvansDevOps
         public string Description { get; set; }
         public List<Activity> Activities { get; private set; }
         public Developer? _developer { get; private set; }
+        public Func<string, Type, int>? notificationCallback;
 
         // State pattern
-        public IBacklogItemState State { get; private set; }
+        public IBacklogItemState State { get; set; }
 
         public BacklogItem(string DefinitionOfDone, string Description)
         {
@@ -27,6 +28,8 @@ namespace AvansDevOps
             Activities = new();
             State = new TodoState(this);
         }
+
+        public void SetNotificationCallback(Func<string, Type, int>? notificationCallback) => this.notificationCallback = notificationCallback;
 
         public void AddActivity(Activity activity)
         {
@@ -52,11 +55,12 @@ namespace AvansDevOps
 
         public int NotifyScrumMaster()
         {
-            if (notificationCallback != null) 
-            { 
-                return notificationCallback("Ticket is rejected and put back in todo", typeof(ScrumMaster)); 
+            if (notificationCallback != null)
+            {
+                return notificationCallback("Ticket is rejected and put back in todo", typeof(ScrumMaster));
             }
             return 0;
+        }
         public void StartTask() {
             if (_developer is null)
             {

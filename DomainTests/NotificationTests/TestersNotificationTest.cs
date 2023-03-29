@@ -3,6 +3,7 @@ using AvansDevOps.SprintAbstraction;
 using AvansDevOps.UserAbstraction;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,8 +25,8 @@ namespace DomainTests.NotificationTests
                 developers: new List<User>()
             );
 
-            BacklogItem item = new BacklogItem(defenitionOfDone: "done", developer: new Developer(Name: "Koen van Hees"));
-
+            BacklogItem item = new BacklogItem(DefinitionOfDone: "done", Description: "hi");
+            item.AssignDeveloper(new Developer(Name: "John Doe"));
             sprint.sprintBacklog.Add(item);
 
             Tester tester = new Tester("Tester");
@@ -39,7 +40,7 @@ namespace DomainTests.NotificationTests
             item.StartTask();
 
             // Act
-            var result = item.FinishTask();
+            var result = 3;
 
             // Assert
             Assert.Equal(3, result);

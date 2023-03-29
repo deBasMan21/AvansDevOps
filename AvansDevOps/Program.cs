@@ -15,7 +15,8 @@ Sprint sprint = new ReleaseSprint(
 
 Developer dev = new Developer(Name: "Koen van Hees");
 
-BacklogItem item = new BacklogItem(defenitionOfDone: "done", developer: dev);
+BacklogItem item = new BacklogItem(DefinitionOfDone: "done", Description: "test");
+item.AssignDeveloper(dev);
 
 sprint.sprintBacklog.Add(item);
 
@@ -29,8 +30,6 @@ scrumMaster.AddNotificationPreference(AvansDevOps.Enums.NotificationType.EMAIL);
 
 item.StartTask();
 item.FinishTask();
-item.TestTask(false);
-item.StartTask();
-item.FinishTask();
-item.TestTask(true);
-item.CloseTask();
+item.StartTesting();
+item.SendTestRapport(true);
+item.EvaluateTestRapport(false);
