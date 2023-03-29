@@ -26,7 +26,7 @@ namespace AvansDevOps.UserAbstraction
             NotificationPreferences.Add(type);
         }
 
-        public int ReceiveUpdate(string message)
+        public virtual int ReceiveUpdate(string message)
         {
             return notificationManager.SendNotification(message, this);
         }

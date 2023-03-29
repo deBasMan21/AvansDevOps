@@ -33,9 +33,9 @@ namespace AvansDevOps.BacklogItemState
             return;
         }
 
-        public void SendTestRapport(bool passed)
+        public int SendTestRapport(bool passed)
         {
-            return;
+            return 0;
         }
 
         public void StartTask()

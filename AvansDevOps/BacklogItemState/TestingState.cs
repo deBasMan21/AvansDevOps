@@ -16,14 +16,16 @@ namespace AvansDevOps.BacklogItemState
             _backlogItem = backlogItem;
         }
 
-        public void SendTestRapport(bool passed)
+        public int SendTestRapport(bool passed)
         {
             if (passed)
             {
                 _backlogItem.UpdateState(new TestedState(_backlogItem));
+                return 0;
             }
             else {
                 _backlogItem.UpdateState(new TodoState(_backlogItem));
+                return _backlogItem.NotifyScrumMaster();
             }
         }
 

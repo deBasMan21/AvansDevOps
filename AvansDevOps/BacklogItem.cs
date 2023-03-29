@@ -13,10 +13,10 @@ namespace AvansDevOps
     public class BacklogItem
     {
         public string DefinitionOfDone { get; private set; }
-        public string Description { get; set; }
+        public string Description { get; private set; }
         public List<Activity> Activities { get; private set; }
         public Developer? _developer { get; private set; }
-        public Func<string, Type, int>? notificationCallback;
+        public Func<string, Type, int>? notificationCallback { get; private set; }
 
         // State pattern
         public IBacklogItemState State { get; set; }
@@ -73,7 +73,7 @@ namespace AvansDevOps
         }
         public int FinishTask() => State.FinishTask();
         public void StartTesting() => State.StartTesting();
-        public void SendTestRapport(bool passed) => State.SendTestRapport(passed);
+        public int SendTestRapport(bool passed) => State.SendTestRapport(passed);
         public void EvaluateTestRapport(bool passed) => State.EvaluateTestRapport(passed);
         public void InvalidateTask() => State.InvalidateTask();
 
