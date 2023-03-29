@@ -49,10 +49,13 @@ namespace DomainTests.BacklogItemTests
             item.FinishTask();
             Assert.True(item.State.GetType() == typeof(ReadyForTestingState));
 
-            item.TestTask();
+            item.StartTesting();
+            Assert.True(item.State.GetType() == typeof(TestingState));
+
+            item.SendTestRapport(passed: true);
             Assert.True(item.State.GetType() == typeof(TestedState));
 
-            item.CloseTask();
+            item.EvaluateTestRapport(passed: true);
             Assert.True(item.State.GetType() == typeof(DoneState));
         }
 
@@ -71,10 +74,13 @@ namespace DomainTests.BacklogItemTests
             item.FinishTask();
             Assert.True(item.State.GetType() == typeof(ReadyForTestingState));
 
-            item.TestTask();
+            item.StartTesting();
+            Assert.True(item.State.GetType() == typeof(TestingState));
+
+            item.SendTestRapport(passed: true);
             Assert.True(item.State.GetType() == typeof(TestedState));
 
-            item.CloseTask();
+            item.EvaluateTestRapport(passed: true);
             Assert.True(item.State.GetType() == typeof(DoneState));
 
             item.InvalidateTask();
@@ -96,16 +102,22 @@ namespace DomainTests.BacklogItemTests
             item.FinishTask();
             Assert.True(item.State.GetType() == typeof(ReadyForTestingState));
 
-            item.TestTask();
+            item.StartTesting();
+            Assert.True(item.State.GetType() == typeof(TestingState));
+
+            item.SendTestRapport(passed: true);
             Assert.True(item.State.GetType() == typeof(TestedState));
 
-            item.RetestTask();
+            item.EvaluateTestRapport(passed: false);
             Assert.True(item.State.GetType() == typeof(ReadyForTestingState));
 
-            item.TestTask();
+            item.StartTesting();
+            Assert.True(item.State.GetType() == typeof(TestingState));
+
+            item.SendTestRapport(passed: true);
             Assert.True(item.State.GetType() == typeof(TestedState));
 
-            item.CloseTask();
+            item.EvaluateTestRapport(passed: true);
             Assert.True(item.State.GetType() == typeof(DoneState));
         }
 
@@ -124,15 +136,15 @@ namespace DomainTests.BacklogItemTests
             item.FinishTask();
             Assert.True(item.State.GetType() == typeof(ReadyForTestingState));
 
-            item.TestTask();
-            Assert.True(item.State.GetType() == typeof(TestedState));
+            item.StartTesting();
+            Assert.True(item.State.GetType() == typeof(TestingState));
 
-            item.InvalidateTask();
+            item.SendTestRapport(passed: false);
             Assert.True(item.State.GetType() == typeof(TodoState));
         }
 
         [Fact]
-        public void RetestAndInvalidateItem()
+        public void RetestAndRejectItem()
         {
             // Arrange
             BacklogItem item = new(DefinitionOfDone: "This is the DoD", Description: "Description");
@@ -146,16 +158,19 @@ namespace DomainTests.BacklogItemTests
             item.FinishTask();
             Assert.True(item.State.GetType() == typeof(ReadyForTestingState));
 
-            item.TestTask();
+            item.StartTesting();
+            Assert.True(item.State.GetType() == typeof(TestingState));
+
+            item.SendTestRapport(passed: true);
             Assert.True(item.State.GetType() == typeof(TestedState));
 
-            item.RetestTask();
+            item.EvaluateTestRapport(passed: false);
             Assert.True(item.State.GetType() == typeof(ReadyForTestingState));
 
-            item.TestTask();
-            Assert.True(item.State.GetType() == typeof(TestedState));
+            item.StartTesting();
+            Assert.True(item.State.GetType() == typeof(TestingState));
 
-            item.InvalidateTask();
+            item.SendTestRapport(passed: false);
             Assert.True(item.State.GetType() == typeof(TodoState));
         }
 
@@ -168,19 +183,26 @@ namespace DomainTests.BacklogItemTests
             item.AssignDeveloper(dev);
 
             // Act & Assert
+
             item.FinishTask();
             Assert.True(item.State.GetType() == typeof(TodoState));
 
-            item.TestTask();
+            item.StartTesting();
             Assert.True(item.State.GetType() == typeof(TodoState));
 
-            item.RetestTask();
+            item.SendTestRapport(passed: false);
+            Assert.True(item.State.GetType() == typeof(TodoState));
+
+            item.SendTestRapport(passed: true);
+            Assert.True(item.State.GetType() == typeof(TodoState));
+
+            item.EvaluateTestRapport(passed: true);
+            Assert.True(item.State.GetType() == typeof(TodoState));
+
+            item.EvaluateTestRapport(passed: false);
             Assert.True(item.State.GetType() == typeof(TodoState));
 
             item.InvalidateTask();
-            Assert.True(item.State.GetType() == typeof(TodoState));
-
-            item.CloseTask();
             Assert.True(item.State.GetType() == typeof(TodoState));
         }
 
@@ -197,16 +219,22 @@ namespace DomainTests.BacklogItemTests
             item.StartTask();
             Assert.True(item.State.GetType() == typeof(DoingState));
 
-            item.TestTask();
+            item.StartTesting();
             Assert.True(item.State.GetType() == typeof(DoingState));
 
-            item.RetestTask();
+            item.SendTestRapport(passed: false);
+            Assert.True(item.State.GetType() == typeof(DoingState));
+
+            item.SendTestRapport(passed: true);
+            Assert.True(item.State.GetType() == typeof(DoingState));
+
+            item.EvaluateTestRapport(passed: true);
+            Assert.True(item.State.GetType() == typeof(DoingState));
+
+            item.EvaluateTestRapport(passed: false);
             Assert.True(item.State.GetType() == typeof(DoingState));
 
             item.InvalidateTask();
-            Assert.True(item.State.GetType() == typeof(DoingState));
-
-            item.CloseTask();
             Assert.True(item.State.GetType() == typeof(DoingState));
         }
 
@@ -226,18 +254,55 @@ namespace DomainTests.BacklogItemTests
             item.FinishTask();
             Assert.True(item.State.GetType() == typeof(ReadyForTestingState));
 
-            item.RetestTask();
+            item.SendTestRapport(passed: false);
+            Assert.True(item.State.GetType() == typeof(ReadyForTestingState));
+
+            item.SendTestRapport(passed: true);
+            Assert.True(item.State.GetType() == typeof(ReadyForTestingState));
+
+            item.EvaluateTestRapport(passed: true);
+            Assert.True(item.State.GetType() == typeof(ReadyForTestingState));
+
+            item.EvaluateTestRapport(passed: false);
             Assert.True(item.State.GetType() == typeof(ReadyForTestingState));
 
             item.InvalidateTask();
             Assert.True(item.State.GetType() == typeof(ReadyForTestingState));
-
-            item.CloseTask();
-            Assert.True(item.State.GetType() == typeof(ReadyForTestingState));
         }
 
         [Fact]
-        public void TestedShouldOnlyInvalidate_Retest_Close()
+        public void TestingShouldOnlySendTestRapport()
+        {
+            // Arrange
+            BacklogItem item = new(DefinitionOfDone: "This is the DoD", Description: "Description");
+            item.UpdateState(new TestingState(item));
+            Developer dev = new(Name: "dev");
+            item.AssignDeveloper(dev);
+
+            // Act & Assert
+            item.StartTask();
+            Assert.True(item.State.GetType() == typeof(TestingState));
+
+            item.FinishTask();
+            Assert.True(item.State.GetType() == typeof(TestingState));
+
+            item.StartTesting();
+            Assert.True(item.State.GetType() == typeof(TestingState));
+
+            item.EvaluateTestRapport(passed: true);
+            Assert.True(item.State.GetType() == typeof(TestingState));
+
+            item.EvaluateTestRapport(passed: false);
+            Assert.True(item.State.GetType() == typeof(TestingState));
+
+            item.InvalidateTask();
+            Assert.True(item.State.GetType() == typeof(TestingState));
+        }
+
+
+
+        [Fact]
+        public void TestedShouldOnlyEvaluateTestRapport()
         {
             // Arrange
             BacklogItem item = new(DefinitionOfDone: "This is the DoD", Description: "Description");
@@ -250,6 +315,18 @@ namespace DomainTests.BacklogItemTests
             Assert.True(item.State.GetType() == typeof(TestedState));
 
             item.FinishTask();
+            Assert.True(item.State.GetType() == typeof(TestedState));
+
+            item.StartTesting();
+            Assert.True(item.State.GetType() == typeof(TestedState));
+
+            item.SendTestRapport(passed: true);
+            Assert.True(item.State.GetType() == typeof(TestedState));
+
+            item.SendTestRapport(passed: false);
+            Assert.True(item.State.GetType() == typeof(TestedState));
+
+            item.InvalidateTask();
             Assert.True(item.State.GetType() == typeof(TestedState));
         }
 
@@ -269,13 +346,19 @@ namespace DomainTests.BacklogItemTests
             item.FinishTask();
             Assert.True(item.State.GetType() == typeof(DoneState));
 
-            item.TestTask();
+            item.StartTesting();
             Assert.True(item.State.GetType() == typeof(DoneState));
 
-            item.RetestTask();
+            item.SendTestRapport(passed: false);
             Assert.True(item.State.GetType() == typeof(DoneState));
 
-            item.CloseTask();
+            item.SendTestRapport(passed: true);
+            Assert.True(item.State.GetType() == typeof(DoneState));
+
+            item.SendTestRapport(passed: true);
+            Assert.True(item.State.GetType() == typeof(DoneState));
+
+            item.SendTestRapport(passed: false);
             Assert.True(item.State.GetType() == typeof(DoneState));
         }
     }

@@ -20,33 +20,28 @@ namespace AvansDevOps.BacklogItemState
             _backlogItem.UpdateState(new TodoState(_backlogItem));
         }
 
-        public void CloseTask()
+        public void EvaluateTestRapport(bool passed)
         {
-            Console.WriteLine("The backlog item is already closed");
             return;
         }
 
         public void FinishTask()
         {
-            Console.WriteLine("The backlog item is already closed");
             return;
         }
 
-        public void RetestTask()
+        public void SendTestRapport(bool passed)
         {
-            Console.WriteLine("The backlog item is already closed");
             return;
         }
 
         public void StartTask()
         {
-            Console.WriteLine("The backlog item is already closed");
             return;
         }
 
-        public void TestTask()
+        public void StartTesting()
         {
-            Console.WriteLine("The backlog item is already closed");
             return;
         }
     }

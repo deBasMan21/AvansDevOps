@@ -16,7 +16,7 @@ namespace AvansDevOps.BacklogItemState
 
         public void StartTesting()
         {
-            _backlogItemState.UpdateState(new TestingState());
+            _backlogItemState.UpdateState(new TestingState(_backlogItemState));
         }
 
         public void EvaluateTestRapport(bool passed)
