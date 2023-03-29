@@ -20,33 +20,28 @@ namespace AvansDevOps.BacklogItemState
             _backlogItem.UpdateState(new DoingState(_backlogItem));
         }
 
-        public void CloseTask()
+        public void EvaluateTestRapport(bool passed)
         {
-            Console.WriteLine("The backlog item needs to start first");
             return;
         }
 
         public void FinishTask()
         {
-            Console.WriteLine("The backlog item needs to start first");
             return;
         }
 
         public void InvalidateTask()
         {
-            Console.WriteLine("The backlog item needs to start first");
             return;
         }
 
-        public void RetestTask()
+        public void SendTestRapport(bool passed)
         {
-            Console.WriteLine("The backlog item needs to start first");
             return;
         }
 
-        public void TestTask()
+        public void StartTesting()
         {
-            Console.WriteLine("The backlog item needs to start first");
             return;
         }
     }

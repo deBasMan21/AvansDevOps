@@ -40,39 +40,19 @@ namespace AvansDevOps
 
         // State methods
 
-        public void StartTask()
-        {
-            if (_developer is null) {
+        public void StartTask() {
+            if (_developer is null)
+            {
                 Console.WriteLine("No Developer assigned yet!");
                 return;
             }
             State.StartTask();
         }
-
-        public void FinishTask()
-        {
-            State.FinishTask();
-        }
-
-        public void TestTask()
-        {
-            State.TestTask();
-        }
-
-        public void RetestTask()
-        {
-            State.RetestTask();
-        }
-
-        public void CloseTask()
-        {
-            State.CloseTask();
-        }
-
-        public void InvalidateTask()
-        {
-            State.InvalidateTask();
-        }
+        public void FinishTask() => State.FinishTask();
+        public void StartTesting() => State.StartTesting();
+        public void SendTestRapport(bool passed) => State.SendTestRapport(passed);
+        public void EvaluateTestRapport(bool passed) => State.EvaluateTestRapport(passed);
+        public void InvalidateTask() => State.InvalidateTask();
 
         public void UpdateState(IBacklogItemState newState)
         {

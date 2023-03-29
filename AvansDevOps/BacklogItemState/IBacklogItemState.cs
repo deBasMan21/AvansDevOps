@@ -10,9 +10,9 @@ namespace AvansDevOps.BacklogItemState
     {
         public void StartTask();
         public void FinishTask();
-        public void TestTask();
-        public void RetestTask();
+        public void StartTesting();
+        public void SendTestRapport(bool passed);
+        public void EvaluateTestRapport(bool passed);
         public void InvalidateTask();
-        public void CloseTask();
     }
 }

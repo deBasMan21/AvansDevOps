@@ -15,38 +15,33 @@ namespace AvansDevOps.BacklogItemState
             _backlogItem = backlogItem;
         }
 
+        public void EvaluateTestRapport(bool passed)
+        {
+            return;
+        }
+
         public void FinishTask()
         {
             _backlogItem.UpdateState(new ReadyForTestingState(_backlogItem));
         }
 
-        public void CloseTask()
-        {
-            Console.WriteLine("The backlog item has not finished yet");
-            return;
-        }
-
         public void InvalidateTask()
         {
-            Console.WriteLine("The backlog item has not finished yet");
             return;
         }
 
-        public void RetestTask()
+        public void SendTestRapport(bool passed)
         {
-            Console.WriteLine("The backlog item has not finished yet");
             return;
         }
 
         public void StartTask()
         {
-            Console.WriteLine("The backlog item is already in progress");
             return;
         }
 
-        public void TestTask()
+        public void StartTesting()
         {
-            Console.WriteLine("The backlog item has not finished yet");
             return;
         }
     }

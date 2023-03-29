@@ -14,38 +14,33 @@ namespace AvansDevOps.BacklogItemState
             this._backlogItemState = _backlogItemState;
         }
 
-        public void TestTask()
+        public void StartTesting()
         {
-            _backlogItemState.UpdateState(new TestedState(_backlogItemState));
+            _backlogItemState.UpdateState(new TestingState());
         }
 
-        public void CloseTask()
+        public void EvaluateTestRapport(bool passed)
         {
-            Console.WriteLine("The backlog item needs to be tested first");
             return;
         }
 
         public void FinishTask()
         {
-            Console.WriteLine("The backlog item needs to be tested first");
             return;
         }
 
         public void InvalidateTask()
         {
-            Console.WriteLine("The backlog item needs to be tested first");
             return;
         }
 
-        public void RetestTask()
+        public void SendTestRapport(bool passed)
         {
-            Console.WriteLine("The backlog item needs to be tested first");
             return;
         }
 
         public void StartTask()
         {
-            Console.WriteLine("The backlog item is already ready for testing");
             return;
         }
 
