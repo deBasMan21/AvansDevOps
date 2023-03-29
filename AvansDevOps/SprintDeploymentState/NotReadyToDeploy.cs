@@ -9,17 +9,11 @@ namespace AvansDevOps.SprintDeploymentState
 {
     public class NotReadyToDeploy : IDeploymentState
     {
-        private ReleaseSprint _sprint;
+        private readonly ReleaseSprint _sprint;
 
-        public NotReadyToDeploy(ReleaseSprint _sprint)
-        {
-            this._sprint = _sprint;
-        }
+        public NotReadyToDeploy(ReleaseSprint _sprint) => this._sprint = _sprint;
 
-        public void ApproveDeployment()
-        {
-            _sprint.UpdateDeploymentState(new ReadyToDeployState(_sprint));
-        }
+        public void ApproveDeployment() => _sprint.UpdateDeploymentState(new ReadyToDeployState(_sprint));
 
         public void CancelDeployment()
         {
@@ -27,24 +21,12 @@ namespace AvansDevOps.SprintDeploymentState
             _sprint.UpdateDeploymentState(new DeploymentCancelledState(_sprint));
         }
 
-        public void FailDeployment()
-        {
-            return;
-        }
+        public void FailDeployment() { }
 
-        public void RestartDeployment()
-        {
-            return;
-        }
+        public void RestartDeployment() { }
 
-        public void StartDeployment()
-        {
-            return;
-        }
+        public void StartDeployment() { }
 
-        public void SucceedDeployment()
-        {
-            return;
-        }
+        public void SucceedDeployment() { }
     }
 }

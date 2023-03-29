@@ -10,26 +10,14 @@ namespace AvansDevOps.SprintState
 {
     public class ActiveSprintState : ISprintState
     {
-        private Sprint _sprint;
+        private readonly Sprint _sprint;
 
-        public ActiveSprintState(Sprint Sprint)
-        {
-            this._sprint = Sprint;
-        }
+        public ActiveSprintState(Sprint Sprint) => this._sprint = Sprint;
 
-        public void FinishSprint()
-        {
-            _sprint.UpdateSprintState(new FinishedSprintState(_sprint));
-        }
+        public void FinishSprint() => _sprint.UpdateSprintState(new FinishedSprintState(_sprint));
 
-        public void ReviewSprint(bool approvedDeployement = false)
-        {
-            return;
-        }
+        public void ReviewSprint(bool approvedDeployement = false) { }
 
-        public void StartSprint()
-        {
-            return;
-        }
+        public void StartSprint() { }
     }
 }

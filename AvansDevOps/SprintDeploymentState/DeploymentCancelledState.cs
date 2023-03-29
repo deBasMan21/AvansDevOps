@@ -9,41 +9,20 @@ namespace AvansDevOps.SprintDeploymentState
 {
     public class DeploymentCancelledState : IDeploymentState
     {
-        private ReleaseSprint _sprint;
+        private readonly ReleaseSprint _sprint;
 
-        public DeploymentCancelledState(ReleaseSprint _sprint)
-        {
-            this._sprint = _sprint;
-        }
+        public DeploymentCancelledState(ReleaseSprint _sprint) => this._sprint = _sprint;
 
-        public void ApproveDeployment()
-        {
-            return;
-        }
+        public void ApproveDeployment() { }
 
-        public void CancelDeployment()
-        {
-            return;
-        }
+        public void CancelDeployment() { }
 
-        public void FailDeployment()
-        {
-            return;
-        }
+        public void FailDeployment() { }
 
-        public void RestartDeployment()
-        {
-            return;
-        }
+        public void RestartDeployment() { }
 
-        public void StartDeployment()
-        {
-            return;
-        }
+        public void StartDeployment() { }
 
-        public void SucceedDeployment()
-        {
-            return;
-        }
+        public void SucceedDeployment() { }
     }
 }

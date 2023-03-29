@@ -18,7 +18,7 @@ namespace DomainTests.NotificationTests
         public void SingleTesterShouldReceiveNotificationWhenTicketGoesToReadyForTesting()
         {
             string messageObj = "";
-            Type typeObj = null;
+            Type? typeObj = null;
 
             // Arrange
             var mock = new Mock<ReleaseSprint>(
@@ -67,7 +67,7 @@ namespace DomainTests.NotificationTests
         {
             // Arrange
             string messageObj = "";
-            Type typeObj = null;
+            Type? typeObj = null;
 
             // Arrange
             var mock = new Mock<ReleaseSprint>(
@@ -126,7 +126,7 @@ namespace DomainTests.NotificationTests
 
             // Arrange
             string messageObj = "";
-            Type typeObj = null;
+            Type? typeObj = null;
 
             // Arrange
             var mock = new Mock<ReleaseSprint>(
