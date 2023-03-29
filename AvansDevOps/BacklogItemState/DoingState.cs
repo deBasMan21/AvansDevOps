@@ -17,7 +17,7 @@ namespace AvansDevOps.BacklogItemState
 
         public void FinishTask()
         {
-            _backlogItem.UpdateState(new TestedState(_backlogItem));
+            _backlogItem.UpdateState(new ReadyForTestingState(_backlogItem));
         }
 
         public void CloseTask()

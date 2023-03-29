@@ -59,6 +59,11 @@ namespace AvansDevOps
             State.TestTask();
         }
 
+        public void RetestTask()
+        {
+            State.RetestTask();
+        }
+
         public void CloseTask()
         {
             State.CloseTask();
