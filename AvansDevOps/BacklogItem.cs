@@ -41,6 +41,9 @@ namespace AvansDevOps
             Activities.Remove(activity);
         }
 
+        public void AssignDeveloper(Developer developer) => _developer = developer;
+
+        // Notifications
         public int NotifyTesters()
         {
             if (notificationCallback != null) 
@@ -49,9 +52,6 @@ namespace AvansDevOps
             }
             return 0;
         }
-        public void AssignDeveloper(Developer developer) => _developer = developer;
-
-        // State methods
 
         public int NotifyScrumMaster()
         {
@@ -61,6 +61,8 @@ namespace AvansDevOps
             }
             return 0;
         }
+
+        // Update item state
         public void StartTask() {
             if (_developer is null)
             {
@@ -69,15 +71,12 @@ namespace AvansDevOps
             }
             State.StartTask();
         }
-        public void FinishTask() => State.FinishTask();
+        public int FinishTask() => State.FinishTask();
         public void StartTesting() => State.StartTesting();
         public void SendTestRapport(bool passed) => State.SendTestRapport(passed);
         public void EvaluateTestRapport(bool passed) => State.EvaluateTestRapport(passed);
         public void InvalidateTask() => State.InvalidateTask();
 
-        public void UpdateState(IBacklogItemState newState)
-        {
-            State = newState;
-        }
+        public void UpdateState(IBacklogItemState newState) => State = newState;
     }
 }

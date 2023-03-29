@@ -27,9 +27,9 @@ namespace AvansDevOps.BacklogItemState
             }
         }
 
-        public void FinishTask()
+        public int FinishTask()
         {
-            return;
+            return 0;
         }
 
         public void InvalidateTask()

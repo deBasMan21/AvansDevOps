@@ -20,9 +20,10 @@ namespace AvansDevOps.BacklogItemState
             return;
         }
 
-        public void FinishTask()
+        public int FinishTask()
         {
             _backlogItem.UpdateState(new ReadyForTestingState(_backlogItem));
+            return _backlogItem.NotifyTesters();
         }
 
         public void InvalidateTask()

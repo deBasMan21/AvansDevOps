@@ -40,7 +40,7 @@ namespace DomainTests.NotificationTests
             item.StartTask();
 
             // Act
-            var result = 3;
+            int result = item.FinishTask();
 
             // Assert
             Assert.Equal(3, result);
