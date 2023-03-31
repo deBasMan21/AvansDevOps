@@ -16,14 +16,12 @@ namespace AvansDevOps.Pipeline
             this.AnalyseTool = AnalyseTool;
         }
 
-        public void AcceptVisitor(IActionVisitor visitor)
-        {
-            visitor.VisitAnalyse(this);
-        }
+        public bool AcceptVisitor(IActionVisitor visitor) => visitor.VisitAnalyse(this);
 
-        public void RunAnalysis()
+        public bool RunAnalysis()
         {
             Console.WriteLine($"{AnalyseTool}: Performing code analysis");
+            return true;
         }
     }
 }

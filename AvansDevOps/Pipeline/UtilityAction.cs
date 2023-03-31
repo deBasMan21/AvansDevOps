@@ -16,17 +16,16 @@ namespace AvansDevOps.Pipeline
             this.Actions = Actions;
         }
 
-        public void AcceptVisitor(IActionVisitor visitor)
-        {
-            visitor.VisitUtility(this);
-        }
+        public bool AcceptVisitor(IActionVisitor visitor) => visitor.VisitUtility(this);
 
-        public void RunUtilityActions()
+        public bool RunUtilityActions()
         {
             foreach (var action in Actions)
             {
                 Console.WriteLine($"Running action: {action}");
             }
+
+            return true;
         }
     }
 }

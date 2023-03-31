@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AvansDevOps.Pipeline;
 using AvansDevOps.SprintAbstraction;
 
 namespace AvansDevOps.SprintDeploymentState
@@ -17,12 +18,29 @@ namespace AvansDevOps.SprintDeploymentState
 
         public void CancelDeployment() { }
 
-        public void FailDeployment() { }
-
         public void RestartDeployment() { }
 
-        public void StartDeployment() => _sprint.UpdateDeploymentState(new InDeploymentState(_sprint));
+        public bool StartDeployment(string gitUrl, List<string> dependencies, string buildType, string testFramework, string analyseTool, string deploymentTarget, List<string> utilityActions) {
+            DeploymentPipeline pipeline = new();
+            ActionVisitor visitor = new ();
 
-        public void SucceedDeployment() { }
+            pipeline.AddComponent(new SourcesAction(gitUrl));
+            pipeline.AddComponent(new PackageAction(dependencies));
+            pipeline.AddComponent(new BuildAction(buildType));
+            pipeline.AddComponent(new TestAction(testFramework));
+            pipeline.AddComponent(new AnalyseAction(analyseTool));
+            pipeline.AddComponent(new DeployAction(deploymentTarget));
+            pipeline.AddComponent(new UtilityAction(utilityActions));
+
+            _sprint.UpdateDeploymentState(new InDeploymentState(_sprint));
+
+            return pipeline.AcceptVisitor(visitor); // Run all actions
+
+        }
+
+        public void FinishDeployment(bool succeeded)
+        {
+            return;
+        }
     }
 }

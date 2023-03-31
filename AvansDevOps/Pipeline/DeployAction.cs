@@ -16,14 +16,12 @@ namespace AvansDevOps.Pipeline
             this.DeploymentTarget = DeploymentTarget;
         }
 
-        public void AcceptVisitor(IActionVisitor visitor)
-        {
-            visitor.VisitDeploy(this);
-        }
+        public bool AcceptVisitor(IActionVisitor visitor) => visitor.VisitDeploy(this);
 
-        public void RunDeployment()
+        public bool RunDeployment()
         {
             Console.WriteLine($"Deploying to {DeploymentTarget}");
+            return true;
         }
 
     }

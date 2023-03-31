@@ -22,9 +22,10 @@ namespace AvansDevOps.SprintAbstraction
 
         public void UpdateDeploymentState(IDeploymentState state) => deploymentState = state;
         public void ApproveDeployment() => deploymentState.ApproveDeployment();
-        public void StartDeployment() => deploymentState.StartDeployment();
+        public bool StartDeployment(string gitUrl, List<string> dependencies, string buildType, string testFramework, string analyseTool, string deploymentTarget, List<string> utilityActions) => deploymentState.StartDeployment(gitUrl, dependencies, buildType, testFramework, analyseTool, deploymentTarget, utilityActions);
         public void CancelDeployment() => deploymentState.CancelDeployment();
-        public void FailDeployment() => deploymentState.FailDeployment();
+        public void FinishDeployment(bool succeeded) => deploymentState.FinishDeployment(succeeded);
+
         public void RestartDeployment() => deploymentState.RestartDeployment();
     }
 }
