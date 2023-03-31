@@ -26,14 +26,14 @@ namespace AvansDevOps.BacklogItemState
             }
         }
 
-        public void EvaluateTestRapport(bool passed) { }
+        public void EvaluateTestRapport(bool passed) => Console.WriteLine("Testrapport needs to be send..");
 
         public int FinishTask() => 0;
 
-        public void InvalidateTask() { }
+        public void InvalidateTask() => Console.WriteLine("Testrapport needs to be send..");
 
-        public void StartTask() { }
+        public void StartTask() => Console.WriteLine("Testrapport needs to be send..");
 
-        public void StartTesting() { }
+        public void StartTesting() => Console.WriteLine("Testrapport needs to be send..");
     }
 }

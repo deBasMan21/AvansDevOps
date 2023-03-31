@@ -39,7 +39,7 @@ sprint.FinishSprint();
 sprint.ReviewSprint(approvedDeployement: true);
 
 bool pipelineSucceeded = sprint.StartDeployment(
-        gitUrl: "https://github.com/deBasMan21/AvansDevOps",
+        gitUrl: "ThisIsSupposeToBeAnUrl",
         dependencies: new() { "xunit (2.4.2)", "Moq (4.18.4)" }, 
         buildType: ".NET Core build", 
         testFramework: "XUnit 2.4.2",

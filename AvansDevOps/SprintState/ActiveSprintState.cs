@@ -16,8 +16,8 @@ namespace AvansDevOps.SprintState
 
         public void FinishSprint() => _sprint.UpdateSprintState(new FinishedSprintState(_sprint));
 
-        public void ReviewSprint(bool approvedDeployement = false) { }
+        public void ReviewSprint(bool approvedDeployement = false) => Console.WriteLine("Sprint needs to finish..");
 
-        public void StartSprint() { }
+        public void StartSprint() => Console.WriteLine("Sprint needs to finish..");
     }
 }

@@ -13,7 +13,7 @@ namespace AvansDevOps.SprintDeploymentState
 
         public DeploymentFailedState(ReleaseSprint _sprint) => this._sprint = _sprint;
 
-        public void ApproveDeployment() { }
+        public void ApproveDeployment() => Console.WriteLine("Deployment needs to be restarted or cancelled..");
 
         public void CancelDeployment()
         {
@@ -28,9 +28,6 @@ namespace AvansDevOps.SprintDeploymentState
         public bool StartDeployment(string gitUrl, List<string> dependencies, string buildType, string testFramework, string analyseTool, string deploymentTarget, List<string> utilityActions) => false;
 
 
-        public void FinishDeployment(bool succeeded)
-        {
-            return;
-        }
+        public void FinishDeployment(bool succeeded) => Console.WriteLine("Deployment needs to be restarted or cancelled..");
     }
 }

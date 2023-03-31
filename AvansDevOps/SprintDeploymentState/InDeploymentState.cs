@@ -13,13 +13,11 @@ namespace AvansDevOps.SprintDeploymentState
 
         public InDeploymentState(ReleaseSprint _sprint) => this._sprint = _sprint;
 
-        public void ApproveDeployment() { }
+        public void ApproveDeployment() => Console.WriteLine("Deployment needs to be finished..");
 
-        public void CancelDeployment() { }
+        public void CancelDeployment() => Console.WriteLine("Deployment needs to be finished..");
 
-        public void FailDeployment() => _sprint.UpdateDeploymentState(new DeploymentFailedState(_sprint));
-
-        public void RestartDeployment() { }
+        public void RestartDeployment() => Console.WriteLine("Deployment needs to be finished..");
 
         public bool StartDeployment(string gitUrl, List<string> dependencies, string buildType, string testFramework, string analyseTool, string deploymentTarget, List<string> utilityActions) => false;
 
