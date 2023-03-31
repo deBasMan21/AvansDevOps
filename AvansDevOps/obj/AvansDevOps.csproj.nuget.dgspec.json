@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Gebruiker\\source\\repos\\AvansDevOps\\AvansDevOps\\AvansDevOps.csproj": {}
+    "C:\\Users\\Qiang\\Source\\Repos\\deBasMan21\\AvansDevOps\\AvansDevOps\\AvansDevOps.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Gebruiker\\source\\repos\\AvansDevOps\\AvansDevOps\\AvansDevOps.csproj": {
+    "C:\\Users\\Qiang\\Source\\Repos\\deBasMan21\\AvansDevOps\\AvansDevOps\\AvansDevOps.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Gebruiker\\source\\repos\\AvansDevOps\\AvansDevOps\\AvansDevOps.csproj",
+        "projectUniqueName": "C:\\Users\\Qiang\\Source\\Repos\\deBasMan21\\AvansDevOps\\AvansDevOps\\AvansDevOps.csproj",
         "projectName": "AvansDevOps",
-        "projectPath": "C:\\Users\\Gebruiker\\source\\repos\\AvansDevOps\\AvansDevOps\\AvansDevOps.csproj",
-        "packagesPath": "C:\\Users\\Gebruiker\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Gebruiker\\source\\repos\\AvansDevOps\\AvansDevOps\\obj\\",
+        "projectPath": "C:\\Users\\Qiang\\Source\\Repos\\deBasMan21\\AvansDevOps\\AvansDevOps\\AvansDevOps.csproj",
+        "packagesPath": "C:\\Users\\Qiang\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Qiang\\Source\\Repos\\deBasMan21\\AvansDevOps\\AvansDevOps\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Gebruiker\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Qiang\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -48,8 +45,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -58,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.115\\RuntimeIdentifierGraph.json"
         }
       }
     }

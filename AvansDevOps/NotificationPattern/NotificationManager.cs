@@ -10,8 +10,8 @@ namespace AvansDevOps.NotificationPattern
 {
     public class NotificationAdapter : INotificationManager
     {
-        private IEmailLibrary _emailLibrary = new EmailLibraryMock();
-        private ISlackLibrary _slackLibrary = new SlackLibraryMock();
+        private readonly IEmailLibrary _emailLibrary = new EmailLibraryMock();
+        private readonly ISlackLibrary _slackLibrary = new SlackLibraryMock();
 
         public int SendNotification(string message, User user)
         {

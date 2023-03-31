@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.ReportFactory
 {
-    public class PDFReportFactory : IReportFactory
+    public class PdfReportFactory : IReportFactory
     {
         private string? customHeader = null;
         private string? customFooter = null;
 
-        public PDFReportFactory() { }
+        public PdfReportFactory() { }
         public void AddCustomFooter(string footer) => customFooter = footer;
 
         public void AddCustomHeader(string header) => customHeader = header;
