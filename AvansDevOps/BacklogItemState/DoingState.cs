@@ -16,8 +16,14 @@ namespace AvansDevOps.BacklogItemState
 
         public int FinishTask()
         {
-            _backlogItem.UpdateState(new ReadyForTestingState(_backlogItem));
-            return _backlogItem.NotifyTesters();
+            if (_backlogItem.Activities.All(a => a.IsFinished)) {
+                _backlogItem.UpdateState(new ReadyForTestingState(_backlogItem));
+                return _backlogItem.NotifyTesters();
+            }
+
+            Console.WriteLine("Finish all activities before finishing a sprint item");
+
+            return 0;
         }
 
         public void InvalidateTask() { }
