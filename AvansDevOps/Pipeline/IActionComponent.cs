@@ -8,6 +8,6 @@ namespace AvansDevOps.Pipeline
 {
     public interface IActionComponent
     {
-        public void AcceptVisitor(IActionVisitor visitor);
+        public bool AcceptVisitor(IActionVisitor visitor);
     }
 }

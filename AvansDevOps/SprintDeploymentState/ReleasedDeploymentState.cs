@@ -17,12 +17,13 @@ namespace AvansDevOps.SprintDeploymentState
 
         public void CancelDeployment() { }
 
-        public void FailDeployment() { }
-
         public void RestartDeployment() { }
 
-        public void StartDeployment() { }
+        public bool StartDeployment(string gitUrl, List<string> dependencies, string buildType, string testFramework, string analyseTool, string deploymentTarget, List<string> utilityActions) => false;
 
-        public void SucceedDeployment() { }
+        public void FinishDeployment(bool succeeded)
+        {
+            return;
+        }
     }
 }

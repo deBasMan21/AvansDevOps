@@ -20,12 +20,17 @@ namespace AvansDevOps.Pipeline
             _parts.Add(PipeLineComponent);
         }
 
-        virtual public void AcceptVisitor(IActionVisitor visitor)
+        virtual public bool AcceptVisitor(IActionVisitor visitor)
         {
+            bool succeeded = true;
             foreach (var part in _parts)
             {
-                part.AcceptVisitor(visitor);
+                if (!part.AcceptVisitor(visitor)) { 
+                    succeeded = false;
+                    return succeeded;
+                }
             }
+            return succeeded;
         }
     }
 }

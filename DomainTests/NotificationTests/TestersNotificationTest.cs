@@ -24,10 +24,7 @@ namespace DomainTests.NotificationTests
             var mock = new Mock<ReleaseSprint>(
                 "",
                 DateTime.Now,
-                DateTime.Now,
-                new LeadDeveloper(Name: "John Doe"),
-                new ScrumMaster(Name: "Kapitein Haak"),
-                new List<User>()
+                DateTime.Now
             );
             mock.CallBase = true;
             mock.Setup(c => 
@@ -44,7 +41,7 @@ namespace DomainTests.NotificationTests
 
             BacklogItem item = new BacklogItem(DefinitionOfDone: "done", Description: "hi");
             item.AssignDeveloper(new Developer(Name: "John Doe"));
-            sprint.sprintBacklog.Add(item);
+            sprint.SprintBacklog.Add(item);
 
             Tester tester = new Tester("Tester");
             sprint.AddDeveloper(tester);
@@ -73,10 +70,7 @@ namespace DomainTests.NotificationTests
             var mock = new Mock<ReleaseSprint>(
                 "",
                 DateTime.Now,
-                DateTime.Now,
-                new LeadDeveloper(Name: "John Doe"),
-                new ScrumMaster(Name: "Kapitein Haak"),
-                new List<User>()
+                DateTime.Now
             );
             mock.CallBase = true;
             mock.Setup(c =>
@@ -93,7 +87,7 @@ namespace DomainTests.NotificationTests
 
             BacklogItem item = new BacklogItem(DefinitionOfDone: "done", Description: "hi");
             item.AssignDeveloper(new Developer(Name: "John Doe"));
-            sprint.sprintBacklog.Add(item);
+            sprint.SprintBacklog.Add(item);
 
             Tester tester = new Tester("Tester");
             sprint.AddDeveloper(tester);
@@ -132,10 +126,7 @@ namespace DomainTests.NotificationTests
             var mock = new Mock<ReleaseSprint>(
                 "",
                 DateTime.Now,
-                DateTime.Now,
-                new LeadDeveloper(Name: "John Doe"),
-                new ScrumMaster(Name: "Kapitein Haak"),
-                new List<User>()
+                DateTime.Now
             );
             mock.CallBase = true;
             mock.Setup(c =>
@@ -152,7 +143,7 @@ namespace DomainTests.NotificationTests
 
             BacklogItem item = new BacklogItem(DefinitionOfDone: "done", Description: "hi");
             item.AssignDeveloper(new Developer(Name: "John Doe"));
-            sprint.sprintBacklog.Add(item);
+            sprint.SprintBacklog.Add(item);
 
             Tester tester = new Tester("Tester");
             sprint.AddDeveloper(tester);

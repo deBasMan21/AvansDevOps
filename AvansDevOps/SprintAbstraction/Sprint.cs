@@ -15,52 +15,49 @@ namespace AvansDevOps.SprintAbstraction
         public string Name { get; private set; }
         public DateTime StartDate { get; private set; }
         public DateTime EndDate { get; private set; }
-        public LeadDeveloper leadDeveloper { get; private set; }
-        public ScrumMaster scrumMaster { get; private set; }
-        public List<User> developers { get; private set; }
-        public Backlog sprintBacklog { get; private set; }
+        public LeadDeveloper? LeadDeveloper { get; private set; }
+        public ScrumMaster? ScrumMaster { get; private set; }
+        public List<User> Developers { get; private set; }
+        public Backlog SprintBacklog { get; private set; }
 
-        public ISprintState currentState { get; private set; }
+        public ISprintState CurrentState { get; private set; }
 
         protected Sprint(
             string Name, 
             DateTime StartDate, 
-            DateTime EndDate, 
-            LeadDeveloper leadDeveloper, 
-            ScrumMaster scrumMaster,
-            List<User> developers
+            DateTime EndDate
         ){
             this.Name = Name;
             this.StartDate = StartDate;
             this.EndDate = EndDate;
-            this.leadDeveloper = leadDeveloper;
-            this.scrumMaster = scrumMaster;
-            this.developers = developers;
-            this.sprintBacklog = new Backlog(Notify);
-            currentState = new CreatedSprintState(this);
+            this.SprintBacklog = new Backlog(Notify);
+            this.Developers = new();
+            CurrentState = new CreatedSprintState(this);
         }
-
         public void AddDeveloper(User developer)
         {
-            developers.Add(developer);
+            Developers.Add(developer);
 
             if (developer is Tester tester) { RegisterSubscriber(tester); }
         }
         public void RemoveDeveloper(User developer)
         {
-            developers.Remove(developer);
+            Developers.Remove(developer);
 
             if (developer is Tester tester) { RemoveSubscriber(tester); }
         }
 
+        public void AssignLeadDeveloper(LeadDeveloper lead) => LeadDeveloper = lead;
+        public void AssignScrumMaster(ScrumMaster master) => ScrumMaster = master;
+
+
         // Sprint state update functions
-        public void StartSprint() => currentState.StartSprint();
-        public void FinishSprint() => currentState.FinishSprint();
-        public void ReviewSprint() => currentState.ReviewSprint();
+        public void StartSprint() => CurrentState.StartSprint();
+        public void FinishSprint() => CurrentState.FinishSprint();
+        public void ReviewSprint(bool approvedDeployement = false) => CurrentState.ReviewSprint(approvedDeployement);
 
+        public void UpdateSprintState(ISprintState state) => CurrentState = state;
 
-        // ISprintStateHolder Interface
-        public void UpdateSprintState(ISprintState state) => currentState = state;
 
         // Notification logic - IPublisher Interface
         private readonly List<Tester> subscribers = new List<Tester>();
@@ -71,9 +68,9 @@ namespace AvansDevOps.SprintAbstraction
 
         public virtual int Notify(string message, Type? userType)
         {
-            if (userType == typeof(ScrumMaster))
+            if (userType == typeof(ScrumMaster) && ScrumMaster is not null)
             {
-                return scrumMaster.ReceiveUpdate(message);
+                return ScrumMaster.ReceiveUpdate(message);
             } else if (userType == typeof(Tester))
             {
                 return subscribers.Select(u => u.ReceiveUpdate(message)).Sum();

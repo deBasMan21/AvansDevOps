@@ -9,10 +9,9 @@ namespace AvansDevOps.SprintDeploymentState
     public interface IDeploymentState
     {
         void ApproveDeployment();
-        void StartDeployment();
+        bool StartDeployment(string gitUrl, List<string> dependencies, string buildType, string testFramework, string analyseTool, string deploymentTarget, List<string> utilityActions);
         void CancelDeployment();
-        void FailDeployment();
-        void SucceedDeployment();
+        void FinishDeployment(bool succeeded);
         void RestartDeployment();
     }
 }

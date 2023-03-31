@@ -5,21 +5,22 @@ using AvansDevOps.UserAbstraction;
 
 ScrumMaster scrumMaster = new ScrumMaster(Name: "Kapitein Haak");
 
-Sprint sprint = new ReleaseSprint(
+ReleaseSprint sprint = new ReleaseSprint(
     Name: "", 
     StartDate: DateTime.Now, 
-    EndDate: DateTime.Now, 
-    leadDeveloper: new LeadDeveloper(Name: "John Doe"),
-    scrumMaster: scrumMaster,
-    developers: new List<User>()
+    EndDate: DateTime.Now 
 );
 
+sprint.AssignLeadDeveloper(new(Name: "John Doe"));
+sprint.AssignScrumMaster(scrumMaster);
+
 Developer dev = new Developer(Name: "Koen van Hees");
+sprint.StartSprint();
 
 BacklogItem item = new BacklogItem(DefinitionOfDone: "done", Description: "test");
 item.AssignDeveloper(dev);
 
-sprint.sprintBacklog.Add(item);
+sprint.SprintBacklog.Add(item);
 
 sprint.AddDeveloper(dev);
 
@@ -35,20 +36,17 @@ item.StartTesting();
 item.SendTestRapport(true);
 item.EvaluateTestRapport(false);
 
-User user = new Developer("hoi");
-user.AddNotificationPreference(AvansDevOps.Enums.NotificationType.SLACK);
+sprint.FinishSprint();
+sprint.ReviewSprint(approvedDeployement: true);
 
-User user2 = new Developer("hoi2");
-user2.AddNotificationPreference(AvansDevOps.Enums.NotificationType.EMAIL);
+bool pipelineSucceeded = sprint.StartDeployment(
+        gitUrl: "https://github.com/deBasMan21/AvansDevOps",
+        dependencies: new() { "xunit (2.4.2)", "Moq (4.18.4)" }, 
+        buildType: ".NET Core build", 
+        testFramework: "XUnit 2.4.2",
+        analyseTool: "SonarQube",
+        deploymentTarget: "Azure",
+        utilityActions: new() { "UtilityAction1", "UtilityAction2" }
+    );
 
-User user3 = new Developer("hoi3");
-user3.AddNotificationPreference(AvansDevOps.Enums.NotificationType.EMAIL);
-
-ForumMessageComponent message = new ForumMessageComponent("test", user);
-ForumThreadComponent forum = new ForumThreadComponent(message);
-forum.AddMessage(new ForumMessageComponent("test2", user2));
-forum.AddMessage(new ForumMessageComponent("test3", user3));
-forum.AddMessage(new ForumMessageComponent("test4", user));
-
-int? result = forum.GetComponents().FirstOrDefault()?.AddMessage(new ForumMessageComponent("new message", user3));
-Console.WriteLine(result);
+sprint.FinishDeployment(succeeded: pipelineSucceeded);

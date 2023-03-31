@@ -12,12 +12,10 @@ namespace AvansDevOps.SprintAbstraction
         public FeedbackSprint(
             string Name, 
             DateTime StartDate, 
-            DateTime EndDate, 
-            LeadDeveloper leadDeveloper, 
-            ScrumMaster scrumMaster, 
-            List<User> developers
-            ) : base(Name, StartDate, EndDate, leadDeveloper, scrumMaster, developers)
+            DateTime EndDate
+            ) : base(Name, StartDate, EndDate)
         {
+
         }
     }
 }

@@ -21,12 +21,16 @@ namespace AvansDevOps.SprintDeploymentState
             _sprint.UpdateDeploymentState(new DeploymentCancelledState(_sprint));
         }
 
-        public void FailDeployment() { }
 
-        public void RestartDeployment() => _sprint.UpdateDeploymentState(new InDeploymentState(_sprint));
+        public void RestartDeployment() => _sprint.UpdateDeploymentState(new ReadyToDeployState(_sprint));
 
-        public void StartDeployment() { }
 
-        public void SucceedDeployment() { }
+        public bool StartDeployment(string gitUrl, List<string> dependencies, string buildType, string testFramework, string analyseTool, string deploymentTarget, List<string> utilityActions) => false;
+
+
+        public void FinishDeployment(bool succeeded)
+        {
+            return;
+        }
     }
 }

@@ -7,7 +7,7 @@ using AvansDevOps.SprintAbstraction;
 
 namespace AvansDevOps.SprintDeploymentState
 {
-    class InDeploymentState : IDeploymentState
+    public class InDeploymentState : IDeploymentState
     {
         private readonly ReleaseSprint _sprint;
 
@@ -21,8 +21,21 @@ namespace AvansDevOps.SprintDeploymentState
 
         public void RestartDeployment() { }
 
-        public void StartDeployment() { }
+        public bool StartDeployment(string gitUrl, List<string> dependencies, string buildType, string testFramework, string analyseTool, string deploymentTarget, List<string> utilityActions) => false;
 
-        public void SucceedDeployment() => _sprint.UpdateDeploymentState(new ReleasedDeploymentState(_sprint));
+        public void FinishDeployment(bool succeeded)
+        {
+            if (succeeded)
+            {
+                Console.WriteLine("pipeline succeeded");
+                _sprint.UpdateDeploymentState(new ReleasedDeploymentState(_sprint));
+            }
+            else {
+                // TODO: Send notification
+                Console.WriteLine("pipeline failed");
+                _sprint.UpdateDeploymentState(new DeploymentFailedState(_sprint));
+            }
+        }
+
     }
 }

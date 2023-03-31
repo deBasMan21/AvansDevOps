@@ -8,13 +8,13 @@ namespace AvansDevOps.Pipeline
 {
     public interface IActionVisitor
     {
-        public void VisitPipeline(PipeLine pipeline);
-        public void VisitSources(SourcesAction sourcesAction);
-        public void VisitPackage(PackageAction packageAction);
-        public void VisitBuild(BuildAction buildAction);
-        public void VisitTest(TestAction testAction);
-        public void VisitDeploy(DeployAction deployAction);
-        public void VisitAnalyse(AnalyseAction analyseAction);
-        public void VisitUtility(UtilityAction utilityAction);
+        public bool VisitPipeline(DeploymentPipeline pipeline);
+        public bool VisitSources(SourcesAction sourcesAction);
+        public bool VisitPackage(PackageAction packageAction);
+        public bool VisitBuild(BuildAction buildAction);
+        public bool VisitTest(TestAction testAction);
+        public bool VisitDeploy(DeployAction deployAction);
+        public bool VisitAnalyse(AnalyseAction analyseAction);
+        public bool VisitUtility(UtilityAction utilityAction);
     }
 }

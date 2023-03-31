@@ -11,19 +11,17 @@ namespace AvansDevOps.Pipeline
 
         public string GitUrl { get; private set; }
 
-        public SourcesAction(string GityUrl)
+        public SourcesAction(string GitUrl)
         {
-            this.GitUrl = GityUrl;
+            this.GitUrl = GitUrl;
         }
 
-        public void AcceptVisitor(IActionVisitor visitor)
-        {
-            visitor.VisitSources(this);
-        }
+        public bool AcceptVisitor(IActionVisitor visitor) => visitor.VisitSources(this);
 
-        public void CloneRepo()
+        public bool CloneRepo()
         {
             Console.WriteLine($"Cloning repository from: {GitUrl}");
+            return true;
         }
     }
 }
