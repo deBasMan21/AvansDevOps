@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AvansDevOps.UserAbstraction;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +9,19 @@ namespace AvansDevOps
 {
     public class Activity
     {
-        string task { get; set; }
+       public string Task { get;  private set; }
+        public bool IsFinished { get; private set; } = false;
+        public Developer? Developer { get; private set; }
 
-        public Activity(string task)
+        public Activity(string Task)
         {
-            this.task = task;
+            this.Task = Task;
+        }
+
+        public void AssignDeveloper(Developer dev) => Developer = dev;
+
+        public void FinishTask() {
+            IsFinished = true;
         }
     }
 }
