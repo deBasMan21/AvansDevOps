@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AvansDevOps.NotificationObserver;
+using AvansDevOps.UserAbstraction;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,8 @@ namespace AvansDevOps.ForumComposite
         {
             this.message = message;
             children = new List<ForumComponent>();
+
+            RegisterSubscriber(message.creator);
         } 
 
         public override void AddChild(ForumComponent child) => children.Add(child);
@@ -27,10 +31,13 @@ namespace AvansDevOps.ForumComposite
 
         public override List<ForumComponent> GetChildrenComponents() => children;
 
-        public override void AddMessage(ForumMessageComponent component)
+        public override int AddMessage(ForumMessageComponent component)
         {
             component.SetParent(this);
             AddChild(component);
+            int result = Notify($"{component.creator.Name} posted a message: {component.message}", component.creator);
+            RegisterSubscriber(component.creator);
+            return result;
         }
     }
 }
