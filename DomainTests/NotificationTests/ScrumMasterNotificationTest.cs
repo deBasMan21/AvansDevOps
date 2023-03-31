@@ -32,15 +32,14 @@ namespace DomainTests.NotificationTests
             Sprint sprint = new ReleaseSprint(
                 "",
                 DateTime.Now,
-                DateTime.Now,
-                new LeadDeveloper(Name: "John Doe"),
-                scrumMaster,
-                new List<User>()
+                DateTime.Now
             );
+
+            sprint.AssignScrumMaster(scrumMaster);
 
             BacklogItem item = new BacklogItem(DefinitionOfDone: "done", Description: "hi");
             item.AssignDeveloper(new Developer(Name: "John Doe"));
-            sprint.sprintBacklog.Add(item);
+            sprint.SprintBacklog.Add(item);
 
             item.StartTask();
             item.FinishTask();
