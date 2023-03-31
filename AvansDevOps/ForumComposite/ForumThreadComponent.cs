@@ -10,7 +10,7 @@ namespace AvansDevOps.ForumComposite
 {
     public class ForumThreadComponent : ForumCompositeComponent
     {
-        private ForumMessageComponent message;
+        private readonly ForumMessageComponent message;
         private List<ForumComponent> children;
 
         public ForumThreadComponent(ForumMessageComponent message)

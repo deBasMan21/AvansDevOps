@@ -26,7 +26,7 @@ namespace AvansDevOps.ForumComposite
         }
 
         // Notification publisher
-        private HashSet<User> subscribers = new HashSet<User>();
+        private readonly HashSet<User> subscribers = new HashSet<User>();
 
         public void RegisterSubscriber(User Subscriber) => subscribers.Add(Subscriber);
 
