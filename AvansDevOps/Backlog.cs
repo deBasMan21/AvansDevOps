@@ -21,6 +21,8 @@ namespace AvansDevOps
             item.SetNotificationCallback(notificationCallback);
             Items.Add(item);
         }
-        public void Remove(BacklogItem item) => Items.Remove(item); 
+        public void Remove(BacklogItem item) => Items.Remove(item);
+
+        public void CloseTasks() => Items.ForEach(i => i.CloseTask());
     }
 }

@@ -10,6 +10,7 @@ namespace AvansDevOps.ForumComposite
 {
     public abstract class ForumCompositeComponent : ForumComponent, IForumPublisher<User>
     {
+        protected bool Editable = true;
         public List<ForumComponent> GetComponents() => GetChildrenComponents();
 
         public abstract List<ForumComponent> GetChildrenComponents();
@@ -18,6 +19,11 @@ namespace AvansDevOps.ForumComposite
         public abstract void ReplaceChild(ForumComponent child, ForumComponent oldChild);
         public abstract int AddMessage(ForumMessageComponent component);
 
+        public void CloseForum()
+        {
+            Editable = false;
+            GetChildrenComponents().ForEach(c => c.CloseForum());
+        }
 
         // Notification publisher
         private HashSet<User> subscribers = new HashSet<User>();

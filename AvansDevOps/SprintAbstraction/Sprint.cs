@@ -78,6 +78,8 @@ namespace AvansDevOps.SprintAbstraction
 
             return 0;
         }
+
+        public void CloseTasks() => SprintBacklog.CloseTasks();
     }
 
     public interface ISprintStateHolder

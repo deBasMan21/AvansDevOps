@@ -6,26 +6,28 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.BacklogItemState
 {
-    public class DoneState : IBacklogItemState
+    public class ClosedState : IBacklogItemState
     {
         private readonly BacklogItem _backlogItem;
 
-        public DoneState(BacklogItem backlogItem) => _backlogItem = backlogItem;
+        public ClosedState(BacklogItem backlogItem)
+        {
+            _backlogItem = backlogItem;
+            _backlogItem.Forum?.CloseForum();
+        }
 
-        public void InvalidateTask() => _backlogItem.UpdateState(new TodoState(_backlogItem));
+        public void CloseTask() { }
 
         public void EvaluateTestRapport(bool passed) { }
 
         public int FinishTask() => 0;
+
+        public void InvalidateTask() { }
 
         public int SendTestRapport(bool passed) => 0;
 
         public void StartTask() { }
 
         public void StartTesting() { }
-
-        public void TestTask(bool success) { }
-
-        public void CloseTask() => _backlogItem.UpdateState(new ClosedState());
     }
 }

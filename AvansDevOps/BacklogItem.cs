@@ -1,4 +1,5 @@
 ﻿using AvansDevOps.BacklogItemState;
+using AvansDevOps.ForumComposite;
 using AvansDevOps.NotificationObserver;
 using AvansDevOps.SprintAbstraction;
 using AvansDevOps.UserAbstraction;
@@ -17,6 +18,7 @@ namespace AvansDevOps
         public List<Activity> Activities { get; private set; }
         public Developer? _developer { get; private set; }
         public Func<string, Type, int>? notificationCallback { get; private set; }
+        public ForumComponent? Forum { get; private set; }
 
         // State pattern
         public IBacklogItemState State { get; set; }
@@ -31,17 +33,19 @@ namespace AvansDevOps
 
         public void SetNotificationCallback(Func<string, Type, int>? notificationCallback) => this.notificationCallback = notificationCallback;
 
-        public void AddActivity(Activity activity)
-        {
-            Activities.Add(activity);
-        }
+        public void AddActivity(Activity activity) => Activities.Add(activity);
 
-        public void RemoveActivity(Activity activity)
-        {
-            Activities.Remove(activity);
-        }
+        public void RemoveActivity(Activity activity) => Activities.Remove(activity);
 
-        public void AssignDeveloper(Developer developer) => _developer = developer;
+        public void AssignDeveloper(Developer developer)
+        {
+            _developer = developer;
+
+            if (Forum == null && _developer != null)
+            {
+                Forum = new ForumThreadComponent(new ForumMessageComponent("", _developer));
+            }
+        }
 
         // Notifications
         public int NotifyTesters()
@@ -76,6 +80,7 @@ namespace AvansDevOps
         public int SendTestRapport(bool passed) => State.SendTestRapport(passed);
         public void EvaluateTestRapport(bool passed) => State.EvaluateTestRapport(passed);
         public void InvalidateTask() => State.InvalidateTask();
+        public void CloseTask() => State.CloseTask();
 
         public void UpdateState(IBacklogItemState newState) => State = newState;
     }

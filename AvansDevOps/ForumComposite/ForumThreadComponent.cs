@@ -33,6 +33,7 @@ namespace AvansDevOps.ForumComposite
 
         public override int AddMessage(ForumMessageComponent component)
         {
+            if (!Editable) { return 0; }
             component.SetParent(this);
             AddChild(component);
             int result = Notify($"{component.creator.Name} posted a message: {component.message}", component.creator);

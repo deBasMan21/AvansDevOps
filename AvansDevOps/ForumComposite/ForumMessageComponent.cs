@@ -11,7 +11,8 @@ namespace AvansDevOps.ForumComposite
     {
         private ForumCompositeComponent? parent;
         public string message { get; private set; }
-        public User creator { get; private set; } 
+        public User creator { get; private set; }
+        private bool Editable = true;
         public ForumMessageComponent(string message, User creator)
         {
             this.message = message;
@@ -22,6 +23,7 @@ namespace AvansDevOps.ForumComposite
 
         public int AddMessage(ForumMessageComponent component)
         {
+            if (!Editable) { return 0; }
             ForumThreadComponent thread = new ForumThreadComponent(this);
             thread.AddMessage(component);
             parent?.ReplaceChild(thread, this);
@@ -29,5 +31,7 @@ namespace AvansDevOps.ForumComposite
         }
 
         public List<ForumComponent> GetComponents() => new List<ForumComponent> { this };
+
+        public void CloseForum() => Editable = false;
     }
 }
