@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 using AvansDevOps.Enums;
 using AvansDevOps.UserAbstraction;
 
-namespace AvansDevOps.NotificationAdapter
+namespace AvansDevOps.NotificationPattern
 {
     public class EmailLibraryMock : IEmailLibrary
     {
-        public void SendNotification(string message, User user)
+        public bool SendNotification(string message, User user)
         {
-            Console.WriteLine($"Send message to {user.Name} via SMS: {message}");
+            Console.WriteLine($"Send message to {user.Name} via Email: {message}");
+            return true;
         }
     }
 }

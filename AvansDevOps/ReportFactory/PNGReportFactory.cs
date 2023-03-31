@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.ReportFactory
 {
-    public class PNGReportFactory: IReportFactory
+    public class PngReportFactory: IReportFactory
     {
         private string? customHeader = null;
         private string? customFooter = null;
-        public PNGReportFactory() { }
+        public PngReportFactory() { }
 
         public void AddCustomFooter(string footer) => customFooter = footer;
 

@@ -8,41 +8,19 @@ namespace AvansDevOps.BacklogItemState
 {
     public class ReadyForTestingState : IBacklogItemState
     {
+        private readonly BacklogItem _backlogItemState;
+        public ReadyForTestingState(BacklogItem _backlogItemState) => this._backlogItemState = _backlogItemState;
 
-        private IBacklogItemStateHolder _backlogItemState;
-        public ReadyForTestingState(IBacklogItemStateHolder _backlogItemState) { 
-            this._backlogItemState = _backlogItemState;
-        }
+        public void StartTesting() => _backlogItemState.UpdateState(new TestingState(_backlogItemState));
 
-        public void StartTesting()
-        {
-            _backlogItemState.UpdateState(new TestingState(_backlogItemState));
-        }
+        public void EvaluateTestRapport(bool passed) { }
 
-        public void EvaluateTestRapport(bool passed)
-        {
-            return;
-        }
+        public int FinishTask() => 0;
 
-        public void FinishTask()
-        {
-            return;
-        }
+        public void InvalidateTask() { }
 
-        public void InvalidateTask()
-        {
-            return;
-        }
+        public int SendTestRapport(bool passed) => 0;
 
-        public void SendTestRapport(bool passed)
-        {
-            return;
-        }
-
-        public void StartTask()
-        {
-            return;
-        }
-
+        public void StartTask() { }
     }
 }

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using AvansDevOps.Enums;
 using AvansDevOps.UserAbstraction;
 
-namespace AvansDevOps.NotificationAdapter
+namespace AvansDevOps.NotificationPattern
 {
-    public interface INotificationManager
+    public interface ISlackLibrary
     {
-        public void SendNotification(String message, User user);
+        public bool SendNotification(string message, User user);
     }
 }
