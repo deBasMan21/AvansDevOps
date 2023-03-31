@@ -8,12 +8,14 @@ namespace AvansDevOps.ForumComposite
 {
     public class ForumThreadComponent : ForumCompositeComponent
     {
+        private ForumMessageComponent message;
         private List<ForumComponent> children;
 
-        public ForumThreadComponent()
+        public ForumThreadComponent(ForumMessageComponent message)
         {
+            this.message = message;
             children = new List<ForumComponent>();
-        }
+        } 
 
         public override void AddChild(ForumComponent child) => children.Add(child);
         public override void RemoveChild(ForumComponent child) => children.Remove(child);
@@ -23,6 +25,12 @@ namespace AvansDevOps.ForumComposite
             AddChild(child);
         }
 
-        public override string GetChildrenMessages() => string.Join("\n\t", children.Select(child => child.GetMessage()).ToList());
+        public override List<ForumComponent> GetChildrenComponents() => children;
+
+        public override void AddMessage(ForumMessageComponent component)
+        {
+            component.SetParent(this);
+            AddChild(component);
+        }
     }
 }

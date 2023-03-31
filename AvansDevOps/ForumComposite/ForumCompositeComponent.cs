@@ -8,11 +8,12 @@ namespace AvansDevOps.ForumComposite
 {
     public abstract class ForumCompositeComponent : ForumComponent
     {
-        public string GetMessage() => GetChildrenMessages();
+        public List<ForumComponent> GetComponents() => GetChildrenComponents();
 
-        public abstract string GetChildrenMessages();
+        public abstract List<ForumComponent> GetChildrenComponents();
         public abstract void AddChild(ForumComponent child);
         public abstract void RemoveChild(ForumComponent child);
         public abstract void ReplaceChild(ForumComponent child, ForumComponent oldChild);
+        public abstract void AddMessage(ForumMessageComponent component);
     }
 }

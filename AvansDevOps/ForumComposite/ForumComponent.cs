@@ -8,6 +8,7 @@ namespace AvansDevOps.ForumComposite
 {
     public interface ForumComponent
     {
-        string GetMessage();
+        List<ForumComponent> GetComponents();
+        void AddMessage(ForumMessageComponent component);
     }
 }
