@@ -10,24 +10,22 @@ namespace AvansDevOps.SprintAbstraction
 {
     public class ReleaseSprint : Sprint, IDeploymentStateHolder
     {
-        protected IDeploymentState deploymentState { get; private set; }
+        public IDeploymentState deploymentState { get; private set; }
         public ReleaseSprint(
             string Name, 
             DateTime StartDate, 
-            DateTime EndDate, 
-            LeadDeveloper leadDeveloper, 
-            ScrumMaster scrumMaster, 
-            List<User> developers
-            ) : base(Name, StartDate, EndDate, leadDeveloper, scrumMaster, developers)
+            DateTime EndDate
+            ) : base(Name, StartDate, EndDate)
         {
             deploymentState = new NotReadyToDeploy(this);
         }
 
         public void UpdateDeploymentState(IDeploymentState state) => deploymentState = state;
         public void ApproveDeployment() => deploymentState.ApproveDeployment();
-        public void StartDeployment() => deploymentState.StartDeployment();
+        public bool StartDeployment(string gitUrl, List<string> dependencies, string buildType, string testFramework, string analyseTool, string deploymentTarget, List<string> utilityActions) => deploymentState.StartDeployment(gitUrl, dependencies, buildType, testFramework, analyseTool, deploymentTarget, utilityActions);
         public void CancelDeployment() => deploymentState.CancelDeployment();
-        public void FailDeployment() => deploymentState.FailDeployment();
+        public void FinishDeployment(bool succeeded) => deploymentState.FinishDeployment(succeeded);
+
         public void RestartDeployment() => deploymentState.RestartDeployment();
     }
 }

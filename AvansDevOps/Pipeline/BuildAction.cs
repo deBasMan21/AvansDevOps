@@ -16,14 +16,12 @@ namespace AvansDevOps.Pipeline
             this.BuildType = BuildType; 
         }
 
-        public void AcceptVisitor(IActionVisitor visitor)
-        {
-            visitor.VisitBuild(this);
-        }
+        public bool AcceptVisitor(IActionVisitor visitor) => visitor.VisitBuild(this);
 
-        public void RunBuild()
+        public bool RunBuild()
         {
             Console.WriteLine($"Running build {BuildType}");
+            return true;
         }
 
     }

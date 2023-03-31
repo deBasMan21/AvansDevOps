@@ -17,26 +17,25 @@ namespace AvansDevOps.Pipeline
             this.TestFramework = TestFramework;
         }
 
-        public void AcceptVisitor(IActionVisitor visitor)
-        {
-            visitor.VisitTest(this);
-        }
+        public bool AcceptVisitor(IActionVisitor visitor) => visitor.VisitTest(this);
 
-        public void RunTests()
+        public bool RunTests()
         {
             Console.WriteLine($"Running tests with {TestFramework}");
             FinishedTests = true;
+            return true;
         }
 
-        public void PublishResults()
+        public bool PublishResults()
         {
             if (!FinishedTests)
             {
-                return;
+                Console.WriteLine($"Failed to publish results: tests are not finished");
+                return false;
             }
 
             Console.WriteLine($"Publishing test results");
-
+            return true;
         }
 
     }

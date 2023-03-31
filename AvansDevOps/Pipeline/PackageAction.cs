@@ -16,18 +16,16 @@ namespace AvansDevOps.Pipeline
             this.Dependencies = Dependencies;
         }
 
-        public void AcceptVisitor(IActionVisitor visitor)
-        {
-            visitor.VisitPackage(this);
-        }
+        public bool AcceptVisitor(IActionVisitor visitor) => visitor.VisitPackage(this);
 
-        public void InstallDependencies()
+        public bool InstallDependencies()
         {
             Console.WriteLine("Installing dependencies...");
             foreach (var dependency in Dependencies)
             {
                 Console.WriteLine($"Installing {dependency}");
             }
+            return true;
         }
     }
 }
