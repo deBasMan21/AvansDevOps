@@ -14,16 +14,16 @@ namespace AvansDevOps.BacklogItemState
 
         public void InvalidateTask() => _backlogItem.UpdateState(new TodoState(_backlogItem));
 
-        public void EvaluateTestRapport(bool passed) { }
+        public void EvaluateTestRapport(bool passed) => Console.WriteLine("Item has already finished..");
 
         public int FinishTask() => 0;
 
         public int SendTestRapport(bool passed) => 0;
 
-        public void StartTask() { }
+        public void StartTask() => Console.WriteLine("Item has already finished..");
 
-        public void StartTesting() { }
+        public void StartTesting() => Console.WriteLine("Item has already finished..");
 
-        public void TestTask(bool success) { }
+        public void TestTask(bool success) => Console.WriteLine("Item has already finished..");
     }
 }
