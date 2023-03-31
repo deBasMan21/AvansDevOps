@@ -12,7 +12,7 @@ namespace AvansDevOps.BacklogItemState
 
         public DoingState(BacklogItem backlogItem) => _backlogItem = backlogItem;
 
-        public void EvaluateTestRapport(bool passed) { }
+        public void EvaluateTestRapport(bool passed) => Console.WriteLine("Item is still in progress..");
 
         public int FinishTask()
         {
@@ -26,13 +26,14 @@ namespace AvansDevOps.BacklogItemState
             return 0;
         }
 
-        public void InvalidateTask() { }
+        public void InvalidateTask() => Console.WriteLine("Item is still in progress..");
 
         public int SendTestRapport(bool passed) => 0;
 
-        public void StartTask() { }
+        public void StartTask() => Console.WriteLine("Item is still in progress..");
 
-        public void StartTesting() { }
+        public void StartTesting() => Console.WriteLine("Item is still in progress..");
+        
         public void CloseTask() { }
     }
 }
