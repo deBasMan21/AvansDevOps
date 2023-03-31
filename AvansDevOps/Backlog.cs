@@ -8,7 +8,7 @@ namespace AvansDevOps
 {
     public class Backlog
     {
-        public List<BacklogItem> Items;
+        public List<BacklogItem> Items { get; private set; }
         public Func<string, Type, int>? notificationCallback { get; private set; }
         public Backlog(Func<string, Type, int>? notificationCallback) 
         {
