@@ -18,7 +18,7 @@ namespace AvansDevOps.Pipeline
 
         public bool AcceptVisitor(IActionVisitor visitor) => visitor.VisitUtility(this);
 
-        public bool RunUtilityActions()
+        virtual public bool RunUtilityActions()
         {
             foreach (var action in Actions)
             {

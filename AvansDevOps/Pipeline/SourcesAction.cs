@@ -18,7 +18,7 @@ namespace AvansDevOps.Pipeline
 
         public bool AcceptVisitor(IActionVisitor visitor) => visitor.VisitSources(this);
 
-        public bool CloneRepo()
+        virtual public bool CloneRepo()
         {
             Console.WriteLine($"Cloning repository from: {GitUrl}");
             return true;

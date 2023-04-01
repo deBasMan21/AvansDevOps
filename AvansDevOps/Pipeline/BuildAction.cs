@@ -18,7 +18,7 @@ namespace AvansDevOps.Pipeline
 
         public bool AcceptVisitor(IActionVisitor visitor) => visitor.VisitBuild(this);
 
-        public bool RunBuild()
+        virtual public bool RunBuild()
         {
             Console.WriteLine($"Running build {BuildType}");
             return true;

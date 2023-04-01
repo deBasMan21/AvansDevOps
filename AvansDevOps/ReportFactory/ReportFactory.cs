@@ -10,8 +10,8 @@ namespace AvansDevOps.ReportFactory
     {
         public ReportFactory() { }
 
-        public IReportFactory CreatePDFReportFactory() => new PdfReportFactory();
+        public static IReportFactory CreatePDFReportFactory() => new PdfReportFactory();
 
-        public IReportFactory CreatePNGReportFactory() => new PngReportFactory();
+        public static IReportFactory CreatePNGReportFactory() => new PngReportFactory();
     }
 }

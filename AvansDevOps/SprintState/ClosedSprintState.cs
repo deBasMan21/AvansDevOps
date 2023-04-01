@@ -17,10 +17,10 @@ namespace AvansDevOps.SprintState
             _sprint.CloseTasks();
         }
 
-        public void FinishSprint() { }
+        public void FinishSprint() => Console.WriteLine("Sprint has already been closed..");
 
-        public void ReviewSprint(bool approvedDeployement = false) { }
+        public void ReviewSprint(bool approvedDeployement = false) => Console.WriteLine("Sprint has already been closed..");
 
-        public void StartSprint() { }
+        public void StartSprint() => Console.WriteLine("Sprint has already been closed..");
     }
 }

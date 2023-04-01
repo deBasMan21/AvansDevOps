@@ -18,7 +18,7 @@ namespace AvansDevOps.Pipeline
 
         public bool AcceptVisitor(IActionVisitor visitor) => visitor.VisitDeploy(this);
 
-        public bool RunDeployment()
+        virtual public bool RunDeployment()
         {
             Console.WriteLine($"Deploying to {DeploymentTarget}");
             return true;

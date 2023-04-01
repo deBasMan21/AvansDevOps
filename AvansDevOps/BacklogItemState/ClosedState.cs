@@ -16,18 +16,18 @@ namespace AvansDevOps.BacklogItemState
             _backlogItem.Forum?.CloseForum();
         }
 
-        public void CloseTask() { }
+        public void CloseTask() => Console.WriteLine("Item has already been closed..");
 
-        public void EvaluateTestRapport(bool passed) { }
+        public void EvaluateTestRapport(bool passed) => Console.WriteLine("Item has already been closed..");
 
         public int FinishTask() => 0;
 
-        public void InvalidateTask() { }
+        public void InvalidateTask() => Console.WriteLine("Item has already been closed..");
 
         public int SendTestRapport(bool passed) => 0;
 
-        public void StartTask() { }
+        public void StartTask() => Console.WriteLine("Item has already been closed..");
 
-        public void StartTesting() { }
+        public void StartTesting() => Console.WriteLine("Item has already been closed..");
     }
 }

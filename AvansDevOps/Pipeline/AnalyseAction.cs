@@ -18,7 +18,7 @@ namespace AvansDevOps.Pipeline
 
         public bool AcceptVisitor(IActionVisitor visitor) => visitor.VisitAnalyse(this);
 
-        public bool RunAnalysis()
+        virtual public bool RunAnalysis()
         {
             Console.WriteLine($"{AnalyseTool}: Performing code analysis");
             return true;

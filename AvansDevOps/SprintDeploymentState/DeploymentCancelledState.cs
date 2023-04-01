@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AvansDevOps.Pipeline;
 using AvansDevOps.SprintAbstraction;
 
 namespace AvansDevOps.SprintDeploymentState
@@ -13,17 +14,14 @@ namespace AvansDevOps.SprintDeploymentState
 
         public DeploymentCancelledState(ReleaseSprint _sprint) => this._sprint = _sprint;
 
-        public void ApproveDeployment() { }
+        public void ApproveDeployment() => Console.WriteLine("Is already closed");
 
-        public void CancelDeployment() { }
+        public void CancelDeployment() => Console.WriteLine("Is already closed");
 
-        public void FinishDeployment(bool succeeded)
-        {
-            return;
-        }
+        public void FinishDeployment(bool succeeded) => Console.WriteLine("Is already closed");
 
-        public void RestartDeployment() { }
+        public void RestartDeployment() => Console.WriteLine("Is already closed");
 
-        public bool StartDeployment(string gitUrl, List<string> dependencies, string buildType, string testFramework, string analyseTool, string deploymentTarget, List<string> utilityActions) => false;
+        public bool StartDeployment(DeploymentPipeline pipeline) => false;
     }
 }
