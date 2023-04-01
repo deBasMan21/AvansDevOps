@@ -54,7 +54,7 @@ namespace AvansDevOps
         {
             if (notificationCallback != null) 
             { 
-                return notificationCallback("Ticket is done for testing", typeof(Tester)); 
+                return notificationCallback($"Ticket is done for testing on branch {Branch?.Name}", typeof(Tester)); 
             }
             return 0;
         }
