@@ -55,7 +55,7 @@ namespace DomainTests
 
             Assert.IsType<ForumMessageComponent>(firstMessage);
 
-            Assert.Equal(1, forum?.GetComponents().Count());
+            Assert.Equal(1, forum?.GetComponents().Count);
 
             Assert.Equal(firstForumMessage.message, firstMessage?.GetMessage());
         }
@@ -92,8 +92,8 @@ namespace DomainTests
             Assert.IsType<ForumThreadComponent>(firstMessage);
             Assert.IsType<ForumMessageComponent>(secondMessage);
 
-            Assert.Equal(1, forum?.GetComponents().Count());
-            Assert.Equal(1, firstMessage?.GetComponents().Count());
+            Assert.Equal(1, forum?.GetComponents().Count);
+            Assert.Equal(1, firstMessage?.GetComponents().Count);
 
             Assert.Equal(firstForumMessage.message, firstMessage?.GetMessage());
             Assert.Equal(secondForumMessage.message, secondMessage?.GetMessage());
