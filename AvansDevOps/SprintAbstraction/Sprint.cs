@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AvansDevOps.NotificationObserver;
+using AvansDevOps.ReportFactory;
 using AvansDevOps.SprintDeploymentState;
 using AvansDevOps.SprintState;
 using AvansDevOps.UserAbstraction;
@@ -23,6 +24,7 @@ namespace AvansDevOps.SprintAbstraction
         public ISprintState CurrentState { get; private set; }
 
         private ProductOwner? ProductOwner = null;
+        private ReportFactoryHolder factoryHolder = new ReportFactoryHolder();
 
         protected Sprint(
             string Name, 
@@ -82,6 +84,14 @@ namespace AvansDevOps.SprintAbstraction
             }
 
             return 0;
+        }
+
+        public IReport CreateReport(ReportType type, string content, string? header = null, string? footer = null)
+        {
+            IReportFactory factory = factoryHolder.CreateReportFactory(type);
+            if (header is not null) { factory.AddCustomHeader(header); }
+            if (footer is not null) { factory.AddCustomFooter(footer); }
+            return factory.CreateReport(content);
         }
 
         public void CloseTasks() => SprintBacklog.CloseTasks();
