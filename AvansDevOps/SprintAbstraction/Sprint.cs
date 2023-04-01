@@ -24,7 +24,6 @@ namespace AvansDevOps.SprintAbstraction
         public ISprintState CurrentState { get; private set; }
 
         private ProductOwner? ProductOwner = null;
-        private ReportFactoryHolder factoryHolder = new ReportFactoryHolder();
 
         protected Sprint(
             string Name, 
@@ -36,7 +35,6 @@ namespace AvansDevOps.SprintAbstraction
             this.EndDate = EndDate;
             this.SprintBacklog = new Backlog(Notify);
             this.Developers = new();
-            CurrentState = new CreatedSprintState(this);
         }
         public void AddDeveloper(User developer)
         {
@@ -88,7 +86,7 @@ namespace AvansDevOps.SprintAbstraction
 
         public IReport CreateReport(ReportType type, string content, string? header = null, string? footer = null)
         {
-            IReportFactory factory = factoryHolder.CreateReportFactory(type);
+            IReportFactory factory = ReportFactoryHolder.CreateReportFactory(type);
             if (header is not null) { factory.AddCustomHeader(header); }
             if (footer is not null) { factory.AddCustomFooter(footer); }
             return factory.CreateReport(content);

@@ -8,9 +8,7 @@ namespace AvansDevOps.ReportFactory
 {
     public class ReportFactoryHolder
     {
-        public ReportFactoryHolder() { }
-
-        public IReportFactory CreateReportFactory(ReportType type)
+        public static IReportFactory CreateReportFactory(ReportType type)
         {
             return type switch
             {
@@ -20,8 +18,8 @@ namespace AvansDevOps.ReportFactory
             };
         }
 
-        private IReportFactory CreatePDFReportFactory() => new PdfReportFactory();
+        private static IReportFactory CreatePDFReportFactory() => new PdfReportFactory();
 
-        private IReportFactory CreatePNGReportFactory() => new PngReportFactory();
+        private static IReportFactory CreatePNGReportFactory() => new PngReportFactory();
     }
 }
