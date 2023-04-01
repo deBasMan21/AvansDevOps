@@ -11,8 +11,8 @@ namespace AvansDevOps.SprintDeploymentState
     {
         void ApproveDeployment();
         bool StartDeployment(DeploymentPipeline pipeline);
-        void CancelDeployment();
-        void FinishDeployment(bool succeeded);
+        int CancelDeployment();
+        int FinishDeployment(bool succeeded);
         void RestartDeployment();
     }
 }

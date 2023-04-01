@@ -9,13 +9,8 @@ namespace AvansDevOps.SprintState
 {
     public class ClosedSprintState : ISprintState
     {
-        private readonly Sprint _sprint;
 
-        public ClosedSprintState(Sprint Sprint)
-        {
-            this._sprint = Sprint;
-            _sprint.CloseTasks();
-        }
+        public ClosedSprintState(Sprint Sprint) => Sprint.CloseTasks();
 
         public void FinishSprint() => Console.WriteLine("Sprint has already been closed..");
 

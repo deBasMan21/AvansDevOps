@@ -16,12 +16,12 @@ namespace AvansDevOps.SprintDeploymentState
 
         public void ApproveDeployment() => Console.WriteLine("Deployments has already been released");
 
-        public void CancelDeployment() => Console.WriteLine("Deployments has already been released");
+        public int CancelDeployment() => 0;
 
         public void RestartDeployment() => Console.WriteLine("Deployments has already been released");
 
         public bool StartDeployment(DeploymentPipeline pipeline) => false;
 
-        public void FinishDeployment(bool succeeded) => Console.WriteLine("Deployments has already been released");
+        public int FinishDeployment(bool succeeded) => 0;
     }
 }

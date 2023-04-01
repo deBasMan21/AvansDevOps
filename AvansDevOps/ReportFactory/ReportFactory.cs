@@ -8,7 +8,7 @@ namespace AvansDevOps.ReportFactory
 {
     public class ReportFactory
     {
-        public ReportFactory() { }
+        protected ReportFactory() { }
 
         public static IReportFactory CreatePDFReportFactory() => new PdfReportFactory();
 

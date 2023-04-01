@@ -8,16 +8,17 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.ForumComposite
 {
-    public abstract class ForumCompositeComponent : ForumComponent, IForumPublisher
+    public abstract class ForumCompositeComponent : IForumComponent, IForumPublisher
     {
         protected bool Editable = true;
-        public List<ForumComponent> GetComponents() => GetChildrenComponents();
+        public List<IForumComponent> GetComponents() => GetChildrenComponents();
 
-        public abstract List<ForumComponent> GetChildrenComponents();
-        public abstract void AddChild(ForumComponent child);
-        public abstract void RemoveChild(ForumComponent child);
-        public abstract void ReplaceChild(ForumComponent child, ForumComponent oldChild);
+        public abstract List<IForumComponent> GetChildrenComponents();
+        public abstract void AddChild(IForumComponent child);
+        public abstract void RemoveChild(IForumComponent child);
+        public abstract void ReplaceChild(IForumComponent child, IForumComponent oldChild);
         public abstract int AddMessage(ForumMessageComponent component);
+        public abstract string GetMessage();
 
         public void CloseForum()
         {

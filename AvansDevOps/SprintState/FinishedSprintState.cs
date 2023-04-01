@@ -13,7 +13,7 @@ namespace AvansDevOps.SprintState
 
         public FinishedSprintState(Sprint Sprint) => this._sprint = Sprint;
 
-        public void FinishSprint() { }
+        public void FinishSprint() => Console.WriteLine("Sprint is closed"); 
 
         public void ReviewSprint(bool approvedDeployement = false)
         {
@@ -25,6 +25,6 @@ namespace AvansDevOps.SprintState
             }
         }
 
-        public void StartSprint() { }
+        public void StartSprint() => Console.WriteLine("Sprint is closed"); 
     }
 }
