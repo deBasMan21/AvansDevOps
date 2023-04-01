@@ -11,25 +11,25 @@ namespace AvansDevOps.ForumComposite
     public class ForumThreadComponent : ForumCompositeComponent
     {
         private readonly ForumMessageComponent message;
-        private List<ForumComponent> children;
+        private readonly List<IForumComponent> children;
 
         public ForumThreadComponent(ForumMessageComponent message)
         {
             this.message = message;
-            children = new List<ForumComponent>();
+            children = new List<IForumComponent>();
 
             RegisterSubscriber(message.creator);
         } 
 
-        public override void AddChild(ForumComponent child) => children.Add(child);
-        public override void RemoveChild(ForumComponent child) => children.Remove(child);
-        public override void ReplaceChild(ForumComponent child, ForumComponent oldChild)
+        public override void AddChild(IForumComponent child) => children.Add(child);
+        public override void RemoveChild(IForumComponent child) => children.Remove(child);
+        public override void ReplaceChild(IForumComponent child, IForumComponent oldChild)
         {
             RemoveChild(oldChild);
             AddChild(child);
         }
 
-        public override List<ForumComponent> GetChildrenComponents() => children;
+        public override List<IForumComponent> GetChildrenComponents() => children;
 
         public override int AddMessage(ForumMessageComponent component)
         {

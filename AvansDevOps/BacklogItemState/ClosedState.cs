@@ -8,13 +8,8 @@ namespace AvansDevOps.BacklogItemState
 {
     public class ClosedState : IBacklogItemState
     {
-        private readonly BacklogItem _backlogItem;
 
-        public ClosedState(BacklogItem backlogItem)
-        {
-            _backlogItem = backlogItem;
-            _backlogItem.Forum?.CloseForum();
-        }
+        public ClosedState(BacklogItem backlogItem) => backlogItem.Forum?.CloseForum();
 
         public void CloseTask() => Console.WriteLine("Item has already been closed..");
 

@@ -18,7 +18,7 @@ namespace AvansDevOps
         public List<Activity> Activities { get; private set; }
         public Developer? _developer { get; private set; }
         public Func<string, Type, int>? notificationCallback { get; private set; }
-        public ForumComponent? Forum { get; private set; }
+        public IForumComponent? Forum { get; private set; }
 
         // State pattern
         public IBacklogItemState State { get; set; }

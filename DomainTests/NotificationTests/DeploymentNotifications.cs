@@ -1,4 +1,5 @@
-﻿using AvansDevOps.SprintAbstraction;
+﻿using AvansDevOps.Pipeline;
+using AvansDevOps.SprintAbstraction;
 using AvansDevOps.UserAbstraction;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace DomainTests.NotificationTests
     public class DeploymentNotifications
     {
         [Fact]
-        public void ScrumMasterShouldBeNotifiedWhenDeploymentFailes()
+        public void SMShouldBeNotifiedWhenDeploymentFailes()
         {
             // Arrange
             ScrumMaster scrumMaster = new ScrumMaster("");
@@ -23,6 +24,9 @@ namespace DomainTests.NotificationTests
             ReleaseSprint sprint = new ReleaseSprint("", DateTime.Now, DateTime.Now);
             sprint.AssignScrumMaster(scrumMaster);
             sprint.AssignProductOwner(productOwner);
+
+            sprint.ApproveDeployment();
+            sprint.StartDeployment(new DeploymentPipeline());
 
             // Act
             int result = sprint.FinishDeployment(false);
@@ -44,6 +48,9 @@ namespace DomainTests.NotificationTests
             ReleaseSprint sprint = new ReleaseSprint("", DateTime.Now, DateTime.Now);
             sprint.AssignScrumMaster(scrumMaster);
             sprint.AssignProductOwner(productOwner);
+
+            sprint.ApproveDeployment();
+            sprint.StartDeployment(new DeploymentPipeline());
 
             // Act
             int result = sprint.FinishDeployment(true);

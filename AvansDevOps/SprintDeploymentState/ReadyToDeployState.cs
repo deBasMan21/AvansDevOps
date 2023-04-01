@@ -16,7 +16,7 @@ namespace AvansDevOps.SprintDeploymentState
 
         public void ApproveDeployment() => Console.WriteLine("Deployments needs to be started..");
 
-        public void CancelDeployment() => Console.WriteLine("Deployments needs to be started..");
+        public int CancelDeployment() => 0;
 
         public void RestartDeployment() => Console.WriteLine("Deployments needs to be started..");
 
@@ -29,6 +29,6 @@ namespace AvansDevOps.SprintDeploymentState
 
         }
 
-        public void FinishDeployment(bool succeeded) => Console.WriteLine("Deployments needs to be started..");
+        public int FinishDeployment(bool succeeded) => 0;
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.ForumComposite
 {
-    public class ForumMessageComponent : ForumComponent
+    public class ForumMessageComponent : IForumComponent
     {
         private ForumCompositeComponent? parent;
         public string message { get; private set; }
@@ -30,7 +30,7 @@ namespace AvansDevOps.ForumComposite
             return 1;
         }
 
-        public List<ForumComponent> GetComponents() => new List<ForumComponent> { };
+        public List<IForumComponent> GetComponents() => new List<IForumComponent> { };
 
         public void CloseForum() => Editable = false;
 

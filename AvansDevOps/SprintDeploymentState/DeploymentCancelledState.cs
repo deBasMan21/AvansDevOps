@@ -16,9 +16,9 @@ namespace AvansDevOps.SprintDeploymentState
 
         public void ApproveDeployment() => Console.WriteLine("Is already closed");
 
-        public void CancelDeployment() => Console.WriteLine("Is already closed");
+        public int CancelDeployment() => 0;
 
-        public void FinishDeployment(bool succeeded) => Console.WriteLine("Is already closed");
+        public int FinishDeployment(bool succeeded) => 0;
 
         public void RestartDeployment() => Console.WriteLine("Is already closed");
 
