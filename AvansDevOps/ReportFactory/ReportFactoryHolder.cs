@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.ReportFactory
 {
-    public class ReportFactoryHolder
+    public static class ReportFactoryHolder
     {
         public static IReportFactory CreateReportFactory(ReportType type)
         {

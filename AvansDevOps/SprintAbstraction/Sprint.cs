@@ -85,12 +85,12 @@ namespace AvansDevOps.SprintAbstraction
             return 0;
         }
 
-        public IReport CreateReport(ReportType type, string content, string? header = null, string? footer = null)
+        public IReport CreateReport(ReportType type, string? header = null, string? footer = null)
         {
             IReportFactory factory = ReportFactoryHolder.CreateReportFactory(type);
             if (header is not null) { factory.AddCustomHeader(header); }
             if (footer is not null) { factory.AddCustomFooter(footer); }
-            return factory.CreateReport(content);
+            return factory.CreateReport(Name);
         }
 
         public void CloseTasks() => SprintBacklog.CloseTasks();
