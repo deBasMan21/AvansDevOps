@@ -8,7 +8,7 @@ namespace AvansDevOps.Pipeline
 {
     public class ActionGroupComposite: IActionComponent
     {
-        private List<IActionComponent> _parts;
+        private readonly List<IActionComponent> _parts;
 
         public ActionGroupComposite()
         {

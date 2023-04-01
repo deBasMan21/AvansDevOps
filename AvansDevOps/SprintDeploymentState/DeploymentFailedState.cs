@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AvansDevOps.Pipeline;
 using AvansDevOps.SprintAbstraction;
 
 namespace AvansDevOps.SprintDeploymentState
@@ -13,7 +14,7 @@ namespace AvansDevOps.SprintDeploymentState
 
         public DeploymentFailedState(ReleaseSprint _sprint) => this._sprint = _sprint;
 
-        public void ApproveDeployment() { }
+        public void ApproveDeployment() => Console.WriteLine("Deployment needs to be restarted or cancelled..");
 
         public void CancelDeployment()
         {
@@ -25,12 +26,9 @@ namespace AvansDevOps.SprintDeploymentState
         public void RestartDeployment() => _sprint.UpdateDeploymentState(new ReadyToDeployState(_sprint));
 
 
-        public bool StartDeployment(string gitUrl, List<string> dependencies, string buildType, string testFramework, string analyseTool, string deploymentTarget, List<string> utilityActions) => false;
+        public bool StartDeployment(DeploymentPipeline pipeline) => false;
 
 
-        public void FinishDeployment(bool succeeded)
-        {
-            return;
-        }
+        public void FinishDeployment(bool succeeded) => Console.WriteLine("Deployment needs to be restarted or cancelled..");
     }
 }

@@ -13,9 +13,9 @@ namespace AvansDevOps.SprintState
 
         public CreatedSprintState(Sprint Sprint) => this._sprint = Sprint;
 
-        public void FinishSprint() { }
+        public void FinishSprint() => Console.WriteLine("Sprint needs to be started..");
 
-        public void ReviewSprint(bool approvedDeployement = false) { }
+        public void ReviewSprint(bool approvedDeployement = false) => Console.WriteLine("Sprint needs to be started..");
 
         public void StartSprint() => _sprint.UpdateSprintState(new ActiveSprintState(_sprint));
     }

@@ -1,5 +1,6 @@
 ﻿using AvansDevOps;
 using AvansDevOps.ForumComposite;
+using AvansDevOps.Pipeline;
 using AvansDevOps.SprintAbstraction;
 using AvansDevOps.UserAbstraction;
 
@@ -39,14 +40,16 @@ item.EvaluateTestRapport(false);
 sprint.FinishSprint();
 sprint.ReviewSprint(approvedDeployement: true);
 
-bool pipelineSucceeded = sprint.StartDeployment(
-        gitUrl: "https://github.com/deBasMan21/AvansDevOps",
-        dependencies: new() { "xunit (2.4.2)", "Moq (4.18.4)" }, 
-        buildType: ".NET Core build", 
-        testFramework: "XUnit 2.4.2",
-        analyseTool: "SonarQube",
-        deploymentTarget: "Azure",
-        utilityActions: new() { "UtilityAction1", "UtilityAction2" }
-    );
+DeploymentPipeline pipeline = new();
+
+pipeline.AddComponent(new SourcesAction("ThisIsSupposeToBeAnUrls"));
+pipeline.AddComponent(new PackageAction(new() { "xunit (2.4.2)", "Moq (4.18.4)" }));
+pipeline.AddComponent(new BuildAction(".NET Core build"));
+pipeline.AddComponent(new TestAction("XUnit 2.4.2"));
+pipeline.AddComponent(new AnalyseAction("SonarQube"));
+pipeline.AddComponent(new DeployAction("Azure"));
+pipeline.AddComponent(new UtilityAction(new() { "UtilityAction1", "UtilityAction2" }));
+
+bool pipelineSucceeded = sprint.StartDeployment(pipeline);
 
 sprint.FinishDeployment(succeeded: pipelineSucceeded);

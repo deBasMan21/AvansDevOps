@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AvansDevOps.Pipeline;
 using AvansDevOps.SprintAbstraction;
 
 namespace AvansDevOps.SprintDeploymentState
@@ -13,15 +14,13 @@ namespace AvansDevOps.SprintDeploymentState
 
         public InDeploymentState(ReleaseSprint _sprint) => this._sprint = _sprint;
 
-        public void ApproveDeployment() { }
+        public void ApproveDeployment() => Console.WriteLine("Deployment needs to be finished..");
 
-        public void CancelDeployment() { }
+        public void CancelDeployment() => Console.WriteLine("Deployment needs to be finished..");
 
-        public void FailDeployment() => _sprint.UpdateDeploymentState(new DeploymentFailedState(_sprint));
+        public void RestartDeployment() => Console.WriteLine("Deployment needs to be finished..");
 
-        public void RestartDeployment() { }
-
-        public bool StartDeployment(string gitUrl, List<string> dependencies, string buildType, string testFramework, string analyseTool, string deploymentTarget, List<string> utilityActions) => false;
+        public bool StartDeployment(DeploymentPipeline pipeline) => false;
 
         public void FinishDeployment(bool succeeded)
         {

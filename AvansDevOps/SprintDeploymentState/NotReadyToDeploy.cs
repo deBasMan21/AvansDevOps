@@ -1,4 +1,5 @@
-﻿using AvansDevOps.SprintAbstraction;
+﻿using AvansDevOps.Pipeline;
+using AvansDevOps.SprintAbstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +22,11 @@ namespace AvansDevOps.SprintDeploymentState
             _sprint.UpdateDeploymentState(new DeploymentCancelledState(_sprint));
         }
 
-        public void RestartDeployment() { }
+        public void RestartDeployment() => Console.WriteLine("Deployments needs to be approved or cancelled..");
 
 
-        public bool StartDeployment(string gitUrl, List<string> dependencies, string buildType, string testFramework, string analyseTool, string deploymentTarget, List<string> utilityActions) => false;
+        public bool StartDeployment(DeploymentPipeline pipeline) => false;
 
-        public void FinishDeployment(bool succeeded)
-        {
-            return;
-        }
+        public void FinishDeployment(bool succeeded) => Console.WriteLine("Deployments needs to be approved or cancelled..");
     }
 }
