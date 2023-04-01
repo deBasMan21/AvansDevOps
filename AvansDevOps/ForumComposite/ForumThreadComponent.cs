@@ -40,5 +40,7 @@ namespace AvansDevOps.ForumComposite
             RegisterSubscriber(component.creator);
             return result;
         }
+
+        public override string GetMessage() => message.message;
     }
 }

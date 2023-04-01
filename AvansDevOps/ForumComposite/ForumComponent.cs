@@ -11,5 +11,6 @@ namespace AvansDevOps.ForumComposite
         List<ForumComponent> GetComponents();
         int AddMessage(ForumMessageComponent component);
         void CloseForum();
+        string GetMessage();
     }
 }

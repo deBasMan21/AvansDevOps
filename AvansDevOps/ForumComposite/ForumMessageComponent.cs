@@ -30,8 +30,10 @@ namespace AvansDevOps.ForumComposite
             return 1;
         }
 
-        public List<ForumComponent> GetComponents() => new List<ForumComponent> { this };
+        public List<ForumComponent> GetComponents() => new List<ForumComponent> { };
 
         public void CloseForum() => Editable = false;
+
+        public string GetMessage() => message;
     }
 }

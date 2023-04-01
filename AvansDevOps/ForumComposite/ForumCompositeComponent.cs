@@ -18,6 +18,7 @@ namespace AvansDevOps.ForumComposite
         public abstract void RemoveChild(ForumComponent child);
         public abstract void ReplaceChild(ForumComponent child, ForumComponent oldChild);
         public abstract int AddMessage(ForumMessageComponent component);
+        public abstract string GetMessage();
 
         public void CloseForum()
         {
