@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.ForumComposite
 {
-    public interface ForumComponent
+    public interface IForumComponent
     {
-        List<ForumComponent> GetComponents();
+        List<IForumComponent> GetComponents();
         int AddMessage(ForumMessageComponent component);
         void CloseForum();
+        string GetMessage();
     }
 }

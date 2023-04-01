@@ -24,9 +24,17 @@ namespace AvansDevOps.SprintAbstraction
         public void UpdateDeploymentState(IDeploymentState state) => deploymentState = state;
         public void ApproveDeployment() => deploymentState.ApproveDeployment();
         public bool StartDeployment(DeploymentPipeline pipeline) => deploymentState.StartDeployment(pipeline);
-        public void CancelDeployment() => deploymentState.CancelDeployment();
-        public void FinishDeployment(bool succeeded) => deploymentState.FinishDeployment(succeeded);
+        public int CancelDeployment() => deploymentState.CancelDeployment();
+        public int FinishDeployment(bool succeeded) => deploymentState.FinishDeployment(succeeded);
 
         public void RestartDeployment() => deploymentState.RestartDeployment();
+
+        public int SendCancelDeploymentNotifications()
+        { 
+            string notificationString = "Deployment for release cancelled";
+            int notificationCount = Notify(notificationString, typeof(ProductOwner));
+            notificationCount += Notify(notificationString, typeof(ScrumMaster));
+            return notificationCount;
+        }
     }
 }

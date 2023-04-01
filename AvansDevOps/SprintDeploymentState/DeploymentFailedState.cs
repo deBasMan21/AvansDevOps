@@ -16,12 +16,11 @@ namespace AvansDevOps.SprintDeploymentState
 
         public void ApproveDeployment() => Console.WriteLine("Deployment needs to be restarted or cancelled..");
 
-        public void CancelDeployment()
+        public int CancelDeployment()
         {
-            // TODO: send notification
             _sprint.UpdateDeploymentState(new DeploymentCancelledState(_sprint));
+            return _sprint.SendCancelDeploymentNotifications();
         }
-
 
         public void RestartDeployment() => _sprint.UpdateDeploymentState(new ReadyToDeployState(_sprint));
 
@@ -29,6 +28,6 @@ namespace AvansDevOps.SprintDeploymentState
         public bool StartDeployment(DeploymentPipeline pipeline) => false;
 
 
-        public void FinishDeployment(bool succeeded) => Console.WriteLine("Deployment needs to be restarted or cancelled..");
+        public int FinishDeployment(bool succeeded) => 0;
     }
 }

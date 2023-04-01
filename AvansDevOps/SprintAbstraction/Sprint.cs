@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,8 +20,9 @@ namespace AvansDevOps.SprintAbstraction
         public ScrumMaster? ScrumMaster { get; private set; }
         public List<User> Developers { get; private set; }
         public Backlog SprintBacklog { get; private set; }
-
         public ISprintState CurrentState { get; private set; }
+
+        private ProductOwner? ProductOwner = null;
 
         protected Sprint(
             string Name, 
@@ -49,7 +51,7 @@ namespace AvansDevOps.SprintAbstraction
 
         public void AssignLeadDeveloper(LeadDeveloper lead) => LeadDeveloper = lead;
         public void AssignScrumMaster(ScrumMaster master) => ScrumMaster = master;
-
+        public void AssignProductOwner(ProductOwner productOwner) => ProductOwner = productOwner;
 
         // Sprint state update functions
         public void StartSprint() => CurrentState.StartSprint();
@@ -74,6 +76,9 @@ namespace AvansDevOps.SprintAbstraction
             } else if (userType == typeof(Tester))
             {
                 return subscribers.Select(u => u.ReceiveUpdate(message)).Sum();
+            } else if (userType == typeof(ProductOwner) && ProductOwner  is not null)
+            {
+                return ProductOwner.ReceiveUpdate(message);
             }
 
             return 0;
