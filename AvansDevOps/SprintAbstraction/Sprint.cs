@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AvansDevOps.NotificationObserver;
+using AvansDevOps.ReportFactory;
 using AvansDevOps.SprintDeploymentState;
 using AvansDevOps.SprintState;
 using AvansDevOps.UserAbstraction;
@@ -33,7 +34,7 @@ namespace AvansDevOps.SprintAbstraction
             this.StartDate = StartDate;
             this.EndDate = EndDate;
             this.SprintBacklog = new Backlog(Notify);
-            this.Developers = new();
+            this.Developers = new(); 
             CurrentState = new CreatedSprintState(this);
         }
         public void AddDeveloper(User developer)
@@ -82,6 +83,14 @@ namespace AvansDevOps.SprintAbstraction
             }
 
             return 0;
+        }
+
+        public IReport CreateReport(ReportType type, string? header = null, string? footer = null)
+        {
+            IReportFactory factory = ReportFactoryHolder.CreateReportFactory(type);
+            if (header is not null) { factory.AddCustomHeader(header); }
+            if (footer is not null) { factory.AddCustomFooter(footer); }
+            return factory.CreateReport(Name);
         }
 
         public void CloseTasks() => SprintBacklog.CloseTasks();
