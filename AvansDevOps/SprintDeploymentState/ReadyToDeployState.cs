@@ -20,17 +20,8 @@ namespace AvansDevOps.SprintDeploymentState
 
         public void RestartDeployment() { }
 
-        public bool StartDeployment(string gitUrl, List<string> dependencies, string buildType, string testFramework, string analyseTool, string deploymentTarget, List<string> utilityActions) {
-            DeploymentPipeline pipeline = new();
+        public bool StartDeployment(DeploymentPipeline pipeline) {
             ActionVisitor visitor = new ();
-
-            pipeline.AddComponent(new SourcesAction(gitUrl));
-            pipeline.AddComponent(new PackageAction(dependencies));
-            pipeline.AddComponent(new BuildAction(buildType));
-            pipeline.AddComponent(new TestAction(testFramework));
-            pipeline.AddComponent(new AnalyseAction(analyseTool));
-            pipeline.AddComponent(new DeployAction(deploymentTarget));
-            pipeline.AddComponent(new UtilityAction(utilityActions));
 
             _sprint.UpdateDeploymentState(new InDeploymentState(_sprint));
 

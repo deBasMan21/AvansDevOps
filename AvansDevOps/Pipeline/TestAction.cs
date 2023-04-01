@@ -19,14 +19,14 @@ namespace AvansDevOps.Pipeline
 
         public bool AcceptVisitor(IActionVisitor visitor) => visitor.VisitTest(this);
 
-        public bool RunTests()
+        virtual public bool RunTests()
         {
             Console.WriteLine($"Running tests with {TestFramework}");
             FinishedTests = true;
             return true;
         }
 
-        public bool PublishResults()
+        virtual public bool PublishResults()
         {
             if (!FinishedTests)
             {

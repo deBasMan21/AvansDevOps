@@ -1,4 +1,5 @@
-﻿using AvansDevOps.SprintAbstraction;
+﻿using AvansDevOps.Pipeline;
+using AvansDevOps.SprintAbstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace AvansDevOps.SprintDeploymentState
         public void RestartDeployment() { }
 
 
-        public bool StartDeployment(string gitUrl, List<string> dependencies, string buildType, string testFramework, string analyseTool, string deploymentTarget, List<string> utilityActions) => false;
+        public bool StartDeployment(DeploymentPipeline pipeline) => false;
 
         public void FinishDeployment(bool succeeded)
         {

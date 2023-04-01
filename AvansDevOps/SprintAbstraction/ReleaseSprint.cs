@@ -1,4 +1,5 @@
-﻿using AvansDevOps.SprintDeploymentState;
+﻿using AvansDevOps.Pipeline;
+using AvansDevOps.SprintDeploymentState;
 using AvansDevOps.UserAbstraction;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace AvansDevOps.SprintAbstraction
 
         public void UpdateDeploymentState(IDeploymentState state) => deploymentState = state;
         public void ApproveDeployment() => deploymentState.ApproveDeployment();
-        public bool StartDeployment(string gitUrl, List<string> dependencies, string buildType, string testFramework, string analyseTool, string deploymentTarget, List<string> utilityActions) => deploymentState.StartDeployment(gitUrl, dependencies, buildType, testFramework, analyseTool, deploymentTarget, utilityActions);
+        public bool StartDeployment(DeploymentPipeline pipeline) => deploymentState.StartDeployment(pipeline);
         public void CancelDeployment() => deploymentState.CancelDeployment();
         public void FinishDeployment(bool succeeded) => deploymentState.FinishDeployment(succeeded);
 

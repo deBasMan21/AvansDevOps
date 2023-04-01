@@ -18,7 +18,7 @@ namespace AvansDevOps.Pipeline
 
         public bool AcceptVisitor(IActionVisitor visitor) => visitor.VisitPackage(this);
 
-        public bool InstallDependencies()
+        virtual public bool InstallDependencies()
         {
             Console.WriteLine("Installing dependencies...");
             foreach (var dependency in Dependencies)

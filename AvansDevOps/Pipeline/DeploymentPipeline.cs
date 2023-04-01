@@ -10,7 +10,7 @@ namespace AvansDevOps.Pipeline
     {
         override public bool AcceptVisitor(IActionVisitor visitor) => visitor.VisitPipeline(this) && base.AcceptVisitor(visitor);
 
-        public bool StartPipeline() {
+        virtual public bool StartPipeline() {
             Console.WriteLine("-- Run pipeline --");
             return true;
         }

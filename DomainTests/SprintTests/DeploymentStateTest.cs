@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AvansDevOps.Pipeline;
 
 namespace DomainTests.SprintTests
 {
@@ -50,17 +51,18 @@ namespace DomainTests.SprintTests
             // Arrange
             ReleaseSprint sprint = new ReleaseSprint(Name: "sprint1", StartDate: DateTime.Now, EndDate: DateTime.Now.AddDays(20));
             sprint.UpdateDeploymentState(new NotReadyToDeploy(sprint));
+            DeploymentPipeline pipeline = new();
+
+            pipeline.AddComponent(new SourcesAction("ThisIsSupposeToBeAnUrls"));
+            pipeline.AddComponent(new PackageAction(new() { "xunit (2.4.2)", "Moq (4.18.4)" }));
+            pipeline.AddComponent(new BuildAction(".NET Core build"));
+            pipeline.AddComponent(new TestAction("XUnit 2.4.2"));
+            pipeline.AddComponent(new AnalyseAction("SonarQube"));
+            pipeline.AddComponent(new DeployAction("Azure"));
+            pipeline.AddComponent(new UtilityAction(new() { "UtilityAction1", "UtilityAction2" }));
 
             // Act
-            sprint.StartDeployment(
-                   gitUrl: "https://github.com/deBasMan21/AvansDevOps",
-                   dependencies: new() { "xunit (2.4.2)", "Moq (4.18.4)" },
-                   buildType: ".NET Core build",
-                   testFramework: "XUnit 2.4.2",
-                   analyseTool: "SonarQube",
-                   deploymentTarget: "Azure",
-                   utilityActions: new() { "UtilityAction1", "UtilityAction2" }
-               );
+            sprint.StartDeployment(pipeline);
 
             // Assert
             Assert.True(sprint.deploymentState is NotReadyToDeploy);
@@ -118,17 +120,18 @@ namespace DomainTests.SprintTests
             ReleaseSprint sprint = new ReleaseSprint(Name: "sprint1", StartDate: DateTime.Now, EndDate: DateTime.Now.AddDays(20));
             sprint.UpdateDeploymentState(new ReadyToDeployState(sprint));
 
+            DeploymentPipeline pipeline = new();
+
+            pipeline.AddComponent(new SourcesAction("ThisIsSupposeToBeAnUrls"));
+            pipeline.AddComponent(new PackageAction(new() { "xunit (2.4.2)", "Moq (4.18.4)" }));
+            pipeline.AddComponent(new BuildAction(".NET Core build"));
+            pipeline.AddComponent(new TestAction("XUnit 2.4.2"));
+            pipeline.AddComponent(new AnalyseAction("SonarQube"));
+            pipeline.AddComponent(new DeployAction("Azure"));
+            pipeline.AddComponent(new UtilityAction(new() { "UtilityAction1", "UtilityAction2" }));
 
             // Act
-            sprint.StartDeployment(
-                   gitUrl: "https://github.com/deBasMan21/AvansDevOps",
-                   dependencies: new() { "xunit (2.4.2)", "Moq (4.18.4)" },
-                   buildType: ".NET Core build",
-                   testFramework: "XUnit 2.4.2",
-                   analyseTool: "SonarQube",
-                   deploymentTarget: "Azure",
-                   utilityActions: new() { "UtilityAction1", "UtilityAction2" }
-               );
+            sprint.StartDeployment(pipeline);
 
             // Assert
             Assert.True(sprint.deploymentState is InDeploymentState);
@@ -262,18 +265,18 @@ namespace DomainTests.SprintTests
             // Arrange
             ReleaseSprint sprint = new ReleaseSprint(Name: "sprint1", StartDate: DateTime.Now, EndDate: DateTime.Now.AddDays(20));
             sprint.UpdateDeploymentState(new InDeploymentState(sprint));
+            DeploymentPipeline pipeline = new();
 
+            pipeline.AddComponent(new SourcesAction("ThisIsSupposeToBeAnUrls"));
+            pipeline.AddComponent(new PackageAction(new() { "xunit (2.4.2)", "Moq (4.18.4)" }));
+            pipeline.AddComponent(new BuildAction(".NET Core build"));
+            pipeline.AddComponent(new TestAction("XUnit 2.4.2"));
+            pipeline.AddComponent(new AnalyseAction("SonarQube"));
+            pipeline.AddComponent(new DeployAction("Azure"));
+            pipeline.AddComponent(new UtilityAction(new() { "UtilityAction1", "UtilityAction2" }));
 
             // Act
-            sprint.StartDeployment(
-                   gitUrl: "https://github.com/deBasMan21/AvansDevOps",
-                   dependencies: new() { "xunit (2.4.2)", "Moq (4.18.4)" },
-                   buildType: ".NET Core build",
-                   testFramework: "XUnit 2.4.2",
-                   analyseTool: "SonarQube",
-                   deploymentTarget: "Azure",
-                   utilityActions: new() { "UtilityAction1", "UtilityAction2" }
-               );
+            sprint.StartDeployment(pipeline);
 
             // Assert
             Assert.True(sprint.deploymentState is InDeploymentState);
@@ -329,17 +332,18 @@ namespace DomainTests.SprintTests
             // Arrange
             ReleaseSprint sprint = new ReleaseSprint(Name: "sprint1", StartDate: DateTime.Now, EndDate: DateTime.Now.AddDays(20));
             sprint.UpdateDeploymentState(new ReleasedDeploymentState(sprint));
+            DeploymentPipeline pipeline = new();
+
+            pipeline.AddComponent(new SourcesAction("ThisIsSupposeToBeAnUrls"));
+            pipeline.AddComponent(new PackageAction(new() { "xunit (2.4.2)", "Moq (4.18.4)" }));
+            pipeline.AddComponent(new BuildAction(".NET Core build"));
+            pipeline.AddComponent(new TestAction("XUnit 2.4.2"));
+            pipeline.AddComponent(new AnalyseAction("SonarQube"));
+            pipeline.AddComponent(new DeployAction("Azure"));
+            pipeline.AddComponent(new UtilityAction(new() { "UtilityAction1", "UtilityAction2" }));
 
             // Act
-            sprint.StartDeployment(
-                   gitUrl: "https://github.com/deBasMan21/AvansDevOps",
-                   dependencies: new() { "xunit (2.4.2)", "Moq (4.18.4)" },
-                   buildType: ".NET Core build",
-                   testFramework: "XUnit 2.4.2",
-                   analyseTool: "SonarQube",
-                   deploymentTarget: "Azure",
-                   utilityActions: new() { "UtilityAction1", "UtilityAction2" }
-               );
+            sprint.StartDeployment(pipeline);
 
             // Assert
             Assert.True(sprint.deploymentState is ReleasedDeploymentState);
@@ -456,17 +460,18 @@ namespace DomainTests.SprintTests
             // Arrange
             ReleaseSprint sprint = new ReleaseSprint(Name: "sprint1", StartDate: DateTime.Now, EndDate: DateTime.Now.AddDays(20));
             sprint.UpdateDeploymentState(new DeploymentFailedState(sprint));
+            DeploymentPipeline pipeline = new();
+
+            pipeline.AddComponent(new SourcesAction("ThisIsSupposeToBeAnUrls"));
+            pipeline.AddComponent(new PackageAction(new() { "xunit (2.4.2)", "Moq (4.18.4)" }));
+            pipeline.AddComponent(new BuildAction(".NET Core build"));
+            pipeline.AddComponent(new TestAction("XUnit 2.4.2"));
+            pipeline.AddComponent(new AnalyseAction("SonarQube"));
+            pipeline.AddComponent(new DeployAction("Azure"));
+            pipeline.AddComponent(new UtilityAction(new() { "UtilityAction1", "UtilityAction2" }));
 
             // Act
-            sprint.StartDeployment(
-                   gitUrl: "https://github.com/deBasMan21/AvansDevOps",
-                   dependencies: new() { "xunit (2.4.2)", "Moq (4.18.4)" },
-                   buildType: ".NET Core build",
-                   testFramework: "XUnit 2.4.2",
-                   analyseTool: "SonarQube",
-                   deploymentTarget: "Azure",
-                   utilityActions: new() { "UtilityAction1", "UtilityAction2" }
-               );
+            sprint.StartDeployment(pipeline);
 
 
             // Assert
@@ -540,17 +545,18 @@ namespace DomainTests.SprintTests
             // Arrange
             ReleaseSprint sprint = new ReleaseSprint(Name: "sprint1", StartDate: DateTime.Now, EndDate: DateTime.Now.AddDays(20));
             sprint.UpdateDeploymentState(new DeploymentCancelledState(sprint));
+            DeploymentPipeline pipeline = new();
+
+            pipeline.AddComponent(new SourcesAction("ThisIsSupposeToBeAnUrls"));
+            pipeline.AddComponent(new PackageAction(new() { "xunit (2.4.2)", "Moq (4.18.4)" }));
+            pipeline.AddComponent(new BuildAction(".NET Core build"));
+            pipeline.AddComponent(new TestAction("XUnit 2.4.2"));
+            pipeline.AddComponent(new AnalyseAction("SonarQube"));
+            pipeline.AddComponent(new DeployAction("Azure"));
+            pipeline.AddComponent(new UtilityAction(new() { "UtilityAction1", "UtilityAction2" }));
 
             // Act
-            sprint.StartDeployment(
-                   gitUrl: "https://github.com/deBasMan21/AvansDevOps",
-                   dependencies: new() { "xunit (2.4.2)", "Moq (4.18.4)" },
-                   buildType: ".NET Core build",
-                   testFramework: "XUnit 2.4.2",
-                   analyseTool: "SonarQube",
-                   deploymentTarget: "Azure",
-                   utilityActions: new() { "UtilityAction1", "UtilityAction2" }
-               );
+            sprint.StartDeployment(pipeline);
 
             // Assert
             Assert.True(sprint.deploymentState is DeploymentCancelledState);
