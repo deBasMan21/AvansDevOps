@@ -34,7 +34,8 @@ namespace AvansDevOps.SprintAbstraction
             this.StartDate = StartDate;
             this.EndDate = EndDate;
             this.SprintBacklog = new Backlog(Notify);
-            this.Developers = new();
+            this.Developers = new(); 
+            CurrentState = new CreatedSprintState(this);
         }
         public void AddDeveloper(User developer)
         {
