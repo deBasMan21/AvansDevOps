@@ -31,7 +31,6 @@ namespace AvansDevOps.SprintDeploymentState
                 _sprint.UpdateDeploymentState(new ReleasedDeploymentState(_sprint));
             }
             else {
-                // TODO: Send notification
                 Console.WriteLine("pipeline failed");
                 _sprint.UpdateDeploymentState(new DeploymentFailedState(_sprint));
             }
