@@ -25,5 +25,7 @@ namespace AvansDevOps.BacklogItemState
         public void StartTesting() { }
 
         public void TestTask(bool success) { }
+
+        public void CloseTask() { }
     }
 }

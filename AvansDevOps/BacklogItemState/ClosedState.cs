@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.BacklogItemState
 {
-    public class ReadyForTestingState : IBacklogItemState
+    public class ClosedState : IBacklogItemState
     {
-        private readonly BacklogItem _backlogItemState;
-        public ReadyForTestingState(BacklogItem _backlogItemState) => this._backlogItemState = _backlogItemState;
+        private readonly BacklogItem _backlogItem;
 
-        public void StartTesting() => _backlogItemState.UpdateState(new TestingState(_backlogItemState));
+        public ClosedState(BacklogItem backlogItem)
+        {
+            _backlogItem = backlogItem;
+            _backlogItem.Forum?.CloseForum();
+        }
+
+        public void CloseTask() { }
 
         public void EvaluateTestRapport(bool passed) { }
 
@@ -22,6 +27,7 @@ namespace AvansDevOps.BacklogItemState
         public int SendTestRapport(bool passed) => 0;
 
         public void StartTask() { }
-        public void CloseTask() { }
+
+        public void StartTesting() { }
     }
 }

@@ -12,7 +12,7 @@ namespace AvansDevOps.UserAbstraction
     public abstract class User: ISubscriber
     {
         public string Name { get; private set; }
-        public List<NotificationType> NotificationPreferences { get; private set; } = new();
+        public HashSet<NotificationType> NotificationPreferences { get; private set; } = new();
         private readonly INotificationManager notificationManager;
 
         protected User(string Name)
