@@ -11,7 +11,11 @@ namespace AvansDevOps.SprintState
     {
         private readonly Sprint _sprint;
 
-        public ClosedSprintState(Sprint Sprint) => this._sprint = Sprint;
+        public ClosedSprintState(Sprint Sprint)
+        {
+            this._sprint = Sprint;
+            _sprint.CloseTasks();
+        }
 
         public void FinishSprint() { }
 

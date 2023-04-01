@@ -33,5 +33,7 @@ namespace AvansDevOps.BacklogItemState
         public void StartTask() => Console.WriteLine("Item is still in progress..");
 
         public void StartTesting() => Console.WriteLine("Item is still in progress..");
+        
+        public void CloseTask() { }
     }
 }
