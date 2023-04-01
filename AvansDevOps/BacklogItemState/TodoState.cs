@@ -22,11 +22,7 @@ namespace AvansDevOps.BacklogItemState
 
         public int SendTestRapport(bool passed) => 0;
 
-        public void StartTesting() { }
-
-        public void TestTask(bool success) { }
-
-        public void CloseTask() { }
+        public void CloseTask() => Console.WriteLine("Item needs to be started..");
         public void StartTesting() => Console.WriteLine("Item needs to be started..");
     }
 }
