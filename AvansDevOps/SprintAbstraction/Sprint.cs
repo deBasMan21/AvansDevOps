@@ -12,7 +12,7 @@ using AvansDevOps.UserAbstraction;
 
 namespace AvansDevOps.SprintAbstraction
 {
-    public abstract class Sprint : ISprintStateHolder, IPublisher<Tester>
+    public abstract class Sprint : ISprintStateHolder, IPublisher
     {
         public string Name { get; private set; }
         public DateTime StartDate { get; private set; }
@@ -63,11 +63,11 @@ namespace AvansDevOps.SprintAbstraction
 
 
         // Notification logic - IPublisher Interface
-        private readonly List<Tester> subscribers = new List<Tester>();
+        private readonly List<ISubscriber> subscribers = new();
 
-        public void RegisterSubscriber(Tester Subscriber) => subscribers.Add(Subscriber);
+        public void RegisterSubscriber(ISubscriber Subscriber) => subscribers.Add(Subscriber);
 
-        public void RemoveSubscriber(Tester Subscriber) => subscribers.Remove(Subscriber);
+        public void RemoveSubscriber(ISubscriber Subscriber) => subscribers.Remove(Subscriber);
 
         public virtual int Notify(string message, Type? userType)
         {
