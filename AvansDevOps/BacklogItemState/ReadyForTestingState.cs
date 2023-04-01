@@ -13,14 +13,14 @@ namespace AvansDevOps.BacklogItemState
 
         public void StartTesting() => _backlogItemState.UpdateState(new TestingState(_backlogItemState));
 
-        public void EvaluateTestRapport(bool passed) { }
+        public void EvaluateTestRapport(bool passed) => Console.WriteLine("Item needs to be tested..");
 
         public int FinishTask() => 0;
 
-        public void InvalidateTask() { }
+        public void InvalidateTask() => Console.WriteLine("Item needs to be tested..");
 
         public int SendTestRapport(bool passed) => 0;
 
-        public void StartTask() { }
+        public void StartTask() => Console.WriteLine("Item needs to be tested..");
     }
 }

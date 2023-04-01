@@ -23,7 +23,5 @@ namespace AvansDevOps.BacklogItemState
         public void StartTask() => Console.WriteLine("Item has already finished..");
 
         public void StartTesting() => Console.WriteLine("Item has already finished..");
-
-        public void TestTask(bool success) => Console.WriteLine("Item has already finished..");
     }
 }

@@ -8,6 +8,7 @@ namespace AvansDevOps.Pipeline
 {
     public class DeploymentPipeline : ActionGroupComposite
     {
+        private readonly string _name = "pipeline";
         override public bool AcceptVisitor(IActionVisitor visitor) => visitor.VisitPipeline(this) && base.AcceptVisitor(visitor);
 
         virtual public bool StartPipeline() {

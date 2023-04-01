@@ -14,11 +14,11 @@ namespace AvansDevOps.SprintDeploymentState
 
         public ReadyToDeployState(ReleaseSprint _sprint) => this._sprint = _sprint;
 
-        public void ApproveDeployment() { }
+        public void ApproveDeployment() => Console.WriteLine("Deployments needs to be started..");
 
-        public void CancelDeployment() { }
+        public void CancelDeployment() => Console.WriteLine("Deployments needs to be started..");
 
-        public void RestartDeployment() { }
+        public void RestartDeployment() => Console.WriteLine("Deployments needs to be started..");
 
         public bool StartDeployment(DeploymentPipeline pipeline) {
             ActionVisitor visitor = new ();
@@ -29,9 +29,6 @@ namespace AvansDevOps.SprintDeploymentState
 
         }
 
-        public void FinishDeployment(bool succeeded)
-        {
-            return;
-        }
+        public void FinishDeployment(bool succeeded) => Console.WriteLine("Deployments needs to be started..");
     }
 }
