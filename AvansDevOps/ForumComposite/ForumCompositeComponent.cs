@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.ForumComposite
 {
-    public abstract class ForumCompositeComponent : ForumComponent, IForumPublisher<User>
+    public abstract class ForumCompositeComponent : ForumComponent, IForumPublisher
     {
         protected bool Editable = true;
         public List<ForumComponent> GetComponents() => GetChildrenComponents();
@@ -26,11 +26,11 @@ namespace AvansDevOps.ForumComposite
         }
 
         // Notification publisher
-        private readonly HashSet<User> subscribers = new HashSet<User>();
+        private readonly HashSet<ISubscriber> subscribers = new();
 
-        public void RegisterSubscriber(User Subscriber) => subscribers.Add(Subscriber);
+        public void RegisterSubscriber(ISubscriber Subscriber) => subscribers.Add(Subscriber);
 
-        public void RemoveSubscriber(User Subscriber) => subscribers.Remove(Subscriber);
+        public void RemoveSubscriber(ISubscriber Subscriber) => subscribers.Remove(Subscriber);
 
         public int Notify(string message, User user) => subscribers.Where(u => u != user).Select(u => u.ReceiveUpdate(message)).Sum();
     }
