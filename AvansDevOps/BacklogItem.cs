@@ -19,6 +19,7 @@ namespace AvansDevOps
         public Developer? _developer { get; private set; }
         public Func<string, Type, int>? notificationCallback { get; private set; }
         public IForumComponent? Forum { get; private set; }
+        public Branch? Branch { get; private set; }
 
         // State pattern
         public IBacklogItemState State { get; set; }
@@ -31,6 +32,7 @@ namespace AvansDevOps
             State = new TodoState(this);
         }
 
+        public void SetBranch(Branch branch) => Branch = branch;
         public void SetNotificationCallback(Func<string, Type, int>? notificationCallback) => this.notificationCallback = notificationCallback;
 
         public void AddActivity(Activity activity) => Activities.Add(activity);
@@ -52,7 +54,7 @@ namespace AvansDevOps
         {
             if (notificationCallback != null) 
             { 
-                return notificationCallback("Ticket is done for testing", typeof(Tester)); 
+                return notificationCallback($"Ticket is done for testing on branch {Branch?.Name}", typeof(Tester)); 
             }
             return 0;
         }
