@@ -32,6 +32,8 @@ namespace AvansDevOps.BacklogItemState
 
         public void StartTask() => Console.WriteLine("Item needs to be evaluated..");
 
+        public void StartTesting() { }
+        public void CloseTask() { }
         public void StartTesting() => Console.WriteLine("Item needs to be evaluated..");
     }
 }

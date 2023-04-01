@@ -1,4 +1,5 @@
 ﻿using AvansDevOps;
+using AvansDevOps.ForumComposite;
 using AvansDevOps.Pipeline;
 using AvansDevOps.SprintAbstraction;
 using AvansDevOps.UserAbstraction;

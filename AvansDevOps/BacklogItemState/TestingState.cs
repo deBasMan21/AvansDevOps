@@ -35,5 +35,7 @@ namespace AvansDevOps.BacklogItemState
         public void StartTask() => Console.WriteLine("Testrapport needs to be send..");
 
         public void StartTesting() => Console.WriteLine("Testrapport needs to be send..");
+        public void StartTesting() { }
+        public void CloseTask() { }
     }
 }

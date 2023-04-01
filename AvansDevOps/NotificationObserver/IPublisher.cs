@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AvansDevOps.UserAbstraction;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,13 @@ namespace AvansDevOps.NotificationObserver
     {
         public void RegisterSubscriber(T Subscriber);
         public void RemoveSubscriber(T Subscriber);
-        public int Notify(string message, Type userType);
+        public int Notify(string message, Type? userType);
+    }
+
+    public interface IForumPublisher<in T> where T : ISubscriber
+    {
+        public void RegisterSubscriber(T Subscriber);
+        public void RemoveSubscriber(T Subscriber);
+        public int Notify(string message, User user);
     }
 }
