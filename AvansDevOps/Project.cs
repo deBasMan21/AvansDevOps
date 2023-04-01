@@ -21,7 +21,11 @@ namespace AvansDevOps
             this.ProductBacklog = new Backlog(null);
         }
 
-        public void AddSprint(Sprint Sprint) => Sprints.Add(Sprint);
+        public void AddSprint(Sprint Sprint)
+        {
+            Sprint.AssignProductOwner(ProductOwner);
+            Sprints.Add(Sprint);
+        }
         public void RemoveSprint(Sprint sprint) => Sprints.Remove(sprint);
     }
 }
