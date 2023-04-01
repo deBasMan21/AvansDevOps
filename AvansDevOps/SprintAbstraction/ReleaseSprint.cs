@@ -23,21 +23,23 @@ namespace AvansDevOps.SprintAbstraction
         public void UpdateDeploymentState(IDeploymentState state) => deploymentState = state;
         public void ApproveDeployment() => deploymentState.ApproveDeployment();
         public bool StartDeployment(string gitUrl, List<string> dependencies, string buildType, string testFramework, string analyseTool, string deploymentTarget, List<string> utilityActions) => deploymentState.StartDeployment(gitUrl, dependencies, buildType, testFramework, analyseTool, deploymentTarget, utilityActions);
-        public void CancelDeployment() 
+        public int CancelDeployment() 
         { 
             deploymentState.CancelDeployment();
 
             string notificationString = "Deployment for release cancelled";
-            Notify(notificationString, typeof(ProductOwner));
-            Notify(notificationString, typeof(ScrumMaster));
+            int notificationCount = Notify(notificationString, typeof(ProductOwner));
+            notificationCount += Notify(notificationString, typeof(ScrumMaster));
+            return notificationCount;
         }
-        public void FinishDeployment(bool succeeded)
+        public int FinishDeployment(bool succeeded)
         {
             deploymentState.FinishDeployment(succeeded);
 
             string notificationString = succeeded ? "Deployment for release succeeded" : "Deployment for release failed";
-            Notify(notificationString, typeof(ScrumMaster));
-            if (succeeded) { Notify(notificationString, typeof(ScrumMaster)); }
+            int notificationCount = Notify(notificationString, typeof(ScrumMaster));
+            if (succeeded) { notificationCount += Notify(notificationString, typeof(ScrumMaster)); }
+            return notificationCount;
         }
 
         public void RestartDeployment() => deploymentState.RestartDeployment();
